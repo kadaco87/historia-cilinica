@@ -1,0 +1,23 @@
+<div class="row">
+    <header
+        class="col-12 row d-flex mb-2 mx-0 p-3 justify-content-end align-content-center header bg-green-light shadow">
+        <div class="col-auto">
+            <h1 class="display-3 text-light">TechClinic</h1>
+        </div>
+    </header>
+</div>
+<main class="container fullHeight my-sm-3">
+    <div class="row h-100 d-flex align-content-stretch">
+        <div class="row col justify-content-center align-content-center">
+            <div class="col-md-8 card border-0 rounded-4 shadow col-auto ">
+                <img [src]="logo.urlImg" [alt]="logo.textAlt" [style.height]="'auto'" [style.width]="'auto'">
+            </div>
+        </div>
+
+        <div class="col">
+            <div class="row h-100 d-flex align-content-stretch">
+                <router-outlet></router-outlet>
+            </div>
+        </div>
+    </div>
+</main>

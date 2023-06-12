@@ -1,0 +1,68 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$historia-clinica-primary: mat.define-palette(mat.$indigo-palette);
+$historia-clinica-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$historia-clinica-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$historia-clinica-theme: mat.define-light-theme((
+  color: (
+    primary: $historia-clinica-primary,
+    accent: $historia-clinica-accent,
+    warn: $historia-clinica-warn,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($historia-clinica-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Alkatra&family=Concert+One&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    min-width: 100%;
+    display: block;
+    font-family: 'Alkatra', cursive;
+    font-family: 'Concert One', cursive;
+}
+
+.bg-primary{
+    background-color: #FCFCFC;
+}
+
+.bg-green-light {
+    background-color: #03b2ce75;
+}
+.bg-green {
+    background-color: #03b2ce76;
+}
+.bg-green-dark {
+    background-color: #03b2ce82;
+}
+.text-gray{
+    color: #685959
+}
+.text-white{
+    color:#FCFCFC
+}

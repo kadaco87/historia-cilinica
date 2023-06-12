@@ -1,0 +1,39 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav bg-green-light shadow border-0" fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
+    <mat-toolbar class="py-1 px-auto">
+      <div class="logo-dashboard d-flex align-content-center justify-content-center rounded-3 row mx-auto">
+        <img class="col-auto rounded-3 imgLogo" src="/assets/images/logo.png" alt="logo">
+      </div>
+    </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['./','pacientes']">Pacientes</a>
+      <a mat-list-item [routerLink]="['/']">Agenda</a>
+      <a mat-list-item [routerLink]="['/']">Link 3</a>
+      <a mat-list-item [routerLink]="['/']">Link 3</a>
+      <a mat-list-item [routerLink]="['/']">Link 3</a>
+      <a mat-list-item [routerLink]="['/']">Link 3</a>
+      <a mat-list-item [routerLink]="['/']">Link 3</a>
+      <a mat-list-item [routerLink]="['/']">Link 3</a>
+
+
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar class="bg-green-light d-flex justify-content-between">
+      <div *ngIf="isHandset$ | async"
+        class="logo-dashboard d-flex align-content-center justify-content-center rounded-3 row">
+        <img class="col-auto rounded-3 imgLogo" src="/assets/images/logo.png" alt="">
+      </div>
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <h1 *ngIf="!(isHandset$ | async)" class="text-white display-3">TechClinic</h1>
+    </mat-toolbar>
+    <!-- Add Content Here -->
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

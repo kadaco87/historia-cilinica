@@ -1,0 +1,121 @@
+<div class="container-fluid my-5 bg-light text-gray">
+    <div class="row justify-content-center">
+        <div class="col-10">
+            <h2>{{!id?'CREAR PACIENTE':'ACTUALIZAR PACIENTE'}}</h2>
+            <hr>
+        </div>
+
+        <div class="col-10">
+
+            <form class="row ">
+                <div class="row col-12 gx-5 gy-1 mb-5">
+                    <div class="col-12">
+                        <h4>Informacion Personal</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Primer Nombre <span class="text-danger fs-6">*</span></label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Segundo Nombre</label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Primer Apellido<span class="text-danger fs-6">*</span></label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Segundo Apellido<span class="text-danger fs-6">*</span></label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+
+
+                    <!-- ajkshdfhaskdlfasfhlaskhj -->
+                    <div class="col-md-3 ">
+                        <label for="select-id" class="form-label">Tipo de Documento<span
+                                class="text-danger fs-6">*</span></label>
+                        <select class="form-select" id="select-id">
+                            <option selected></option>
+                            <option value="">Cedula de Ciudadania</option>
+                            <option value="">Registro civil</option>
+                            <option value="">Cedula de Extranjeria</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label for="id-input" class="form-label">Numero de Documento<span
+                                class="text-danger fs-6">*</span></label>
+                        <input type="text" class="form-control" id="id-input">
+                    </div>
+                    <!-- fin alksfhglkashdfdhj -->
+
+
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Fecha de Nacimiento<span
+                                class="text-danger fs-6">*</span></label>
+                        <input type="date" class="form-control text-gray" id="">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Género<span class="text-danger fs-6">*</span></label>
+                        <select class="form-select" id="">
+                            <option selected></option>
+                            <option value="">Masculino</option>
+                            <option value="">Femenino</option>
+                            <option value="">Indeterminado</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row col-12 gx-5 gy-1 ">
+                    <div class="col-12">
+                        <h4>Informacion de contacto</h4>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Primer Nombre <span class="text-danger">*</span> </label>
+                        <input type="text" class="form-control" id="" placeholder="Primer Nombre">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Password<span class="text-danger fs-6">*</span></label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Direccion de residencia (Opcional)</label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Pais de residencia<span
+                                class="text-danger fs-6">*</span></label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Departamento de residencia<span
+                                class="text-danger fs-6">*</span></label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="" class="form-label">Ciudad de residencia<span
+                                class="text-danger fs-6">*</span></label>
+                        <input type="text" class="form-control" id="">
+                    </div>
+                    <div class="col-md-6 form-check-inline">
+                        <input type="checkbox" class="form-check-input me-1" id="">
+                        <label for="" class="form-label">Correo electronico (Opcional)</label>
+                    </div>
+
+                    <div class="row d-flex justify-content-end mx-1 ">
+
+                        <button class="btn btn-outline-danger me-2 col-1">Cancelar</button>
+                        <button class="btn btn-primary col-1 primary">Crear</button>
+                    </div>
+                </div>
+
+
+
+            </form>
+        </div>
+    </div>
+</div>
