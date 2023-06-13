@@ -1,28 +1,45 @@
 <app-datos-personales-paciente></app-datos-personales-paciente>
-<hr>
+
 <div class="row mx-0 py-3">
     <ul class="nav nav-tabs col-12 fs-4" id="myTab" role="tablist">
         <li class="nav-item" role="presentation">
-            <button class="nav-link active" id="signos-vitales-tab" data-bs-toggle="tab"
+            <button class="nav-link active text-green-dark" id="signos-vitales-tab" data-bs-toggle="tab"
                 data-bs-target="#signos-vitales-tab-pane" type="button" role="tab"
-                aria-controls="signos-vitales-tab-pane" aria-selected="true">Signos Vitales</button>
+                aria-controls="signos-vitales-tab-pane" aria-selected="true"><i
+                    class="bi bi-heart-pulse mx-2"></i>Signos
+                Vitales</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="notas-enfermeria-tab" data-bs-toggle="tab"
+            <button class="nav-link text-green-dark" id="notas-enfermeria-tab" data-bs-toggle="tab"
                 data-bs-target="#notas-enfermeria-tab-pane" type="button" role="tab"
-                aria-controls="notas-enfermeria-tab-pane" aria-selected="false">Notas
+                aria-controls="notas-enfermeria-tab-pane" aria-selected="false"><i
+                    class="bi bi-file-earmark-medical mx-2"></i>Notas
                 Enfermeria</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="notas-evolucion-tab" data-bs-toggle="tab"
+            <button class="nav-link text-green-dark" id="notas-evolucion-tab" data-bs-toggle="tab"
                 data-bs-target="#notas-evolucion-tab-pane" type="button" role="tab"
-                aria-controls="notas-evolucion-tab-pane" aria-selected="false">Notas
+                aria-controls="notas-evolucion-tab-pane" aria-selected="false"><i
+                    class="bi bi-clipboard-pulse mx-2"></i>Notas
                 Evolucion</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link" id="antecedentes-clinicos-tab" data-bs-toggle="tab"
+            <button class="nav-link text-green-dark" id="antecedentes-clinicos-tab" data-bs-toggle="tab"
                 data-bs-target="#antecedentes-clinicos-tab-pane" type="button" role="tab"
-                aria-controls="antecedentes-clinicos-tab-pane" aria-selected="false">Antecedentes Clinicos</button>
+                aria-controls="antecedentes-clinicos-tab-pane" aria-selected="false"><i
+                    class="fa-solid fa-bed-pulse mx-2"></i>Antecedentes Clinicos</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link text-green-dark" id="ordenes-medicas-tab" data-bs-toggle="tab"
+                data-bs-target="#ordenes-medicas-tab-pane" type="button" role="tab"
+                aria-controls="ordenes-medicas-tab-pane" aria-selected="false"><i
+                    class="fa-solid fa-hand-holding-medical mx-2"></i>Ordenes Medicas</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link text-green-dark" id="medicamentos-tab" data-bs-toggle="tab"
+                data-bs-target="#ordenes-medicas-tab-pane" type="button" role="tab"
+                aria-controls="medicamentos-tab-pane" aria-selected="false"><i
+                    class="fa-solid fa-pills mx-2"></i>Medicamentos</button>
         </li>
 
     </ul>
@@ -35,12 +52,20 @@
             tabindex="0">
             profile
         </div>
-        <div class="tab-pane fade" id="notas-evolucion-tab-pane" role="tabpanel" aria-labelledby="notas-evolucion-tab"
+        <div class="tab-pane fade" id="notas-evolucion-tab-pane" role="tabpanel" aria-labelledby="notas-evolucion-tab "
             tabindex="0">
             ...
         </div>
         <div class="tab-pane fade" id="antecedentes-clinicos-tab-pane" role="tabpanel"
             aria-labelledby="antecedentes-clinicos-tab" tabindex="0">
+            ...
+        </div>
+        <div class="tab-pane fade" id="ordenes-medicas-tab-pane" role="tabpanel" aria-labelledby="ordenes-medicas-tab"
+            tabindex="0">
+            ...
+        </div>
+        <div class="tab-pane fade" id="medicamentos-tab-pane" role="tabpanel" aria-labelledby="medicamentos-tab"
+            tabindex="0">
             ...
         </div>
     </div>

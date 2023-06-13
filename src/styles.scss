@@ -35,7 +35,9 @@ $historia-clinica-theme: mat.define-light-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css2?family=Alkatra&family=Concert+One&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=Alkatra&family=Concert+One&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
 
 html, body {
     margin: 0;
@@ -43,8 +45,9 @@ html, body {
     min-height: 100%;
     min-width: 100%;
     display: block;
-    font-family: 'Alkatra', cursive;
-    font-family: 'Concert One', cursive;
+    // font-family: 'Alkatra', cursive;
+    // font-family: 'Concert One', cursive;
+    font-family: 'Quicksand', sans-serif;
 }
 
 .bg-primary{
@@ -60,9 +63,18 @@ html, body {
 .bg-green-dark {
     background-color: #03b2ce82;
 }
+.bg-gray{
+    background-color: #eeeeee
+}
 .text-gray{
     color: #685959
 }
 .text-white{
     color:#FCFCFC
+}
+.text-green-dark{
+    color: #029fb882;
+}
+.btn-green{
+    background-color: #03b2ce76;
 }

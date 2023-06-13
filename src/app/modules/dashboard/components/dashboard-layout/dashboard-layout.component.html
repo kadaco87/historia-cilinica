@@ -8,17 +8,10 @@
       </div>
     </mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item [routerLink]="['./','pacientes']">Pacientes</a>
-      <a mat-list-item [routerLink]="['/']">Agenda</a>
-      <a mat-list-item [routerLink]="['/']">Link 3</a>
-      <a mat-list-item [routerLink]="['/']">Link 3</a>
-      <a mat-list-item [routerLink]="['/']">Link 3</a>
-      <a mat-list-item [routerLink]="['/']">Link 3</a>
-      <a mat-list-item [routerLink]="['/']">Link 3</a>
-      <a mat-list-item [routerLink]="['/']">Link 3</a>
-
-
-
+      <div class="align-content-center justify-content-center mx-auto fs-4 mt-3 text-white">
+        <a mat-list-item [routerLink]="['./','pacientes']"><i class="fa-solid fa-id-card mx-2"></i>Pacientes</a>
+        <a mat-list-item [routerLink]="['/']"><i class="fa-regular fa-calendar-days mx-2 "></i>Agenda</a>
+      </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
