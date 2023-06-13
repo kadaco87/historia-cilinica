@@ -6,6 +6,8 @@ import { ListaPacientesComponent } from './components/lista-pacientes/lista-paci
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { FormularioPacienteComponent } from './components/formulario-paciente/formulario-paciente.component';
+import { HistoriaClinicaModule } from '../historia-clinica/historia-clinica.module';
+import { SharedModule } from 'src/app/modules/shared/shared.module';
 
 
 @NgModule({
@@ -18,7 +20,9 @@ import { FormularioPacienteComponent } from './components/formulario-paciente/fo
 
     PacientesRoutingModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    HistoriaClinicaModule,
+    SharedModule
   ]
 })
 export class PacientesModule { }

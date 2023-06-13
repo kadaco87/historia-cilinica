@@ -23,6 +23,10 @@ const routes: Routes = [
       {
         path: 'forumlario-paciente/:id', //una con parametros, carga el mismo formulario
         component: FormularioPacienteComponent
+      },
+      {
+        path: 'historia-clinica/:id',
+        loadChildren: () => import('./../historia-clinica/historia-clinica.module').then(module => module.HistoriaClinicaModule)
       }
     ]
 

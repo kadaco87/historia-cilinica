@@ -10,6 +10,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { PacientesModule } from './modules/pacientes/pacientes.module';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { PacientesModule } from './modules/pacientes/pacientes.module';
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    PacientesModule
+    PacientesModule,
+    SharedModule
   ]
 })
 export class DashboardModule { }

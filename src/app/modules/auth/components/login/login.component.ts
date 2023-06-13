@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,8 @@ export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({});
 
-  constructor(private readonly fb: FormBuilder) { }
+  constructor(private readonly fb: FormBuilder,
+    private readonly router: Router) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -28,7 +30,7 @@ export class LoginComponent implements OnInit {
     } else {
       console.log('Algo falta');
 
-    }
+    } this.router.navigate(["/dashboard"]).then() //promesa que provee angula para navegar por todo el aplicativo
     console.log(this.loginForm.value);
   }
 

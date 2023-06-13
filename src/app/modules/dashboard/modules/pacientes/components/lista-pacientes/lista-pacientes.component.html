@@ -1,4 +1,4 @@
-<div class="container-fluid my-5 bg-light">
+<div class="container-fluid my-5 bg-light text-gray">
     <div class="row">
         <div class="col-6">
             <h2>Pacientes</h2>
@@ -25,37 +25,43 @@
 
             <!-- Position Column -->
             <ng-container matColumnDef="nombre">
-                <th mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                <th class="text-gray" mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.nombre}} </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="fechaNacimiento">
-                <th mat-header-cell *matHeaderCellDef> Fecha de Naciemiento </th>
-                <td mat-cell *matCellDef="let element"> {{element.fechaNacimiento}} </td>
+                <th class="text-gray" mat-header-cell *matHeaderCellDef> Fecha de Naciemiento </th>
+                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.fechaNacimiento}} </td>
             </ng-container>
 
             <!-- Weight Column -->
             <ng-container matColumnDef="genero">
-                <th mat-header-cell *matHeaderCellDef> Genero </th>
-                <td mat-cell *matCellDef="let element"> {{element.genero}} </td>
+                <th class="text-gray" mat-header-cell *matHeaderCellDef> Genero </th>
+                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.genero}} </td>
             </ng-container>
 
             <!-- Symbol Column -->
             <ng-container matColumnDef="tipoDocumento">
-                <th mat-header-cell *matHeaderCellDef>Tipo de Documento </th>
-                <td mat-cell *matCellDef="let element"> {{element.tipoDocumento}} </td>
+                <th class="text-gray" mat-header-cell *matHeaderCellDef>Tipo de Documento </th>
+                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.tipoDocumento}} </td>
             </ng-container>
 
             <ng-container matColumnDef="documento">
-                <th mat-header-cell *matHeaderCellDef> Documento </th>
-                <td mat-cell *matCellDef="let element"> {{element.documento}} </td>
+                <th class="text-gray" mat-header-cell *matHeaderCellDef> Documento </th>
+                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.documento}} </td>
             </ng-container>
 
             <ng-container matColumnDef="id">
-                <th mat-header-cell *matHeaderCellDef> Actions </th>
-                <td mat-cell *matCellDef="let element"> <i class="fa-solid fa-eye"
-                        (click)="seledioclick(element.id)"></i> </td>
+                <th class="text-gray" mat-header-cell *matHeaderCellDef> Actions </th>
+                <td class="text-gray" mat-cell *matCellDef="let element">
+                    <!-- generar atencion inicial - lleva a la historia clinica -->
+                    <i class="fa-solid fa-file-waveform" (click)="iniciarAtencion(element.id)"></i>
+                    <!-- editar perfil del paciente -->
+                    <i class="fa-solid fa-file-pen mx-3" (click)="editarPerfilPaciente(element.id)"></i>
+                    <!-- historial clinico completo de atenciones -->
+                    <i class="fa-regular fa-folder-open" (click)="verHistorailClinico(element.id)"></i>
+                </td>
             </ng-container>
 
 
@@ -64,7 +70,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        <mat-paginator class="text-gray" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
             aria-label="Select page of periodic elements">
         </mat-paginator>
     </div>

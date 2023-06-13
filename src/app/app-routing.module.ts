@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
+
 
 const routes: Routes = [
   {
@@ -25,8 +25,8 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {
-    preloadingStrategy: PreloadAllModules,
-    useHash: true,
+    preloadingStrategy: PreloadAllModules, // precarga de modulos para mejor performance
+    useHash: true, // agrega un hash a la ruta principal para lograr entrar directamente a traves de una url especifica
   })],
   exports: [RouterModule]
 })

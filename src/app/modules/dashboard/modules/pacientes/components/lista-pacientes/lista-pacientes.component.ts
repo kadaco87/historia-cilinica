@@ -1,58 +1,51 @@
-import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
+import { MatTableDataSource, MatTableDataSourcePaginator } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { Paciente, PacientesService } from 'src/app/modules/shared/services/pacientes.service';
 
 @Component({
   selector: 'app-lista-pacientes',
   templateUrl: './lista-pacientes.component.html',
   styleUrls: ['./lista-pacientes.component.scss']
 })
-export class ListaPacientesComponent implements AfterViewInit {
+export class ListaPacientesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['nombre', 'fechaNacimiento', 'genero', 'tipoDocumento', 'documento', 'id'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
+
+  dataSource!: MatTableDataSource<Paciente, MatTableDataSourcePaginator>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+
+  constructor(private readonly router: Router, private readonly pacienteService: PacientesService) {
+
+  }
+  ngOnInit(): void {
+    this.getPaciente();
+  }
+
+  getPaciente() {
+    this.pacienteService.getPacientes().subscribe(pacientes => {
+      this.dataSource = new MatTableDataSource<Paciente>(pacientes)
+    })
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  seledioclick(i: string) {
+  iniciarAtencion(id: string) {
+    console.log('id: ', id);
+    this.router.navigate(['/dashboard/pacientes/historia-clinica/' + id + '/resumen'])
+  }
+  editarPerfilPaciente(i: string) {
+    console.log('id: ', i);
+
+  }
+  verHistorailClinico(i: string) {
     console.log('id: ', i);
 
   }
 }
 
-export interface PeriodicElement {
-  id: number;
-  nombre: string,
-  fechaNacimiento: Date,
-  genero: string,
-  tipoDocumento: string,
-  documento: string,
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    id: 1, nombre: 'este fulanito tiene nombre de afganistan', fechaNacimiento: new Date, genero: 'string', tipoDocumento: 'string', documento: 'string',
-  },
-  {
-    id: 2, nombre: 'string', fechaNacimiento: new Date, genero: 'string', tipoDocumento: 'string', documento: 'string',
-  },
-  {
-    id: 3, nombre: 'string', fechaNacimiento: new Date, genero: 'string', tipoDocumento: 'string', documento: 'string',
-  },
-  {
-    id: 4, nombre: 'string', fechaNacimiento: new Date, genero: 'string', tipoDocumento: 'string', documento: 'string',
-  },
-  {
-    id: 5, nombre: 'string', fechaNacimiento: new Date, genero: 'string', tipoDocumento: 'string', documento: 'string',
-  },
-  {
-    id: 6, nombre: 'string', fechaNacimiento: new Date, genero: 'string', tipoDocumento: 'string', documento: 'string',
-  },
-  {
-    id: 7, nombre: 'string', fechaNacimiento: new Date, genero: 'string', tipoDocumento: 'string', documento: 'string',
-  },
 
-];
 
