@@ -10,24 +10,23 @@
                 Vitales</button>
         </li>
         <li class="nav-item" role="presentation">
-            <button class="nav-link text-green-dark" id="notas-enfermeria-tab" data-bs-toggle="tab"
-                data-bs-target="#notas-enfermeria-tab-pane" type="button" role="tab"
-                aria-controls="notas-enfermeria-tab-pane" aria-selected="false"><i
-                    class="bi bi-file-earmark-medical mx-2"></i>Notas
-                Enfermeria</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link text-green-dark" id="notas-evolucion-tab" data-bs-toggle="tab"
-                data-bs-target="#notas-evolucion-tab-pane" type="button" role="tab"
-                aria-controls="notas-evolucion-tab-pane" aria-selected="false"><i
-                    class="bi bi-clipboard-pulse mx-2"></i>Notas
-                Evolucion</button>
+            <button class="nav-link text-green-dark" id="atencion-medica-tab" data-bs-toggle="tab"
+                data-bs-target="#atencion-medica-tab-pane" type="button" role="tab"
+                aria-controls="atencion-medica-tab-pane" aria-selected="false"><i
+                    class="bi bi-clipboard-pulse mx-2"></i>Atencion Medica</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link text-green-dark" id="antecedentes-clinicos-tab" data-bs-toggle="tab"
                 data-bs-target="#antecedentes-clinicos-tab-pane" type="button" role="tab"
                 aria-controls="antecedentes-clinicos-tab-pane" aria-selected="false"><i
                     class="fa-solid fa-bed-pulse mx-2"></i>Antecedentes Clinicos</button>
+        </li>
+        <li class="nav-item" role="presentation">
+            <button class="nav-link text-green-dark" id="notas-enfermeria-tab" data-bs-toggle="tab"
+                data-bs-target="#notas-enfermeria-tab-pane" type="button" role="tab"
+                aria-controls="notas-enfermeria-tab-pane" aria-selected="false"><i
+                    class="bi bi-file-earmark-medical mx-2"></i>Notas
+                Enfermeria</button>
         </li>
         <li class="nav-item" role="presentation">
             <button class="nav-link text-green-dark" id="ordenes-medicas-tab" data-bs-toggle="tab"
@@ -52,13 +51,13 @@
             tabindex="0">
             <app-editor-notas></app-editor-notas>
         </div>
-        <div class="tab-pane fade" id="notas-evolucion-tab-pane" role="tabpanel" aria-labelledby="notas-evolucion-tab "
+        <div class="tab-pane fade" id="atencion-medica-tab-pane" role="tabpanel" aria-labelledby="atencion-medica-tab "
             tabindex="0">
-            <app-editor-notas></app-editor-notas>
+            <app-atencion-medica></app-atencion-medica>
         </div>
         <div class="tab-pane fade" id="antecedentes-clinicos-tab-pane" role="tabpanel"
             aria-labelledby="antecedentes-clinicos-tab" tabindex="0">
-            ...
+            <app-antecedentes-clinicos></app-antecedentes-clinicos>
         </div>
         <div class="tab-pane fade" id="ordenes-medicas-tab-pane" role="tabpanel" aria-labelledby="ordenes-medicas-tab"
             tabindex="0">

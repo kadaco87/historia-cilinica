@@ -1,0 +1,281 @@
+<div class="container-fluid">
+    <div class="row py-5">
+        <div class="card border-0 shadow col-11 mx-auto">
+            <div class="card-body fs-5 ">
+                <div class="row  justify-contnet-start text-green-dark mb-4">
+                    <h3>Enfermedad actual</h3>
+                </div>
+
+                <div class="row  justify-contnet-start text-green-dark mb-4 ">
+                    <h4 class="border-bottom">Modalidad de consulta</h4>
+                </div>
+
+                <form>
+                    <div>
+
+                        <div class="row">
+                            <div class=" row col-12 my-auto mx-auto text-gray py-3">
+                                <div class="form-check col-3 ">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios1" value="option1" checked>
+                                    <label class="form-check-label fs-5" for="exampleRadios1">
+                                        Presencial
+                                    </label>
+                                </div>
+                                <div class="form-check col-3">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios2" value="option2">
+                                    <label class="form-check-label fs-5" for="exampleRadios2">
+                                        Telemedicina
+                                    </label>
+                                </div>
+                                <div class="form-check col-3">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios3" value="option3">
+                                    <label class="form-check-label fs-5" for="exampleRadios3">
+                                        Asistida
+                                    </label>
+                                </div>
+                                <div class="form-check col-3">
+                                    <input class="form-check-input" type="radio" name="exampleRadios"
+                                        id="exampleRadios4" value="option4">
+                                    <label class="form-check-label fs-5" for="exampleRadios4">
+                                        Otros
+                                    </label>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="row d-flex col-12 my-auto mx-auto py-3 justify-content-start align-content-between">
+                            <div class="col-md-2 ">
+                                <div class="form-floating">
+                                    <select class="form-select text-gray" id="floatingSelectGrid">
+                                        <option selected></option>
+                                        <option value="3">Primera vez</option>
+                                        <option value="1">Control</option>
+                                        <option value="2">Otro</option>
+
+
+                                    </select>
+                                    <label for="floatingSelectGrid" class="text-gray py-1">Tipo Consulta</label>
+                                </div>
+                            </div>
+
+                            <div class=" col-md-2">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder=""
+                                        value="">
+                                    <label for="floatingInputGrid" class="py-1">Nombre de la consulta</label>
+                                </div>
+                            </div>
+
+                            <div class=" col-md-2">
+                                <div class="form-floating">
+                                    <input type="text" class="form-control" id="floatingInputGrid" placeholder=""
+                                        value="">
+                                    <label for="floatingInputGrid" class="py-1">Consecutivo consulta</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="form-floating ">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea1"
+                                style="height: 100px"></textarea>
+                            <label for="floatingTextarea1" class="fs-6 pe-auto mx-3 text-gray">Enfermedad actual y
+                                motivo de
+                                consulta</label>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex mx-auto my-3 col-12 justify-content-between ">
+                        <div class="col-auto p-1 btn-hover">
+                            <button class="btn rounded-2 btn-green shadow"><i
+                                    class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
+                            <span class=" mx-3 fs-6 text-gray">Plantilla de texto</span>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="row  justify-contnet-start text-green-dark mt-5 mb-4 ">
+                    <h4 class="border-bottom">Revision por Sistemas</h4>
+                </div>
+
+                <!-- revision sistemas -->
+                <form>
+                    <div>
+                        <div class="accordion" id="accordionPanelsStayOpenExample">
+                            <!-- primer acordeon -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
+                                        aria-expanded="true" aria-controls="panelsStayOpen-collapseOne"><i
+                                            class="fa-solid fa-biohazard mx-3"></i>
+                                        Articular
+                                    </button>
+                                </h2>
+
+                            </div>
+
+                            <!-- segundo acordeon -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header fs-4 ">
+                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo"><i
+                                            class="fa-solid fa-head-side-cough mx-3"></i>
+                                        Cardiovascular
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <!-- tercer acordeon -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseThree"><i
+                                            class="fa-regular fa-hospital mx-3"></i>
+                                        Musculoesqueletico
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <!-- cuarto acordeon -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseFour"><i
+                                            class="fa-solid fa-mask-face mx-3"></i>
+                                        Linfatico
+                                    </button>
+                                </h2>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseFive"><i
+                                            class="fa-solid fa-mask-face mx-3"></i>
+                                        Digestivo
+                                    </button>
+                                </h2>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseSix"><i
+                                            class="fa-solid fa-mask-face mx-3"></i>
+                                        Nervioso
+                                    </button>
+                                </h2>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven"><i
+                                            class="fa-solid fa-mask-face mx-3"></i>
+                                        Reproductor
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseEight"><i
+                                            class="fa-solid fa-mask-face mx-3"></i>
+                                        Endocrino
+                                    </button>
+                                </h2>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseNine"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseNine"><i
+                                            class="fa-solid fa-mask-face mx-3"></i>
+                                        Urinario
+                                    </button>
+                                </h2>
+                            </div>
+
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTen"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseTen"><i
+                                            class="fa-solid fa-mask-face mx-3"></i>
+                                        Respiratorio
+                                    </button>
+                                </h2>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEleven"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseEleven"><i
+                                            class="fa-solid fa-mask-face mx-3"></i>
+                                        Inmunitario
+                                    </button>
+                                </h2>
+                            </div>
+                            <div class="accordion-item">
+                                <h2 class="accordion-header">
+                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwelve"
+                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseTwelve"><i
+                                            class="fa-solid fa-mask-face mx-3"></i>
+                                        Tegumentario
+                                    </button>
+                                </h2>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="row  justify-contnet-start text-green-dark mt-5 mb-4 ">
+                    <h4 class="border-bottom">Examenn Fisico</h4>
+                </div>
+
+
+                <form>
+
+
+                    <div class="row">
+                        <div class="form-floating ">
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                                style="height: 100px"></textarea>
+                            <label for="floatingTextarea2" class="fs-6 pe-auto mx-3 text-gray"></label>
+                        </div>
+                    </div>
+
+                    <div class="row d-flex mx-auto my-3 col-12 justify-content-between ">
+                        <div class="col-auto p-1 btn-hover">
+                            <button class="btn rounded-2 btn-green shadow"><i
+                                    class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
+                            <span class=" mx-3 fs-6 text-gray">Plantilla de texto</span>
+                        </div>
+                    </div>
+
+                </form>
+
+                <div class="row d-flex justify-content-end  mx-auto my-4">
+                    <button class="btn btn-green text-white col-auto fs-4 shadow">Guardar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
