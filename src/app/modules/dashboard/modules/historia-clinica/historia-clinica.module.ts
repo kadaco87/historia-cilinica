@@ -14,6 +14,8 @@ import {MatInputModule} from "@angular/material/input";
 import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import { DispositivosMedicosComponent } from './components/dispositivos-medicos/dispositivos-medicos.component';
+import { NotaEnfermeriaComponent } from './components/nota-enfermeria/nota-enfermeria.component';
 
 
 @NgModule({
@@ -23,6 +25,8 @@ import {MatButtonModule} from "@angular/material/button";
     SignosVitalesComponent,
     AntecedentesClinicosComponent,
     AtencionMedicaComponent,
+    DispositivosMedicosComponent,
+    NotaEnfermeriaComponent,
       ],
   imports: [
     CommonModule,
