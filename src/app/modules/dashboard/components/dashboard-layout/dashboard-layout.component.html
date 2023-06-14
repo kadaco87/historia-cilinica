@@ -1,32 +1,66 @@
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav bg-green-light shadow border-0" fixedInViewport
-    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false">
+               [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+               [mode]="(isHandset$ | async) ? 'over' : 'side'"
+               [opened]="(isHandset$ | async) === false">
     <mat-toolbar class="py-1 px-auto">
       <div class="logo-dashboard d-flex align-content-center justify-content-center rounded-3 row mx-auto">
         <img class="col-auto rounded-3 imgLogo" src="/assets/images/logo.png" alt="logo">
       </div>
     </mat-toolbar>
     <mat-nav-list>
-      <div class="align-content-center justify-content-center mx-auto fs-4 mt-3 text-white">
-        <a mat-list-item [routerLink]="['./','pacientes']"><i class="fa-solid fa-id-card mx-2"></i>Pacientes</a>
-        <a mat-list-item [routerLink]="['/']"><i class="fa-regular fa-calendar-days mx-2 "></i>Agenda</a>
+      <div class="fs-4 mt-3">
+        <a mat-list-item [routerLink]="['/','dashboard','pacientes']" [routerLinkActive]="'active'" class="row rounded-start">
+          <i class="fa-solid fa-id-card mx-2 text-white col-2"></i>
+          <span class=" col-auto text-white">Pacientes</span></a>
+
+        <a mat-list-item  [routerLink]="['/']" [routerLinkActive]="'active'" class="row rounded-start">
+          <i class="fa-regular fa-calendar-days mx-2 text-white col-2"></i>
+          <span class=" col-auto text-white">Agenda</span></a>
       </div>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar class="bg-green-light d-flex justify-content-between">
       <div *ngIf="isHandset$ | async"
-        class="logo-dashboard d-flex align-content-center justify-content-center rounded-3 row">
+           class="logo-dashboard d-flex align-content-center justify-content-center rounded-3 row">
         <img class="col-auto rounded-3 imgLogo" src="/assets/images/logo.png" alt="">
       </div>
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
-        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+              *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon"><i class="fa-solid fa-bars fs-4 p-0 justify-content-center align-content-center"></i></mat-icon>
       </button>
-      <h1 *ngIf="!(isHandset$ | async)" class="text-white display-3">TechClinic</h1>
+
+      <div class="row d-flex col-12 justify-content-between px-2">
+        <div class="col-10"><h1 *ngIf="!(isHandset$ | async)" class="text-white fw-semibold display-3">TechClinic</h1></div>
+        <div class="col-2 d-flex">
+          <div class=" d-flex justify-content-center align-content-center align-items-center " >
+
+            <div class="d-flex fs-1 text-white">
+            <i class="fa-solid fa-user-nurse mx-2"></i>
+          </div>
+            <!--Dropdwon-->
+            <div class="btn-group ">
+              <div>
+                <button class="btn border-0 dropdown-toggle text-white fs-3" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  KAREN COIMES
+                </button>
+                <ul class="dropdown-menu border-0 shadow text-gray fs-5">
+                  <li><a class="dropdown-item" href="#">Cambiar Contraseña</a></li>
+                  <li><a class="dropdown-item" href="#">Editar Perfil</a></li>
+                  <li><a class="dropdown-item" href="#">Cerrar Sesion</a></li>
+                </ul>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </mat-toolbar>
     <!-- Add Content Here -->
+
     <router-outlet></router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>

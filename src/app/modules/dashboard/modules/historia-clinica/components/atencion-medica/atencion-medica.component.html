@@ -82,9 +82,9 @@
 
                     <div class="row">
                         <div class="form-floating ">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea1"
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
                                 style="height: 100px"></textarea>
-                            <label for="floatingTextarea1" class="fs-6 pe-auto mx-3 text-gray">Enfermedad actual y
+                            <label for="floatingTextarea" class="fs-6 pe-auto mx-3 text-gray">Enfermedad actual y
                                 motivo de
                                 consulta</label>
                         </div>
@@ -106,139 +106,286 @@
 
                 <!-- revision sistemas -->
                 <form>
-                    <div>
-                        <div class="accordion" id="accordionPanelsStayOpenExample">
-                            <!-- primer acordeon -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
-                                        aria-expanded="true" aria-controls="panelsStayOpen-collapseOne"><i
-                                            class="fa-solid fa-biohazard mx-3"></i>
-                                        Articular
-                                    </button>
-                                </h2>
+                    <div class="accordion" id="accordionPanelsStayOpenExample">
 
+                        <!-- articular -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
+                                    aria-expanded="true" aria-controls="panelsStayOpen-collapseOne"><i
+                                        class="fa-solid fa-bone mx-3"></i>
+                                    Articular
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea1" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea1" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Articular</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
 
-                            <!-- segundo acordeon -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header fs-4 ">
-                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
-                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo"><i
-                                            class="fa-solid fa-head-side-cough mx-3"></i>
-                                        Cardiovascular
-                                    </button>
-                                </h2>
+                        <!-- cardiaco -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo"><i
+                                        class="fa-solid fa-heart-pulse mx-3"></i>
+                                    Cardiovascular
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea2" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea2" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Cardiovascular</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <!-- muscular -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseThree"><i
+                                        class="fa-solid fa-x-ray mx-3"></i>
+                                    Musculoesqueletico
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea3" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea3" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Musculoesqueletico</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- linfatico -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseFour"><i
+                                        class="fa-solid fa-vial mx-3"></i>
+                                    Linfatico
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea4" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea4" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Linfatico</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                            <!-- tercer acordeon -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree"
-                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseThree"><i
-                                            class="fa-regular fa-hospital mx-3"></i>
-                                        Musculoesqueletico
-                                    </button>
-                                </h2>
+                        <!-- Digestivo -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseFive"><i
+                                        class="fa-solid fa-teeth mx-3"></i>
+                                    Digestivo
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea5" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea5" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Digestivo</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                        </div>
+                        <!-- Reproductor -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseSix"><i
+                                        class="fa-solid fa-person-half-dress mx-3"></i>
+                                    Reproductor
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea6" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea6" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Reproductor</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Endocrino -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven"><i
+                                        class="fa-solid fa-prescription-bottle mx-3"></i>
+                                    Endocrino
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea7" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea7" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Endocrino</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Urinario -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseEight"><i
+                                        class="fa-solid fa-prescription-bottle-medical mx-3"></i>
+                                    Urinario
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseEight" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea8" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea8" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Urinario</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Respiratorio -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseNine"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseNine"><i
+                                        class="fa-solid fa-lungs mx-3"></i>
+                                    Respiratorio
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseNine" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea9" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea9" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Respiratorio</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Nervioso -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTen"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseTen"><i
+                                        class="fa-solid fa-brain mx-3"></i>
+                                    Nervioso
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseTen" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea10" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea10" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Nervioso</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
-                            <!-- cuarto acordeon -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour"
-                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseFour"><i
-                                            class="fa-solid fa-mask-face mx-3"></i>
-                                        Linfatico
-                                    </button>
-                                </h2>
+                        <!-- Inmunitario -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEleven"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseEleven"> <i
+                                        class="fa-solid fa-virus mx-3"></i>
+                                    Inmunitario
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseEleven" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea11" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea11" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Inmunitario</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive"
-                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseFive"><i
-                                            class="fa-solid fa-mask-face mx-3"></i>
-                                        Digestivo
-                                    </button>
-                                </h2>
+                        </div>
+                        <!-- Tegumentario -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
+                                    data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTen"
+                                    aria-expanded="false" aria-controls="panelsStayOpen-collapseTen"><i
+                                        class="fa-solid fa-hand-dots mx-3"></i>
+                                    Tegumentario
+                                </button>
+                            </h2>
+                            <div id="panelsStayOpen-collapseTen" class="accordion-collapse collapse">
+                                <div class="accordion-body">
+                                    <div class="row">
+                                        <div class="form-floating ">
+                                            <textarea class="form-control" placeholder="Leave a comment here"
+                                                id="floatingTextarea10" style="height: 100px"></textarea>
+                                            <label for="floatingTextarea10" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                                                Tegumentario</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSix"
-                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseSix"><i
-                                            class="fa-solid fa-mask-face mx-3"></i>
-                                        Nervioso
-                                    </button>
-                                </h2>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseSeven"
-                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseSeven"><i
-                                            class="fa-solid fa-mask-face mx-3"></i>
-                                        Reproductor
-                                    </button>
-                                </h2>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEight"
-                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseEight"><i
-                                            class="fa-solid fa-mask-face mx-3"></i>
-                                        Endocrino
-                                    </button>
-                                </h2>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseNine"
-                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseNine"><i
-                                            class="fa-solid fa-mask-face mx-3"></i>
-                                        Urinario
-                                    </button>
-                                </h2>
-                            </div>
-
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTen"
-                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseTen"><i
-                                            class="fa-solid fa-mask-face mx-3"></i>
-                                        Respiratorio
-                                    </button>
-                                </h2>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseEleven"
-                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseEleven"><i
-                                            class="fa-solid fa-mask-face mx-3"></i>
-                                        Inmunitario
-                                    </button>
-                                </h2>
-                            </div>
-                            <div class="accordion-item">
-                                <h2 class="accordion-header">
-                                    <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwelve"
-                                        aria-expanded="false" aria-controls="panelsStayOpen-collapseTwelve"><i
-                                            class="fa-solid fa-mask-face mx-3"></i>
-                                        Tegumentario
-                                    </button>
-                                </h2>
-                            </div>
-
                         </div>
                     </div>
 
@@ -254,9 +401,9 @@
 
                     <div class="row">
                         <div class="form-floating ">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea-1"
                                 style="height: 100px"></textarea>
-                            <label for="floatingTextarea2" class="fs-6 pe-auto mx-3 text-gray"></label>
+                            <label for="floatingTextarea-1" class="fs-6 pe-auto mx-3 text-gray"></label>
                         </div>
                     </div>
 
