@@ -7,56 +7,68 @@
           <h3>Nota Enfermeria</h3>
         </div>
 
-        <form>
-          <div class="row">
-            <div class=" row col-12 my-auto mx-auto text-gray py-3">
-              <div class="form-check col-3 ">
-                <input class="form-check-input" type="radio" name="exampleRadios"
-                       id="exampleRadios1" value="option1" checked>
-                <label class="form-check-label fs-5" for="exampleRadios1">
-                  Primera vez
-                </label>
-              </div>
-              <div class="form-check col-3">
-                <input class="form-check-input" type="radio" name="exampleRadios"
-                       id="exampleRadios2" value="option2">
-                <label class="form-check-label fs-5" for="exampleRadios2">
-                  Control
-                </label>
-              </div>
+        <form [formGroup]="formularioNotaEnfermeria" (ngSubmit)="enviarFormulario()">
+          <div class="row ">
+            <div class="row col-12 text-gray">
+              <div class=" row col-12 my-auto mx-auto  py-3">
+                <div class="form-check col-3 ">
+                  <input class="form-check-input" type="radio" name="temporalidad"
+                         id="primeraVez" value="1" checked formControlName="temporalidad">
+                  <label class="form-check-label fs-5" for="primeraVez">
+                    Primera vez
+                  </label>
+                </div>
+                <div class="form-check col-3">
+                  <input class="form-check-input" type="radio" name="temporalidad"
+                         id="control" value="2" formControlName="temporalidad">
+                  <label class="form-check-label fs-5" for="control">
+                    Control
+                  </label>
+                </div>
 
+              </div>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="form-floating ">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea-1"
+            <div class="row col-12">
+              <div class="form-floating ">
+                            <textarea formControlName="nota" class="form-control" placeholder="Leave a comment here"
+                                      id="nota"
                                       style="height: 100px"></textarea>
-              <label for="floatingTextarea-1" class="fs-6 pe-auto mx-3 text-gray">Nota Enfermeria</label>
-            </div>
-          </div>
-          <div class="row col-12 justify-content-start">
-            <div class="row d-flex mx-auto my-3 col-6  ">
-              <div class="col-auto p-1 btn-hover col-12">
-                <button class="btn rounded-2 btn-green shadow"><i
-                  class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
-                <span class=" mx-3 fs-6 text-gray">Plantilla de texto</span>
+                <label for="nota" class="fs-6 pe-auto mx-3 text-gray">Nota Enfermeria</label>
               </div>
             </div>
 
-            <div class="row d-flex mx-auto my-3 col-6 ">
-              <div class="col-auto p-1 btn-hover col-6">
-                <button class="btn rounded-2 btn-green shadow"><i
-                  class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
-                <span class=" mx-3 fs-6 text-gray">Nota aclaratoria</span>
+            <div class="row col-12 d-flex justify-content-start">
+
+              <div class="my-3 col-auto  ">
+                <div class="col-auto p-1 btn-hover">
+                  <button type="button" class="btn rounded-2 btn-green shadow"><i
+                    class="fa-solid fa-file-arrow-up text-white fs-5 " data-bs-toggle="modal"
+                    data-bs-target="#plantillaTextoModal" data-bs-whatever="@fat"></i></button>
+                  <span class=" mx-3 fs-6 text-gray">Plantilla de texto</span>
+                </div>
+              </div>
+
+              <app-modal-usar-plantilla-nota></app-modal-usar-plantilla-nota>
+
+              <div class=" my-3 col-auto ">
+                <div class="col-auto p-1 btn-hover">
+                  <button type="button" class="btn rounded-2 btn-green shadow"><i
+                    class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
+                  <span class=" mx-3 fs-6 text-gray">Nota aclaratoria</span>
+                </div>
               </div>
             </div>
+
           </div>
 
+          <!---->
 
           <div class="row d-flex justify-content-end  mx-auto my-4">
             <button class="btn btn-green text-white col-auto fs-4 shadow btn-hover">Guardar</button>
           </div>
+
+
         </form>
 
       </div>

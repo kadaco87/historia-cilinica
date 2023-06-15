@@ -16,6 +16,9 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import { DispositivosMedicosComponent } from './components/dispositivos-medicos/dispositivos-medicos.component';
 import { NotaEnfermeriaComponent } from './components/nota-enfermeria/nota-enfermeria.component';
+import { MedicamentosComponent } from './components/medicamentos/medicamentos.component';
+import { OrdenesMedicasComponent } from './components/ordenes-medicas/ordenes-medicas.component';
+import {SharedModule} from "../../../shared/shared.module";
 
 
 @NgModule({
@@ -27,6 +30,8 @@ import { NotaEnfermeriaComponent } from './components/nota-enfermeria/nota-enfer
     AtencionMedicaComponent,
     DispositivosMedicosComponent,
     NotaEnfermeriaComponent,
+    MedicamentosComponent,
+    OrdenesMedicasComponent,
       ],
   imports: [
     CommonModule,
@@ -36,7 +41,8 @@ import { NotaEnfermeriaComponent } from './components/nota-enfermeria/nota-enfer
     MatInputModule,
     MatCheckboxModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    SharedModule
   ]
 })
 export class HistoriaClinicaModule { }
