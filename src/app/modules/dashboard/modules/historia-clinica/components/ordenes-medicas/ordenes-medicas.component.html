@@ -35,8 +35,8 @@
               <label for="floatingTextarea-om" class="fs-6 pe-auto mx-3 text-gray">Ordenes medicas</label>
             </div>
 
-            <div class="row col-12 justify-content-start">
-              <div class="row d-flex mx-auto my-3 col-6  ">
+            <div class="row d-flex col-12 justify-content-start">
+              <div class="row  my-3 col-auto  ">
                 <div class="col-auto p-1 btn-hover col-12">
                   <button class="btn rounded-2 btn-green shadow"><i
                     class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
@@ -44,23 +44,16 @@
                 </div>
               </div>
 
-              <div class="row d-flex mx-auto my-3 col-6 ">
-                <div class="col-auto p-1 btn-hover col-6">
-                  <button class="btn rounded-2 btn-green shadow"><i
-                    class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
-                  <span class=" mx-3 fs-6 text-gray">Nota aclaratoria</span>
-                </div>
-              </div>
             </div>
           </div>
 
 
-          <div class="row  justify-contnet-start text-green-dark mb-4 border-bottom">
-            <h4>Orden medicamentos</h4>
+          <div class="row  justify-contnet-start text-green-dark mt-3 my-5 border-bottom">
+            <h4>Formula medicamentos</h4>
           </div>
 
           <div class="row col-12 d-flex justify-content-between align-content-between mx-auto">
-            <div class="form-check col-4">
+            <div class="form-check col-4 ">
               <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
               <label class="form-check-label" for="flexRadioDefault1">
                 Comercial
@@ -79,33 +72,94 @@
               </label>
             </div>
 
+            <div class="row fs-bold col-12 d-flex mx-auto my-4 justify-content-between align-content-between fs-6">
 
-            <div class="row col-12 justify-content-between align-content-between ">
-              <div class="row col- 12 gx-5 mx-auto my-3">
-                <div class="col-6">
-                  <div class="form-floating">
-                    <input type="email" class="form-control" id="floatingInputGrid" placeholder="name@example.com" value="mdo@example.com">
-                    <label for="floatingInputGrid">Email address</label>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-floating">
-                    <select class="form-select" id="floatingSelectGrid">
-                      <option selected>Open this select menu</option>
-                      <option value="1">One</option>
-                      <option value="2">Two</option>
-                      <option value="3">Three</option>
-                    </select>
-                    <label for="floatingSelectGrid">Works with selects</label>
-                  </div>
-                </div>
+              <div class="col-8 my-3">
+                <label for="exampleDataList" class="form-label text-green-dark ">Medicamento a prescribir:</label>
+                <input class="form-control" list="datalistOptions" id="exampleDataList"
+                       placeholder="Buscar medicamento">
+                <datalist id="datalistOptions">
+                  <option value="Dipirona">
+                  <option value="Voltaren 75mg">
+                  <option value="Ketorolaco">
+                  <option value="Omeprazol">
+                </datalist>
               </div>
+
+              <div class="col-4 my-3">
+                <label for="floatingSelect" class="form-label text-green-dark">Via de administracion:</label>
+                <select class="form-select" id="" aria-label="">
+                  <option value="1">Oral</option>
+                  <option value="2">Sublingual</option>
+                  <option value="3">Topica</option>
+                  <option value="3">Oftalmica</option>
+                  <option value="3">Intravenosa</option>
+                  <option value="3">Intranasal</option>
+                </select>
+              </div>
+
+              <div class="col-2 my-3">
+                <label for="floatingSelect" class="text-green-dark">Administrar(dosís):</label>
+                <input class="form-control" type="text" placeholder="Ej:1" aria-label="">
+              </div>
+
+              <div class="col-2 my-3">
+                <label for="floatingSelect2" class="text-green-dark">Presentacion:</label>
+                <select class="form-select" id="floatingSelect2" aria-label="Default select example">
+                  <option selected>Tableta</option>
+                  <option value="1">Comprimido</option>
+                  <option value="2">Ampolla</option>
+                  <option value="3">Suspencion</option>
+                  <option value="3">Supositorio</option>
+                </select>
+
+              </div>
+
+              <div class="col-2 my-3">
+                <label for="floatingSelect" class="text-green-dark">Frecuencia(cada):</label>
+                <input class="form-control" type="text" placeholder="Ej:8" aria-label="">
+              </div>
+
+              <div class="col-2 my-3">
+                <label for="floatingSelect2" class="text-green-dark">Cada cuanto:</label>
+                <select class="form-select" id="floatingSelect2" aria-label="Default select example">
+                  <option selected>Hora(s)</option>
+                  <option value="1">Dia(s)</option>
+                  <option value="2">Semana(s)</option>
+                  <option value="3">Dosis única</option>
+                </select>
+
+              </div>
+
+              <div class="col-2 my-3">
+                <label for="floatingSelect" class="text-green-dark">Duracion(durante):</label>
+                <input class="form-control" type="text" placeholder="Ej:3" aria-label="default input example">
+              </div>
+
+              <div class="col-2 my-3">
+                <label for="floatingSelect" class="text-green-dark"></label>
+                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                  <option selected>Dia(s)</option>
+                  <option value="1">Mes(es)</option>
+                  <option value="2">Dosis única</option>
+                  <option value="3">Tiempo indefinido</option>
+                  <option value="3">Hasta terminar</option>
+                  <option value="3">Hasta proximo control</option>
+                </select>
+
+              </div>
+
+            </div>
+
+            <div class=" row d-flex col-12 justify-content-end my-4 fs-5 gx-4 btn-hover ">
+                <button class="btn btn-green text-white mx-1 col-auto shadow ">Agragar otro medicamento
+                </button>
             </div>
 
           </div>
 
-          <div class="row d-flex justify-content-end  mx-auto my-4">
-            <button class="btn btn-green text-white col-auto fs-4 shadow btn-hover">Guardar</button>
+          <div class="row d-flex justify-content-center btn-hover mx-auto my-4">
+            <button class="btn btn-green text-white col-auto fs-4 shadow ">Guardar</button>
           </div>
         </form>
 
