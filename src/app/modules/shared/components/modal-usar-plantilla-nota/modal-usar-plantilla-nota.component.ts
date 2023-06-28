@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
 
 @Component({
@@ -7,6 +7,9 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./modal-usar-plantilla-nota.component.scss']
 })
 export class ModalUsarPlantillaNotaComponent implements OnInit{
+  @Input() idNota = 0;
+  @Output() dataFormularioModal: EventEmitter<any> = new EventEmitter<any>();
+
   formularioModal!: FormGroup;
   constructor(private readonly fb: FormBuilder) {
   }
@@ -17,6 +20,8 @@ export class ModalUsarPlantillaNotaComponent implements OnInit{
   }
   enviaFormularioModal() {
     console.log(this.formularioModal.value)
+    const id = new Date(Date.now()).valueOf();
+    this.dataFormularioModal.emit({...this.formularioModal.value, id, idNota: this.idNota  })
   }
 
 }

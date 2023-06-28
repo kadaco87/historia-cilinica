@@ -6,63 +6,76 @@
         <div class="row  justify-contnet-start text-green-dark mb-4">
           <h3>Nota Enfermeria</h3>
         </div>
-
-        <form [formGroup]="formularioNotaEnfermeria" (ngSubmit)="enviarFormulario()">
-          <div class="row ">
-            <div class="row col-12 text-gray">
-              <div class=" row col-12 my-auto mx-auto  py-3">
-                <div class="form-check col-3 ">
-                  <input class="form-check-input" type="radio" name="temporalidad"
-                         id="primeraVez" value="1" checked formControlName="temporalidad">
-                  <label class="form-check-label fs-5" for="primeraVez">
-                    Primera vez
-                  </label>
-                </div>
-                <div class="form-check col-3">
-                  <input class="form-check-input" type="radio" name="temporalidad"
-                         id="control" value="2" formControlName="temporalidad">
-                  <label class="form-check-label fs-5" for="control">
-                    Control
-                  </label>
-                </div>
-
+        <div class="mb-5">
+          <form [formGroup]="formularioNotaEnfermeria" (ngSubmit)="enviarFormulario()">
+            <div class="row text-gray my-auto mx-auto  py-3">
+              <div class="form-check col-3 ">
+                <input class="form-check-input" type="radio" name="temporalidad"
+                       id="primeraVez" value="1" checked formControlName="temporalidad" >
+                <label class="form-check-label fs-5" for="primeraVez">
+                  Primera vez
+                </label>
+              </div>
+              <div class="form-check col-3">
+                <input class="form-check-input" type="radio" name="temporalidad"
+                       id="control" value="2" formControlName="temporalidad" >
+                <label class="form-check-label fs-5" for="control">
+                  Control
+                </label>
               </div>
             </div>
 
-            <div class="row col-12">
+            <div class="col-12">
               <div class="form-floating ">
-                            <textarea formControlName="nota" class="form-control" placeholder="Leave a comment here"
-                                      id="nota"
-                                      style="height: 100px"></textarea>
+                <textarea formControlName="nota" class="form-control" placeholder="Leave a comment here" id="nota"
+                          style="height: 100px" [class.is-invalid]="nota?.touched && nota?.invalid"></textarea>
                 <label for="nota" class="fs-6 pe-auto mx-3 text-gray">Nota Enfermeria</label>
               </div>
             </div>
+            <div class="col-12 d-flex justify-content-end   my-4">
+              <button class="btn btn-green text-white col-auto fs-4 shadow  btn-hover">Guardar</button>
+            </div>
+            <!---->
+          </form>
+        </div>
+      </div>
+    </div>
 
-            <div class="row col-12 d-flex justify-content-start">
+    <div class="card border-0 shadow col-11 my-5 mx-auto" *ngIf="listaNotas.length>0">
+      <div class="card-body fs-5 ">
+        <div class="col-12 my-5">
+          <div class="list-group">
 
-              <div class="my-3 col-auto  ">
-                <div class="col-auto p-1 btn-hover">
-                  <button type="button" class="btn rounded-2 btn-green shadow"><i
-                    class="fa-solid fa-file-arrow-up text-white fs-5 " data-bs-toggle="modal"
-                    data-bs-target="#plantillaTextoModal" data-bs-whatever="@fat"></i></button>
-                  <span class=" mx-3 fs-6 text-gray">Nota aclaratoria</span>
+            <div class="list-group-item list-group-item-action" aria-current="true" *ngFor="let item of listaNotas.reverse()">
+              <div class="row d-flex justify-content-between">
+                <div class="row col-10 d-flex align-content-center">
+                  <div class="col-12"><p class="my-auto text-justify fs-5">{{item.nota}}</p></div>
+                  <div class="col-12">
+                    <p class="fs-6">{{nombreTemporalidadPorCodigo(item.temporalidad)}} - Fecha: {{item.id|date:'dd-MM-YYY HH:mm'}} - id: {{item.id}} - Notas aclaratorias: {{item?.notasAclaratorias ? item?.notasAclaratorias?.length: 0}}</p>
+                  <hr class="col-12 my-2">
+                    <ng-container *ngIf="item?.notasAclaratorias.length>0">
+                    <div class="px-4" *ngFor="let notaAclaratoria of item?.notasAclaratorias.reverse()">
+                      <p class="fs-6">{{notaAclaratoria.prop}}</p>
+                      <p class="fs-6">{{notaAclaratoria.id|date:'dd-MM-YYY HH:mm'}}</p>
+                      <hr>
+                    </div>
+                    </ng-container>
+                  </div>
+                  <app-modal-usar-plantilla-nota [idNota]="item.id" (dataFormularioModal)="recibirDataFormularioModal($event)"></app-modal-usar-plantilla-nota>
+                </div>
+                <div class=" row col-2 p-1 d-flex align-content-center justify-content-center">
+                  <button type="button" class="btn rounded-2 btn-green shadow btn-hover col-auto mb-2"
+                          data-bs-toggle="modal"
+                          data-bs-target="#plantillaTextoModal" data-bs-whatever="@fat">
+                    <i class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
+                  <span class="col-12 mx-3 fs-6 text-gray text-center">Nota aclaratoria</span>
                 </div>
               </div>
-
-              <app-modal-usar-plantilla-nota></app-modal-usar-plantilla-nota>
-
             </div>
 
           </div>
 
-          <!---->
-
-          <div class="row d-flex justify-content-end  mx-auto my-4 btn-hover">
-            <button class="btn btn-green text-white col-auto fs-4 shadow ">Guardar</button>
-          </div>
-
-
-        </form>
+        </div>
 
       </div>
     </div>
