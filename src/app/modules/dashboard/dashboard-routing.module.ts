@@ -16,7 +16,12 @@ const routes: Routes = [
       {
         path: 'pacientes',
         loadChildren: () => import('./modules/pacientes/pacientes.module').then(module => module.PacientesModule)
-      }]
+      },
+      {
+        path: 'users',
+        loadChildren: () => import('./modules/users/users.module').then(module => module.UsersModule)
+      }
+      ]
   }
 ];
 

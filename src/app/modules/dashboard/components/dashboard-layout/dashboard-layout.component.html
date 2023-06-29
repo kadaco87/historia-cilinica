@@ -17,6 +17,10 @@
         <a mat-list-item  [routerLink]="['/']" [routerLinkActive]="'active'" class="row rounded-start">
           <i class="fa-regular fa-calendar-days mx-2 text-white col-2"></i>
           <span class=" col-auto text-white">Agenda</span></a>
+
+        <a mat-list-item  [routerLink]="['/', 'dashboard', 'users' ]" [routerLinkActive]="'active'" class="row rounded-start">
+          <i class="fa-solid fa-user mx-2 text-white col-2"></i>
+          <span class=" col-auto text-white">Usuarios</span></a>
       </div>
     </mat-nav-list>
   </mat-sidenav>
