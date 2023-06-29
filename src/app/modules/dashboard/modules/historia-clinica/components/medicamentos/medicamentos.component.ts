@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-medicamentos',
@@ -6,5 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./medicamentos.component.scss']
 })
 export class MedicamentosComponent {
-
+  displayedColumns: string[] = ['medicamento', 'presentacion', 'dosis', 'frecuencia', 'duracion','id'];
+  dataSource = [{
+    medicamento: 'aaa',
+    presentacion: 'aaa',
+    dosis: 'aaa',
+    frecuencia: 'aaa',
+    duracion: 'aaa',
+    id: 1
+  }];
 }

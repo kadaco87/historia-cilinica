@@ -19,6 +19,7 @@ import { NotaEnfermeriaComponent } from './components/nota-enfermeria/nota-enfer
 import { MedicamentosComponent } from './components/medicamentos/medicamentos.component';
 import { OrdenesMedicasComponent } from './components/ordenes-medicas/ordenes-medicas.component';
 import {SharedModule} from "../../../shared/shared.module";
+import {MatTableModule} from "@angular/material/table";
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import {SharedModule} from "../../../shared/shared.module";
     MatCheckboxModule,
     MatIconModule,
     MatButtonModule,
-    SharedModule
+    SharedModule,
+    MatTableModule
   ]
 })
 export class HistoriaClinicaModule { }

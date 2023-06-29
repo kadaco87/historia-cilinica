@@ -1,4 +1,68 @@
-<div class="form-control">
+<div class="container-fluid">
+  <div class="row py-5">
+    <div class="card border-0 shadow col-11 mx-auto">
+      <div class="card-body fs-5 ">
+        <div class="row  justify-contnet-start text-green-dark mb-4">
+          <h3>Administraccion Medicamentos</h3>
+        </div>
 
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 ">
+
+          <!--- Note that these columns can be defined in any order.
+                The actual rendered columns are set as a property on the row definition" -->
+
+          <!-- Position Column -->
+          <ng-container matColumnDef="medicamento">
+            <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Medicamento </th>
+            <td class="text-gray" mat-cell *matCellDef="let element"> {{element.medicamento}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="presentacion">
+            <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Presentacion </th>
+            <td class="text-gray" mat-cell *matCellDef="let element"> {{element.presentacion}} </td>
+          </ng-container>
+
+          <!-- Weight Column -->
+          <ng-container matColumnDef="dosis">
+            <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Dosis </th>
+            <td class="text-gray" mat-cell *matCellDef="let element"> {{element.dosis}} </td>
+          </ng-container>
+
+          <!-- Symbol Column -->
+          <ng-container matColumnDef="frecuencia">
+            <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Frecuencia </th>
+            <td class="text-gray" mat-cell *matCellDef="let element"> {{element.frecuencia}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="duracion">
+            <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Duracion </th>
+            <td class="text-gray" mat-cell *matCellDef="let element"> {{element.duracion}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="id">
+            <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Suministrar </th>
+            <td class="text-gray" mat-cell *matCellDef="let element"><i class="fa-solid fa-syringe"></i> {{element.id}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+<!--        <form>-->
+<!--          <div>-->
+<!--            <div class="row d-flex justify-content-end btn-hover mx-auto my-4">-->
+<!--              <button class="btn btn-green text-white col-auto fs-4 shadow ">Suministrar</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--&lt;!&ndash;LISTADO DE MEDICAMENTOS&ndash;&gt;-->
+
+
+<!--        </form>-->
+
+
+      </div>
+    </div>
+  </div>
 
 </div>

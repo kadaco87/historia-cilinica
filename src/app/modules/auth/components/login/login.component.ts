@@ -10,6 +10,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({});
+  documentTypes = [
+    {documentType: 1, value: 'Cedula de ciudadania'},
+    {documentType: 2, value: 'Cedula de Extranjeria'},
+    {documentType: 3, value: 'Pasaporte'},
+    {documentType: 4, value: 'Tarjeta de Identidad'}
+  ]
 
   constructor(private readonly fb: FormBuilder,
     private readonly router: Router) { }
@@ -18,8 +24,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       identification: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
-      documentType: new FormControl('', [Validators.required]),
-      remember: new FormControl(false, [Validators.required]),
+      documentType: new FormControl(this.documentTypes[0], [Validators.required]),
     })
   }
 
