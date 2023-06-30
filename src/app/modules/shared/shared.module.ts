@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { PersonFormComponent } from './components/person-form/person-form.component';
 import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./services/auth.service";
+import {CookieService} from "ngx-cookie-service";
 
 
 
@@ -25,6 +26,6 @@ import {AuthService} from "./services/auth.service";
     ModalUsarPlantillaNotaComponent,
     PersonFormComponent
   ],
-  providers: [PacientesService, AuthService]
+  providers: [PacientesService, AuthService, CookieService]
 })
 export class SharedModule { }

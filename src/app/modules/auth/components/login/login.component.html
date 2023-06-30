@@ -8,7 +8,7 @@
                 <div class="form-floating mb-3">
                     <select id="documentType" class="form-select rounded-4 text-gray" type="text"
                         placeholder="Seleccione el tipo de Documento de Identidad" formControlName="documentType">
-                        <option value="4" *ngFor="let option of documentTypes" defaultSelected [ngValue]="option.documentType">{{option.value}}</option>
+                        <option value="4" *ngFor="let option of documentTypes" defaultSelected [ngValue]="option.documentType">{{option.text}}</option>
                     </select>
                     <label for="documentType">Seleccione el tipo de Documento de Identidad</label>
                     <div
@@ -37,7 +37,7 @@
                 </div>
 
                 <div class="row d-flex justify-content-center justify-md-content-between align-content-center mx-0">
-                    <a class="text-muted col-auto mx-0 my-2 my-md-0" [routerLink]="['/auth/recovery-password']">Has
+                    <a class="text-muted col-auto mx-0 my-2 my-md-0" [routerLink]="['/auth/forgot-password']">Has
                         olvidado tu contraseña?</a>
                     <button class="btn btn-primary bg-green-dark rounded-pill col-auto shadow border-0" type="submit"
                         id="btnInicioSesion">INICIAR SESION</button>

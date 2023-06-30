@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
 import {DOCUMENT_TYPES} from "../../../shared/utils/utils";
 import {AuthService} from "../../../shared/services/auth.service";
+import {CookieService} from "ngx-cookie-service";
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router,
-    private readonly authService: AuthService
+    private readonly authService: AuthService,
+    private readonly cookieService: CookieService
   ) {
   }
 
@@ -35,13 +37,13 @@ export class LoginComponent implements OnInit {
       this.authService.login(this.loginForm.getRawValue()).subscribe(response => {
         console.log(response)
         console.log(response.access_token)
+        this.cookieService.set('access_token', response.access_token);
+        this.router.navigate(['/dashboard']).then()
       })
     } else {
       console.log('Algo falta');
 
     }
-    this.router.navigate(["/dashboard"]).then() //promesa que provee angula para navegar por todo el aplicativo
-    console.log(this.loginForm.value);
   }
 
 }
