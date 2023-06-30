@@ -1,1 +1,113 @@
-<p>person-form works!</p>
+  <form class="row ">
+    <div class="row col-12 gx-5 gy-1 mb-5">
+      <div class="col-12">
+        <h4 class="text-green-dark">Informacion Personal</h4>
+      </div>
+      <div class="col-md-6">
+        <label for="primerNombre" class="form-label">Primer Nombre <span class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="primerNombre">
+      </div>
+      <div class="col-md-6">
+        <label for="segundoNombre" class="form-label">Segundo Nombre</label>
+        <input type="text" class="form-control" id="segundoNombre">
+      </div>
+
+      <div class="col-md-6">
+        <label for="primerApellido" class="form-label">Primer Apellido<span class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="primerApellido">
+      </div>
+      <div class="col-md-6">
+        <label for="segundoApellido" class="form-label">Segundo Apellido<span class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="segundoApellido">
+      </div>
+
+
+      <!-- traer la info de back? -->
+      <div class="col-md-3 ">
+        <label for="tipoDocumento" class="form-label">Tipo de Documento<span
+          class="text-danger fs-6">*</span></label>
+        <select class="form-select" id="tipoDocumento">
+          <option selected></option>
+          <option value="">Cedula de Ciudadania</option>
+          <option value="">Registro civil</option>
+          <option value="">Cedula de Extranjeria</option>
+        </select>
+      </div>
+
+      <div class="col-md-3">
+        <label for="id-input" class="form-label">Numero de Documento<span
+          class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="id-input">
+      </div>
+      <!-- fin alksfhglkashdfdhj -->
+
+
+      <div class="col-md-6">
+        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento<span
+          class="text-danger fs-6">*</span></label>
+        <input type="date" class="form-control text-gray" id="fechaNacimiento">
+      </div>
+
+      <div class="col-md-6">
+        <label for="genero" class="form-label">Género<span class="text-danger fs-6">*</span></label>
+        <select class="form-select" id="genero">
+          <option selected></option>
+          <option value="">Masculino</option>
+          <option value="">Femenino</option>
+          <option value="">Indeterminado</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row col-12 gx-5 gy-1 ">
+      <div class="col-12">
+        <h4 class="text-green-dark">Informacion de contacto</h4>
+      </div>
+      <div class="col-md-6">
+        <label for="nombre" class="form-label">Primer Nombre <span class="text-danger">*</span> </label>
+        <input type="text" class="form-control" id="nombre" placeholder="Primer Nombre">
+      </div>
+      <div class="col-md-6">
+        <label for="password" class="form-label">Password<span class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="password">
+      </div>
+
+      <div class="col-md-6">
+        <label for="direccionResidencia" class="form-label">Direccion de residencia (Opcional)</label>
+        <input type="text" class="form-control" id="direccionResidencia">
+      </div>
+      <div class="col-md-6">
+        <label for="paisResidencia" class="form-label">Pais de residencia<span
+          class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="paisResidencia">
+      </div>
+
+      <div class="col-md-6">
+        <label for="departamentoResidencia" class="form-label">Departamento de residencia<span
+          class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="departamentoResidencia">
+      </div>
+      <div class="col-md-6">
+        <label for="ciudadResidencia" class="form-label">Ciudad de residencia<span
+          class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="ciudadResidencia">
+      </div>
+      <div class="col-md-6 form-check-inline">
+        <input type="checkbox" class="form-check-input me-1" id="correoElectronico">
+        <label for="correoElectronico" class="form-label">Correo electronico (Opcional)</label>
+      </div>
+
+      <div class="row d-flex justify-content-end mx-1 col-12">
+
+        <button class="btn btn-outline-danger me-2 col-1">Cancelar</button>
+        <div class="btn-hover col-1 ">
+          <button class="btn btn-green text-white primary">Crear</button>
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </form>
+

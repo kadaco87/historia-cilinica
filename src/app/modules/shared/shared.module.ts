@@ -5,6 +5,8 @@ import { ModalUsarPlantillaNotaComponent } from './components/modal-usar-plantil
 import { ModalCrearPlantillaNotaComponent } from './components/modal-crear-plantilla-nota/modal-crear-plantilla-nota.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import { PersonFormComponent } from './components/person-form/person-form.component';
+import {HttpClientModule} from "@angular/common/http";
+import {AuthService} from "./services/auth.service";
 
 
 
@@ -16,11 +18,13 @@ import { PersonFormComponent } from './components/person-form/person-form.compon
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   exports: [
-    ModalUsarPlantillaNotaComponent
+    ModalUsarPlantillaNotaComponent,
+    PersonFormComponent
   ],
-  providers: [PacientesService]
+  providers: [PacientesService, AuthService]
 })
 export class SharedModule { }

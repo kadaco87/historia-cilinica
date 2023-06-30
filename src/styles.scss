@@ -85,3 +85,16 @@ html, body {
 .border-green{
   background-color: #43daf165;
 }
+
+.page-main {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-pack: center;
+  justify-content: start;
+  min-height: 100vh;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+
+}

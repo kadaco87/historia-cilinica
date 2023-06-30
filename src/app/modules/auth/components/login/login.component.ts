@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
+import {DOCUMENT_TYPES} from "../../../shared/utils/utils";
+import {AuthService} from "../../../shared/services/auth.service";
 
 @Component({
   selector: 'app-login',
@@ -10,15 +12,14 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({});
-  documentTypes = [
-    {documentType: 1, value: 'Cedula de ciudadania'},
-    {documentType: 2, value: 'Cedula de Extranjeria'},
-    {documentType: 3, value: 'Pasaporte'},
-    {documentType: 4, value: 'Tarjeta de Identidad'}
-  ]
+  documentTypes = DOCUMENT_TYPES;
 
-  constructor(private readonly fb: FormBuilder,
-    private readonly router: Router) { }
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly router: Router,
+    private readonly authService: AuthService
+  ) {
+  }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
@@ -31,11 +32,15 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.loginForm.valid) {
       // Realizo la peticion
-      console.log('Realizo la peticion');
+      this.authService.login(this.loginForm.getRawValue()).subscribe(response => {
+        console.log(response)
+        console.log(response.access_token)
+      })
     } else {
       console.log('Algo falta');
 
-    } this.router.navigate(["/dashboard"]).then() //promesa que provee angula para navegar por todo el aplicativo
+    }
+    this.router.navigate(["/dashboard"]).then() //promesa que provee angula para navegar por todo el aplicativo
     console.log(this.loginForm.value);
   }
 
