@@ -1,48 +1,48 @@
 <div class="row mx-0">
-    <div class="col-sm-11 col-md-auto card shadow mx-auto rounded-4 border-0 bg-green">
-        <div class=" card-body">
-            <form class="p-3 my-3 text-gray" [formGroup]="loginForm" (ngSubmit)="login()">
-                <legend>
-                    <h3 class="text-center text-green-dark fw-light text-gray">Iniciar Sesion</h3>
-                </legend>
-                <div class="form-floating mb-3">
-                    <select id="documentType" class="form-select rounded-4 text-gray" type="text"
-                        placeholder="Seleccione el tipo de Documento de Identidad" formControlName="documentType">
-                        <option value="4" *ngFor="let option of documentTypes" defaultSelected [ngValue]="option.documentType">{{option.text}}</option>
-                    </select>
-                    <label for="documentType">Seleccione el tipo de Documento de Identidad</label>
-                    <div
-                        *ngIf="loginForm.get('documentType')?.touched && loginForm.get('documentType')?.getError('required')">
-                        <p class="text-muted">Este campo es requerido.</p>
-                    </div>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input id="identification" required class="form-control rounded-4" type="text"
-                        formControlName="identification" placeholder="Numero de identificación" />
-                    <label for="identification">Numero de identificacion</label>
-                    <div
-                        *ngIf="loginForm.get('identification')?.touched && loginForm.get('identification')?.getError('required')">
-                        <p class="text-muted">Este campo es requerido.</p>
-                    </div>
-                </div>
-
-                <div class="form-floating mb-3">
-                    <input id="password" required class="form-control rounded-4" type="password"
-                        placeholder="Contraseña" formControlName="password" />
-                    <label for="password">Contraseña</label>
-                    <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.getError('required')">
-                        <p class="text-muted">Este campo es requerido.</p>
-                    </div>
-                </div>
-
-                <div class="row d-flex justify-content-center justify-md-content-between align-content-center mx-0">
-                    <a class="text-muted col-auto mx-0 my-2 my-md-0" [routerLink]="['/auth/forgot-password']">Has
-                        olvidado tu contraseña?</a>
-                    <button class="btn btn-primary bg-green-dark rounded-pill col-auto shadow border-0" type="submit"
-                        id="btnInicioSesion">INICIAR SESION</button>
-                </div>
-            </form>
+  <div class="col-sm-11 col-md-auto card shadow mx-auto rounded-4 border-0 bg-green">
+    <div class=" card-body">
+      <form class="p-3 my-3 text-gray" [formGroup]="loginForm" (ngSubmit)="login()">
+        <legend>
+          <h3 class="text-center text-green-dark fw-light text-gray">Iniciar Sesion</h3>
+        </legend>
+        <div class="form-floating mb-3">
+          <select id="documentType" class="form-select rounded-4 text-gray" type="text"
+                  placeholder="Seleccione el tipo de Documento de Identidad" formControlName="documentType">
+            <option value="4" *ngFor="let option of documentTypes" defaultSelected [ngValue]="option.documentType">{{option.text}}</option>
+          </select>
+          <label for="documentType">Seleccione el tipo de Documento de Identidad</label>
+          <div
+            *ngIf="loginForm.get('documentType')?.touched && loginForm.get('documentType')?.getError('required')">
+            <p class="text-muted">Este campo es requerido.</p>
+          </div>
         </div>
+
+        <div class="form-floating mb-3">
+          <input id="identification" required class="form-control rounded-4" type="text"
+                 formControlName="identification" placeholder="Numero de identificación" />
+          <label for="identification">Numero de identificacion</label>
+          <div
+            *ngIf="loginForm.get('identification')?.touched && loginForm.get('identification')?.getError('required')">
+            <p class="text-muted">Este campo es requerido.</p>
+          </div>
+        </div>
+
+        <div class="form-floating mb-3">
+          <input id="password" required class="form-control rounded-4" type="password"
+                 placeholder="Contraseña" formControlName="password" />
+          <label for="password">Contraseña</label>
+          <div *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.getError('required')">
+            <p class="text-muted">Este campo es requerido.</p>
+          </div>
+        </div>
+
+        <div class="row d-flex justify-content-center justify-md-content-between align-content-center mx-0">
+          <a class="text-muted col-auto mx-0 my-2 my-md-0" [routerLink]="['/auth/forgot-password']">Has
+            olvidado tu contraseña?</a>
+          <button class="btn btn-primary bg-green-dark rounded-pill col-auto shadow border-0" type="submit"
+                  id="btnInicioSesion">INICIAR SESION</button>
+        </div>
+      </form>
     </div>
+  </div>
 </div>
