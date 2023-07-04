@@ -9,6 +9,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { RegisterComponent } from './components/register/register.component';
 import {SharedModule} from "../shared/shared.module";
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {SharedModule} from "../shared/shared.module";
     AuthLayoutComponent,
     ForgotPasswordComponent,
     ChangePasswordComponent,
-    RegisterComponent
+    RegisterComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,

@@ -16,4 +16,8 @@ apiUrl= environment.apiUrl+'/auth';
   forgotPassword(body: {documentType: number, identification: string}) {
     return this.http.post<boolean>(`${this.apiUrl}/forgot-password`, body);
   }
+
+  resetPassword(body: {password: string, token: string}) {
+    return this.http.post<boolean>(`${this.apiUrl}/reset-password`, body);
+  }
 }
