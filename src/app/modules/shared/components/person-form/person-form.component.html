@@ -1,113 +1,127 @@
-  <form class="row ">
-    <div class="row col-12 gx-5 gy-1 mb-5">
-      <div class="col-12">
-        <h4 class="text-green-dark">Informacion Personal</h4>
-      </div>
+<form class="container" [formGroup]="personAndUserForm" (ngSubmit)="createUserOrPatient()">
+  <div class="row">
+
+    <div class="col-12">
+      <h4 class="text-green-dark">Informacion Personal</h4>
+    </div>
+
+    <div class="row col-12 gx-5 gy-2 mb-5" formGroupName="fullName">
       <div class="col-md-6">
-        <label for="primerNombre" class="form-label">Primer Nombre <span class="text-danger fs-6">*</span></label>
-        <input type="text" class="form-control" id="primerNombre">
-      </div>
-      <div class="col-md-6">
-        <label for="segundoNombre" class="form-label">Segundo Nombre</label>
-        <input type="text" class="form-control" id="segundoNombre">
+        <label for="firstName" class="form-label">Primer Nombre <span class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="firstName" formControlName="firstName">
       </div>
 
       <div class="col-md-6">
-        <label for="primerApellido" class="form-label">Primer Apellido<span class="text-danger fs-6">*</span></label>
-        <input type="text" class="form-control" id="primerApellido">
+        <label for="secondName" class="form-label">Segundo Nombre</label>
+        <input type="text" class="form-control" id="secondName" formControlName="secondName">
       </div>
+
       <div class="col-md-6">
-        <label for="segundoApellido" class="form-label">Segundo Apellido<span class="text-danger fs-6">*</span></label>
-        <input type="text" class="form-control" id="segundoApellido">
+        <label for="firstLastName" class="form-label">Primer Apellido<span class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="firstLastName" formControlName="firstLastName">
       </div>
 
+      <div class="col-md-6">
+        <label for="secondLastName" class="form-label">Segundo Apellido<span class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="secondLastName" formControlName="secondLastName">
+      </div>
+    </div>
 
-      <!-- traer la info de back? -->
-      <div class="col-md-3 ">
-        <label for="tipoDocumento" class="form-label">Tipo de Documento<span
+    <div class="row col-12 gx-5 gy-2 mb-5">
+      <div class="col-md-3">
+        <label for="documentType" class="form-label">Tipo de Documento<span
           class="text-danger fs-6">*</span></label>
-        <select class="form-select" id="tipoDocumento">
-          <option selected></option>
-          <option value="">Cedula de Ciudadania</option>
-          <option value="">Registro civil</option>
-          <option value="">Cedula de Extranjeria</option>
+        <select class="form-select" id="documentType" formControlName="documentType">
+          <option *ngFor="let option of documentTypes" [ngValue]="option.documentType">{{option.text}}</option>
         </select>
       </div>
 
       <div class="col-md-3">
-        <label for="id-input" class="form-label">Numero de Documento<span
+        <label for="identification" class="form-label">Numero de Documento<span
           class="text-danger fs-6">*</span></label>
-        <input type="text" class="form-control" id="id-input">
-      </div>
-      <!-- fin alksfhglkashdfdhj -->
-
-
-      <div class="col-md-6">
-        <label for="fechaNacimiento" class="form-label">Fecha de Nacimiento<span
-          class="text-danger fs-6">*</span></label>
-        <input type="date" class="form-control text-gray" id="fechaNacimiento">
+        <input type="text" class="form-control" id="identification" formControlName="identification">
       </div>
 
       <div class="col-md-6">
-        <label for="genero" class="form-label">Género<span class="text-danger fs-6">*</span></label>
-        <select class="form-select" id="genero">
+        <label for="birthday" class="form-label">Fecha de Nacimiento<span
+          class="text-danger fs-6">*</span></label>
+        <input type="date" class="form-control text-gray" id="birthday" formControlName="birthday">
+      </div>
+
+      <div class="col-md-6">
+        <label for="gender" class="form-label">Género<span class="text-danger fs-6">*</span></label>
+        <select class="form-select" id="gender" formControlName="gender">
           <option selected></option>
           <option value="">Masculino</option>
           <option value="">Femenino</option>
           <option value="">Indeterminado</option>
         </select>
       </div>
+
+      <div class="col-md-6">
+        <label for="role" class="form-label">Role<span class="text-danger fs-6">*</span></label>
+        <select class="form-select" id="role" formControlName="role">
+          <option selected></option>
+          <option value="1">Paciente</option>
+          <option value="2">Usuario</option>
+        </select>
+      </div>
     </div>
 
-    <div class="row col-12 gx-5 gy-1 ">
+    <div class="row col-12  gx-5 gy-2 mb-5" formGroupName="contactInfo">
+
       <div class="col-12">
         <h4 class="text-green-dark">Informacion de contacto</h4>
       </div>
-      <div class="col-md-6">
-        <label for="nombre" class="form-label">Primer Nombre <span class="text-danger">*</span> </label>
-        <input type="text" class="form-control" id="nombre" placeholder="Primer Nombre">
-      </div>
-      <div class="col-md-6">
-        <label for="password" class="form-label">Password<span class="text-danger fs-6">*</span></label>
-        <input type="text" class="form-control" id="password">
-      </div>
 
       <div class="col-md-6">
-        <label for="direccionResidencia" class="form-label">Direccion de residencia (Opcional)</label>
-        <input type="text" class="form-control" id="direccionResidencia">
-      </div>
-      <div class="col-md-6">
-        <label for="paisResidencia" class="form-label">Pais de residencia<span
+        <label for="countryOfResidence" class="form-label">Pais de residencia<span
           class="text-danger fs-6">*</span></label>
-        <input type="text" class="form-control" id="paisResidencia">
+        <input type="text" class="form-control" id="countryOfResidence" formControlName="countryOfResidence">
       </div>
 
       <div class="col-md-6">
-        <label for="departamentoResidencia" class="form-label">Departamento de residencia<span
-          class="text-danger fs-6">*</span></label>
-        <input type="text" class="form-control" id="departamentoResidencia">
+        <label for="zipCode" class="form-label">Codigo del pais <span class="text-danger">*</span> </label>
+        <input type="text" class="form-control" id="zipCode" placeholder="Código" formControlName="zipCode" readonly>
       </div>
+
       <div class="col-md-6">
-        <label for="ciudadResidencia" class="form-label">Ciudad de residencia<span
+        <label for="phone" class="form-label">Teléfono<span class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="phone" formControlName="phone">
+      </div>
+
+      <div class="col-md-6">
+        <label for="address" class="form-label">Direccion de residencia (Opcional)</label>
+        <input type="text" class="form-control" id="address" formControlName="address">
+      </div>
+
+      <div class="col-md-6">
+        <label for="state" class="form-label">Departamento de residencia<span
           class="text-danger fs-6">*</span></label>
-        <input type="text" class="form-control" id="ciudadResidencia">
-      </div>
-      <div class="col-md-6 form-check-inline">
-        <input type="checkbox" class="form-check-input me-1" id="correoElectronico">
-        <label for="correoElectronico" class="form-label">Correo electronico (Opcional)</label>
+        <input type="text" class="form-control" id="state" formControlName="state">
       </div>
 
-      <div class="row d-flex justify-content-end mx-1 col-12">
+      <div class="col-md-6">
+        <label for="city" class="form-label">Ciudad de residencia<span
+          class="text-danger fs-6">*</span></label>
+        <input type="text" class="form-control" id="city" formControlName="city">
+      </div>
 
-        <button class="btn btn-outline-danger me-2 col-1">Cancelar</button>
-        <div class="btn-hover col-1 ">
-          <button class="btn btn-green text-white primary">Crear</button>
+      <div class="col-md-6">
+        <label for="email" class="form-label">Correo electronico<span
+          class="text-danger fs-6">*</span></label>
+        <input type="email" class="form-control" id="email" formControlName="email">
+      </div>
+
+      <div class="d-flex justify-content-end my-5">
+        <div class="row col-auto d-flex">
+          <button class="btn btn-outline-danger me-2 col-auto" type="button">Cancelar</button>
+          <button class="btn btn-green text-white col-auto">Crear</button>
         </div>
-
       </div>
     </div>
 
+  </div>
 
-
-  </form>
+</form>
 

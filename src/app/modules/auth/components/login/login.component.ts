@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup = new FormGroup({});
   documentTypes = DOCUMENT_TYPES;
   defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
+
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router,
@@ -35,21 +36,24 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.loginForm.valid) {
       // Realizo la peticion
-      this.authService.login(this.loginForm.getRawValue()).subscribe(response => {
-        console.log(response)
-        console.log(response.access_token)
-        this.cookieService.set('access_token', response.access_token);
-        this.router.navigate(['/dashboard']).then()
-      },
-        error => Swal.fire({
+      this.authService.login(this.loginForm.getRawValue()).subscribe({
+        'next': response => {
+          console.log(response)
+          console.log(response.access_token)
+          this.cookieService.set('access_token', response.access_token);
+          this.router.navigate(['/dashboard']).then()
+        }
+        , 'error': error => Swal.fire({
           title: 'Advertencia!',
           text: error.error.message,
           icon: 'warning',
           confirmButtonText: 'Aceptar',
           ...this.defaultOptionsAlerts.success
-        }).then())
+        }).then()
+      })
     } else {
-      console.log('Algo falta');
+      this.loginForm.markAllAsTouched();
+      console.log('Algo falta en el formulario');
 
     }
   }

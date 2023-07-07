@@ -8,6 +8,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {AuthService} from "./services/auth.service";
 import {CookieService} from "ngx-cookie-service";
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import {UsersService} from "./services/users.service";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,6 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
     ModalUsarPlantillaNotaComponent,
     PersonFormComponent,
   ],
-  providers: [PacientesService, AuthService, CookieService]
+  providers: [PacientesService, AuthService, CookieService, UsersService]
 })
 export class SharedModule { }
