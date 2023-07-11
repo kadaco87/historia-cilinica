@@ -19,7 +19,7 @@
 
         <div class="form-floating mb-3">
           <input id="identification" required class="form-control rounded-4" type="text"
-                 formControlName="identification" placeholder="Numero de identificación" />
+                 formControlName="identification" placeholder="Numero de identificación" [autocomplete]="false" />
           <label for="identification">Numero de identificacion</label>
           <div
             *ngIf="loginForm.get('identification')?.touched && loginForm.get('identification')?.getError('required')">

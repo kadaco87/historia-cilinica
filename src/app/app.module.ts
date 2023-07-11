@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {SharedModule} from "./modules/shared/shared.module";
+import {AuthInterceptor} from "./modules/shared/interceptors/auth.interceptor";
 
 @NgModule({
   declarations: [
@@ -15,9 +18,10 @@ import {SweetAlert2Module} from "@sweetalert2/ngx-sweetalert2";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    SweetAlert2Module.forRoot()
+    SweetAlert2Module.forRoot(),
+    SharedModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

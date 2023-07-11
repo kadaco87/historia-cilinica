@@ -3,9 +3,9 @@ import {
   ActivatedRouteSnapshot,
   createUrlTreeFromSnapshot,
 } from '@angular/router';
-import {CookieService} from "ngx-cookie-service";
+import {TokenService} from "../services/token.service";
 
 export const authGuard = (next: ActivatedRouteSnapshot) => {
-  return inject(CookieService)
-    .check('access_token') ? true : createUrlTreeFromSnapshot(next, ['/', 'auth'])
+  return inject(TokenService)
+    .isValidToken() ? true : createUrlTreeFromSnapshot(next, ['/', 'auth'])
 };

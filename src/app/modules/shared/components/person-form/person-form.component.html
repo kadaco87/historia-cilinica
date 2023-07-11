@@ -76,13 +76,22 @@
 
       <div class="col-md-6">
         <label for="countryOfResidence" class="form-label">Pais de residencia<span
-          class="text-danger fs-6">*</span></label>
-        <input type="text" class="form-control" id="countryOfResidence" formControlName="countryOfResidence">
+          class="text-danger fs-6">*</span>
+        </label>
+        <select class="form-select"
+                id="countryOfResidence"
+                formControlName="countryOfResidence"
+                *ngIf="countries.length!==0"
+                (change)="setCode($event)"
+        >
+          <option *ngFor="let country of countries; let i = index"
+                  [ngValue]="country.code">{{country.countryName}}</option>
+        </select>
       </div>
 
       <div class="col-md-6">
         <label for="zipCode" class="form-label">Codigo del pais <span class="text-danger">*</span> </label>
-        <input type="text" class="form-control" id="zipCode" placeholder="Código" formControlName="zipCode" readonly>
+        <input type="text" class="form-control" id="zipCode" placeholder="Código" formControlName="zipCode" readonly [value]="code?code:'+0'">
       </div>
 
       <div class="col-md-6">

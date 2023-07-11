@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DOCUMENT_TYPES} from "../../utils/utils";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UsersService} from "../../services/users.service";
+import {UtilsService} from "../../services/utils.service";
 
 @Component({
   selector: 'app-person-form',
@@ -12,16 +13,22 @@ export class PersonFormComponent implements OnInit {
   documentTypes = DOCUMENT_TYPES;
   personAndUserForm: FormGroup = new FormGroup({});
 
+  countries: any[] = [];
+  code!: any;
+
   constructor(
     private readonly fb: FormBuilder,
-    private readonly usersService: UsersService
-  ) {  }
+    private readonly usersService: UsersService,
+    private readonly utilsService: UtilsService
+  ) {
+  }
 
   ngOnInit(): void {
+    this.getCountries();
     this.intForm();
   }
 
-  intForm(){
+  intForm() {
     this.personAndUserForm = this.fb.group({
       fullName: this.fb.group({
         firstName: new FormControl('', [Validators.required]),
@@ -45,16 +52,45 @@ export class PersonFormComponent implements OnInit {
       role: new FormControl('', [Validators.required])
     })
   }
-  get role(){
+
+  get role() {
     return this.personAndUserForm.get('role');
+  }
+  get countryOfResidence() {
+    return this.personAndUserForm.get('countryOfResidence');
+  }
+
+  getCountries() {
+    this.utilsService.getCountries()
+      .subscribe({
+        'next': (val) => {
+          console.log(val)
+          this.countries = val.sort(this.sortCountries)
+        },
+        'error': error => console.error(error),
+      })
   }
 
   createUserOrPatient() {
-    console.log(this.role?.valid)
-    if(this.role?.valid) {
-      // console.log(this.personAndUserForm.getRawValue());
+    if (this.role?.valid) {
       this.usersService.createUserOrPatient(this.personAndUserForm.getRawValue())
         .subscribe(response => console.log)
     }
   }
+
+  sortCountries(a:any, b:any) {
+    if (a.countryName > b.countryName) {
+      return 1;
+    }
+    if (a.countryName < b.countryName) {
+      return -1;
+    }
+    // a must be equal to b
+    return 0;
+  }
+
+  setCode(event: any) {
+    this.code = (event.target as HTMLSelectElement).value.split(':')[1];
+  }
+
 }

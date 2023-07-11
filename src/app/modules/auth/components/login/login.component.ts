@@ -37,11 +37,12 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.valid) {
       // Realizo la peticion
       this.authService.login(this.loginForm.getRawValue()).subscribe({
-        'next': response => {
+        'next': (response) => {
           console.log(response)
-          console.log(response.access_token)
-          this.cookieService.set('access_token', response.access_token);
-          this.router.navigate(['/dashboard']).then()
+          if(response) {
+            console.log('voy a navegar')
+            this.router.navigate(['/dashboard']).then();
+          }
         }
         , 'error': error => Swal.fire({
           title: 'Advertencia!',

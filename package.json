@@ -27,6 +27,7 @@
     "dateformat": "^5.0.3",
     "full-age-calculator": "^0.0.4",
     "jquery": "^3.6.4",
+    "jwt-decode": "^3.1.2",
     "ngx-cookie-service": "^16.0.0",
     "primeng": "^16.0.2",
     "pure-age-calculator": "^1.0.2",
@@ -34,6 +35,7 @@
     "rxjs": "~7.8.0",
     "sweetalert2": "^11.7.12",
     "tslib": "^2.3.0",
+    "typescript-cookie": "^1.0.6",
     "zone.js": "~0.13.1"
   },
   "devDependencies": {
