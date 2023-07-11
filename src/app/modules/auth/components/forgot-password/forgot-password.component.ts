@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import {DOCUMENT_TYPES, OPTIONS_SWEET_ALERT, SUCCESS_ALERT} from "../../../shared/utils/utils";
+import {OPTIONS_SWEET_ALERT, SUCCESS_ALERT} from "../../../shared/utils/utils";
 import {AuthService} from "../../../shared/services/auth.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import Swal from "sweetalert2";
+import {UtilsService} from "../../../shared/services/utils.service";
+import {DocumentTypeItem} from "../../../shared/models/document-type-item";
 
 @Component({
   selector: 'app-forgot-password',
@@ -13,14 +15,19 @@ import Swal from "sweetalert2";
 export class ForgotPasswordComponent implements OnInit {
   defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
   forgotPasswordForm: FormGroup = new FormGroup({});
-  options = DOCUMENT_TYPES;
+  documentTypes: DocumentTypeItem[] = [];
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly authService: AuthService,
+    private readonly utilsService: UtilsService
   ) { }
 
   ngOnInit(): void {
+    this.utilsService.getDocumentTypes().subscribe({
+      'next': documentType => this.documentTypes  = documentType,
+      'error': error => console.error(error)
+    })
     this.forgotPasswordForm = this.fb.group({
       identification: new FormControl('', [Validators.required]),
       documentType: new FormControl('', [Validators.required]),

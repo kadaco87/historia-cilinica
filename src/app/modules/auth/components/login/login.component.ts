@@ -1,10 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {DOCUMENT_TYPES, OPTIONS_SWEET_ALERT} from "../../../shared/utils/utils";
+import {OPTIONS_SWEET_ALERT} from "../../../shared/utils/utils";
 import {AuthService} from "../../../shared/services/auth.service";
-import {CookieService} from "ngx-cookie-service";
 import Swal from "sweetalert2";
+import {UtilsService} from "../../../shared/services/utils.service";
+import {DocumentTypeItem} from "../../../shared/models/document-type-item";
 
 @Component({
   selector: 'app-login',
@@ -14,18 +15,23 @@ import Swal from "sweetalert2";
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({});
-  documentTypes = DOCUMENT_TYPES;
+  documentTypes: DocumentTypeItem[] = [];
   defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly router: Router,
     private readonly authService: AuthService,
-    private readonly cookieService: CookieService
-  ) {
-  }
+    private readonly utilsService: UtilsService
+  ) { }
 
   ngOnInit(): void {
+    this.utilsService.getDocumentTypes().subscribe({
+      'next': documentTypes  => {
+        this.documentTypes = documentTypes
+      },
+      'error': error => console.error(error)
+    });
     this.loginForm = this.fb.group({
       identification: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),

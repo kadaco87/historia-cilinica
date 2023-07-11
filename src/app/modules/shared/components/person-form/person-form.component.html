@@ -5,7 +5,7 @@
       <h4 class="text-green-dark">Informacion Personal</h4>
     </div>
 
-    <div class="row col-12 gx-5 gy-2 mb-5" formGroupName="fullName">
+    <div class="row col-12 gx-5 gy-2 mb-1" formGroupName="fullName">
       <div class="col-md-6">
         <label for="firstName" class="form-label">Primer Nombre <span class="text-danger fs-6">*</span></label>
         <input type="text" class="form-control" id="firstName" formControlName="firstName">
@@ -32,7 +32,7 @@
         <label for="documentType" class="form-label">Tipo de Documento<span
           class="text-danger fs-6">*</span></label>
         <select class="form-select" id="documentType" formControlName="documentType">
-          <option *ngFor="let option of documentTypes" [ngValue]="option.documentType">{{option.text}}</option>
+          <option *ngFor="let option of documentTypes" [ngValue]="option.id">{{option.text}}</option>
         </select>
       </div>
 
@@ -50,20 +50,25 @@
 
       <div class="col-md-6">
         <label for="gender" class="form-label">Género<span class="text-danger fs-6">*</span></label>
-        <select class="form-select" id="gender" formControlName="gender">
-          <option selected></option>
-          <option value="">Masculino</option>
-          <option value="">Femenino</option>
-          <option value="">Indeterminado</option>
+        <select class="form-select"
+                id="gender"
+                formControlName="gender"
+                *ngIf="genderList.length!==0"
+                (change)="setCode($event)"
+        >
+          <option *ngFor="let gender of genderList; let i = index"
+                  [ngValue]="gender.id">{{gender.text}}</option>
         </select>
       </div>
 
-      <div class="col-md-6">
+      <div class="col-md-6" *ngIf="view==='user-form'">
         <label for="role" class="form-label">Role<span class="text-danger fs-6">*</span></label>
-        <select class="form-select" id="role" formControlName="role">
-          <option selected></option>
-          <option value="1">Paciente</option>
-          <option value="2">Usuario</option>
+        <select class="form-select"
+                id="role"
+                formControlName="role"
+                *ngIf="roles.length !== 0"
+        >
+          <option *ngFor="let role of roles" [ngValue]="role.id">{{role.role | titlecase}}</option>
         </select>
       </div>
     </div>

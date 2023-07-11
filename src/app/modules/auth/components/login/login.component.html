@@ -6,9 +6,9 @@
           <h3 class="text-center text-green-dark fw-light text-gray">Iniciar Sesion</h3>
         </legend>
         <div class="form-floating mb-3">
-          <select id="documentType" class="form-select rounded-4 text-gray" type="text"
+          <select id="documentType" class="form-select rounded-4 text-gray" type="text" *ngIf="documentTypes.length>0"
                   placeholder="Seleccione el tipo de Documento de Identidad" formControlName="documentType">
-            <option value="4" *ngFor="let option of documentTypes" defaultSelected [ngValue]="option.documentType">{{option.text}}</option>
+            <option value="4" *ngFor="let option of documentTypes" defaultSelected [ngValue]="option.id">{{option.text}}</option>
           </select>
           <label for="documentType">Seleccione el tipo de Documento de Identidad</label>
           <div

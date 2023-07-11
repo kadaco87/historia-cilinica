@@ -1,8 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {DOCUMENT_TYPES} from "../../utils/utils";
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UsersService} from "../../services/users.service";
 import {UtilsService} from "../../services/utils.service";
+import {DocumentTypeItem} from "../../models/document-type-item";
+import {Country} from "../../models/country";
+import {Gender} from "../../models/gender";
+import {Role} from "../../models/role";
+import {ActivatedRoute} from "@angular/router";
+
 
 @Component({
   selector: 'app-person-form',
@@ -10,21 +15,29 @@ import {UtilsService} from "../../services/utils.service";
   styleUrls: ['./person-form.component.scss']
 })
 export class PersonFormComponent implements OnInit {
-  documentTypes = DOCUMENT_TYPES;
   personAndUserForm: FormGroup = new FormGroup({});
-
-  countries: any[] = [];
   code!: any;
+
+  documentTypes: DocumentTypeItem[] = [];
+  countries: Country[] = [];
+  genderList: Gender[] = [];
+  roles: Role[] = [];
+  view: string = '';
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly usersService: UsersService,
-    private readonly utilsService: UtilsService
+    private readonly utilsService: UtilsService,
+    private readonly route: ActivatedRoute
   ) {
   }
 
   ngOnInit(): void {
+     this.route.url.subscribe(url => this.view = url[0].path);
     this.getCountries();
+    this.getGenderList();
+    this.getDocumentTypes();
+    this.getRoles();
     this.intForm();
   }
 
@@ -49,8 +62,8 @@ export class PersonFormComponent implements OnInit {
         city: new FormControl('', [Validators.required]),
         email: new FormControl('', [Validators.required]),
       }),
-      role: new FormControl('', [Validators.required])
     })
+    if(this.view === 'user-form') this.personAndUserForm.addControl('role', new FormControl('', [Validators.required]))
   }
 
   get role() {
@@ -64,18 +77,10 @@ export class PersonFormComponent implements OnInit {
     this.utilsService.getCountries()
       .subscribe({
         'next': (val) => {
-          console.log(val)
           this.countries = val.sort(this.sortCountries)
         },
         'error': error => console.error(error),
       })
-  }
-
-  createUserOrPatient() {
-    if (this.role?.valid) {
-      this.usersService.createUserOrPatient(this.personAndUserForm.getRawValue())
-        .subscribe(response => console.log)
-    }
   }
 
   sortCountries(a:any, b:any) {
@@ -87,6 +92,47 @@ export class PersonFormComponent implements OnInit {
     }
     // a must be equal to b
     return 0;
+  }
+
+  getGenderList(){
+    this.utilsService.getGender().subscribe({
+      'next': (val) => {
+        this.genderList = val
+      },
+      'error': error => console.error(error),
+    })
+  }
+
+  getDocumentTypes(){
+    this.utilsService.getDocumentTypes().subscribe({
+      'next': (val) => {
+        this.documentTypes = val
+      },
+      'error': error => console.error(error),
+    })
+  }
+
+  getRoles(){
+    this.utilsService.getRoles().subscribe({
+      'next': (roles) => {
+        this.roles = roles
+      },
+      'error': error => console.error(error),
+    })
+  }
+
+  createUserOrPatient() {
+    if(this.view === 'user-form'){
+      if (this.role?.valid) {
+        this.usersService.createUserOrPatient(this.personAndUserForm.getRawValue())
+          .subscribe(response => console.log)
+      }else{
+        this.personAndUserForm.markAllAsTouched();
+      }
+    }else{
+      console.log('llamar al servicio de pacientes para crear paciente')
+    }
+
   }
 
   setCode(event: any) {
