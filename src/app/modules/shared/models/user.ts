@@ -10,9 +10,9 @@ export interface User {
 
 export interface FullName {
   firstName: string;
-  secondName: string;
+  secondName?: string;
   firstLastName: string;
-  secondLastName: string;
+  secondLastName?: string;
 }
 
 export interface ContactInfo {
