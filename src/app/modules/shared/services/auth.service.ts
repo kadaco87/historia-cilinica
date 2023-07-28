@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {switchMap, tap} from "rxjs";
+import {tap} from "rxjs";
 import {TokenService} from "./token.service";
 
 @Injectable({
@@ -17,11 +17,11 @@ export class AuthService {
   }
 
   login(body: { documentType: number, identification: string, password: string }) {
-    return this.http.post<{ access_token: string }>(`${this.apiUrl}/login`, body)
+    return this.http.post<{ access_token: string, refresh_token: string }>(`${this.apiUrl}/login`, body)
       .pipe(
         tap(response => {
           this.tokenService.saveToken(response.access_token);
-          // this.tokenService.saveRefreshToken(response.refresh_token);
+          this.tokenService.saveRefreshToken(response.refresh_token);
         })
       );
   }
@@ -34,18 +34,20 @@ export class AuthService {
     return this.http.post<boolean>(`${this.apiUrl}/reset-password`, body);
   }
 
-  refreshToken(refreshToken: string) {
-    return this.http.post<{
+  refreshToken() {
+    const refresh_token = this.tokenService.getRefreshToken()
+    const headers = new HttpHeaders()
+      .set('Authorization',`Bearer ${refresh_token}`);
+    return this.http.get<{
       access_token: string,
       refresh_token: string
-    }>(`${this.apiUrl}/api/v1/auth/refresh-token`, {refreshToken})
+    }>(`${this.apiUrl}/refresh-token`, {headers})
       .pipe(
         tap(response => {
           this.tokenService.saveToken(response.access_token);
           this.tokenService.saveRefreshToken(response.refresh_token);
         })
       );
-    ;
   }
 
   // new

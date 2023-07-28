@@ -1,9 +1,9 @@
-<div class="container-fluid px-5 my-5 bg-light text-gray">
-  <div class="row p-4 my-4">
-    <div class="col-6">
-      <h2 class="text-green-dark">Pacientes</h2>
+<div class="container-fluid px-5  bg-light text-gray">
+  <div class="row p-4">
+    <div class="col-6 my-5">
+      <h2 class="text-green-dark">Usuarios</h2>
     </div>
-    <div class=" row col-6">
+    <div class=" row col-6 my-5">
       <div class="col-8">
         <form action="">
           <input class="form-control text-gray border-2" type="text" placeholder="Buscar">
@@ -20,3 +20,53 @@
     </div>
   </div>
 
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="nombre">
+        <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Nombre </th>
+        <td class="text-gray" mat-cell *matCellDef="let element"> {{element.fullName.firstName}} {{element.fullName.secondName}} {{element.fullName.firstLastName}} {{element.fullName.secondLastName}}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="roleName">
+        <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Cargo </th>
+        <td class="text-gray" mat-cell *matCellDef="let element"> {{element.roleName}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="documentType">
+        <th class="text-green-dark" mat-header-cell *matHeaderCellDef>Tipo de Documento </th>
+        <td class="text-gray" mat-cell *matCellDef="let element"> {{element.documentType}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="identification">
+        <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Identificación </th>
+        <td class="text-gray" mat-cell *matCellDef="let element"> {{element.identification}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="id">
+        <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Actions </th>
+        <td class="text-gray" mat-cell *matCellDef="let element">
+          <i class="fa-solid fa-file-pen mx-3" (click)="editUserProfile(element.id)"></i>
+        </td>
+      </ng-container>
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator class="text-gray" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>
+
+<!--<div><code><pre>-->
+<!--  <ng-container *ngFor="let item of dataSource.data">-->
+<!--    {{item | json}}-->
+<!--  </ng-container>-->
+<!--</pre></code></div>-->

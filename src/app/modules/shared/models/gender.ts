@@ -1,4 +1,4 @@
 export interface Gender {
-  id: number;
-  text: string
+  id: string;
+  gender: 'masculino'|'femenino'|'indeterminado';
 }

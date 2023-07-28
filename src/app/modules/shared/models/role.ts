@@ -1,5 +1,5 @@
 export interface Role {
-  id: number;
-  role: 'medico'| 'jefe enfermeria' | 'auxiliar enfermeria' | 'admin';
+  id: string;
+  role: 'medico'| 'jefe de enfermeria' | 'auxiliar de enfermeria' | 'admin';
 }
 

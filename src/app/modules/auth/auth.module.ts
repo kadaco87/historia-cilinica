@@ -21,11 +21,11 @@ import { ResetPasswordComponent } from './components/reset-password/reset-passwo
     RegisterComponent,
     ResetPasswordComponent
   ],
-  imports: [
-    CommonModule,
-    AuthRoutingModule,
-    ReactiveFormsModule,
-    SharedModule
-  ]
+    imports: [
+        CommonModule,
+        AuthRoutingModule,
+        ReactiveFormsModule,
+        SharedModule,
+    ]
 })
 export class AuthModule { }

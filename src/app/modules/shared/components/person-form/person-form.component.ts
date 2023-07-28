@@ -7,6 +7,7 @@ import {Country} from "../../models/country";
 import {Gender} from "../../models/gender";
 import {Role} from "../../models/role";
 import {ActivatedRoute} from "@angular/router";
+import {User} from "../../models/user";
 
 
 @Component({
@@ -16,13 +17,16 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class PersonFormComponent implements OnInit {
   personAndUserForm: FormGroup = new FormGroup({});
-  code!: any;
 
   documentTypes: DocumentTypeItem[] = [];
   countries: Country[] = [];
   genderList: Gender[] = [];
   roles: Role[] = [];
   view: string = '';
+  actionView = '';
+  id = '';
+  user!: User;
+
 
   constructor(
     private readonly fb: FormBuilder,
@@ -33,12 +37,17 @@ export class PersonFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-     this.route.url.subscribe(url => this.view = url[0].path);
+    this.route.url.subscribe(url => this.view = url[0].path);
+    this.route.params.subscribe(params => {
+      this.id = params['id'] || null;
+      this.actionView = params['action'] || null;
+    })
     this.getCountries();
     this.getGenderList();
     this.getDocumentTypes();
     this.getRoles();
     this.intForm();
+    this.getOneUserOrPatient();
   }
 
   intForm() {
@@ -51,7 +60,7 @@ export class PersonFormComponent implements OnInit {
       }),
       documentType: new FormControl('', [Validators.required]),
       identification: new FormControl('', [Validators.required]),
-      birthday: new FormControl('', [Validators.required]),
+      birthday: new FormControl(null, [Validators.required]),
       gender: new FormControl('', [Validators.required]),
       contactInfo: this.fb.group({
         countryOfResidence: new FormControl('', [Validators.required]),
@@ -63,14 +72,70 @@ export class PersonFormComponent implements OnInit {
         email: new FormControl('', [Validators.required]),
       }),
     })
-    if(this.view === 'user-form') this.personAndUserForm.addControl('role', new FormControl('', [Validators.required]))
+    if (this.view === 'user-form') this.personAndUserForm.addControl('role', new FormControl('', [Validators.required]))
+  }
+
+  getOneUserOrPatient() {
+    if (this.view === 'user-form' && this.actionView === 'update') {
+      this.usersService.getOneUser(this.id).subscribe(user => {
+        this.user = user;
+        if (this.user) {
+          this.fillForm();
+        }
+      })
+    }
+  }
+
+  fillForm() {
+    let fullName = Object.assign(this.user.fullName);
+    let contactInfo = Object.assign(this.user.contactInfo);
+    delete fullName['_id'];
+    delete fullName['deleted'];
+    delete contactInfo['_id'];
+    delete contactInfo['deleted'];
+    this.personAndUserForm.get('fullName')?.setValue(fullName);
+    this.personAndUserForm.get('contactInfo')?.setValue(contactInfo);
+
+    const date = new Date().setTime(this.user.birthday);
+
+    this.birthday?.setValue(new Date(date).toISOString().substring(0,10))
+
+    this.gender?.setValue(this.findGender(this.user.gender));
+    this.role?.setValue(this.findRole(this.user.role));
+    this.documentType?.setValue(this.user.documentType);
+    this.identification?.setValue(this.user.identification);
+  }
+
+  findRole(id: string) {
+    return this.roles.find(role => role.id === id);
+  }
+
+  findGender(id: string) {
+    return this.genderList.find(gender => gender.id === id);
   }
 
   get role() {
     return this.personAndUserForm.get('role');
   }
-  get countryOfResidence() {
-    return this.personAndUserForm.get('countryOfResidence');
+
+  get gender() {
+    return this.personAndUserForm.get('gender');
+  }
+
+  get zipCode() {
+    return this.personAndUserForm.get('contactInfo.zipCode');
+  }
+
+  get birthday() {
+    return this.personAndUserForm.get('birthday');
+  }
+
+  get documentType() {
+    return this.personAndUserForm.get('documentType');
+  }
+
+  get identification() {
+    return this.personAndUserForm.get('identification');
   }
 
   getCountries() {
@@ -83,7 +148,7 @@ export class PersonFormComponent implements OnInit {
       })
   }
 
-  sortCountries(a:any, b:any) {
+  sortCountries(a: any, b: any) {
     if (a.countryName > b.countryName) {
       return 1;
     }
@@ -94,16 +159,18 @@ export class PersonFormComponent implements OnInit {
     return 0;
   }
 
-  getGenderList(){
-    this.utilsService.getGender().subscribe({
-      'next': (val) => {
-        this.genderList = val
+  getGenderList() {
+    this.utilsService.getGenders().subscribe({
+      'next': (genders) => {
+        if (genders) {
+          this.genderList = genders
+        }
       },
       'error': error => console.error(error),
     })
   }
 
-  getDocumentTypes(){
+  getDocumentTypes() {
     this.utilsService.getDocumentTypes().subscribe({
       'next': (val) => {
         this.documentTypes = val
@@ -112,31 +179,39 @@ export class PersonFormComponent implements OnInit {
     })
   }
 
-  getRoles(){
+  getRoles() {
     this.utilsService.getRoles().subscribe({
       'next': (roles) => {
-        this.roles = roles
+        let rolesObj = Object.assign(roles);
+        delete rolesObj['_id'];
+        delete rolesObj['__v'];
+        delete rolesObj['deleted'];
+        this.roles = rolesObj
       },
       'error': error => console.error(error),
     })
   }
 
   createUserOrPatient() {
-    if(this.view === 'user-form'){
-      if (this.role?.valid) {
-        this.usersService.createUserOrPatient(this.personAndUserForm.getRawValue())
+    if (this.view === 'user-form') {
+      if (this.role?.valid && this.birthday?.valid) {
+        const dateArray = this.birthday?.getRawValue()?.split('-');
+        const user = {
+          ...this.personAndUserForm.getRawValue(),
+          birthday: new Date(Number(dateArray[0]), Number(dateArray[1]) - 1, Number(dateArray[2]), 0, 0, 0, 0).valueOf()
+        }
+        this.usersService.createUserOrPatient(user)
           .subscribe(response => console.log)
-      }else{
+      } else {
         this.personAndUserForm.markAllAsTouched();
       }
-    }else{
+    } else {
       console.log('llamar al servicio de pacientes para crear paciente')
     }
-
   }
 
   setCode(event: any) {
-    this.code = (event.target as HTMLSelectElement).value.split(':')[1];
+    this.zipCode?.patchValue((event.target as HTMLSelectElement).value.split(':')[1]);
   }
 
 }

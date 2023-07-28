@@ -54,10 +54,9 @@
                 id="gender"
                 formControlName="gender"
                 *ngIf="genderList.length!==0"
-                (change)="setCode($event)"
         >
-          <option *ngFor="let gender of genderList; let i = index"
-                  [ngValue]="gender.id">{{gender.text}}</option>
+          <option *ngFor="let option of genderList"
+                  [ngValue]="option">{{option.gender}}</option>
         </select>
       </div>
 
@@ -68,7 +67,7 @@
                 formControlName="role"
                 *ngIf="roles.length !== 0"
         >
-          <option *ngFor="let role of roles" [ngValue]="role.id">{{role.role | titlecase}}</option>
+          <option *ngFor="let role of roles" [ngValue]="role">{{role.role | titlecase}}</option>
         </select>
       </div>
     </div>
@@ -96,7 +95,7 @@
 
       <div class="col-md-6">
         <label for="zipCode" class="form-label">Codigo del pais <span class="text-danger">*</span> </label>
-        <input type="text" class="form-control" id="zipCode" placeholder="Código" formControlName="zipCode" readonly [value]="code?code:'+0'">
+        <input type="text" class="form-control" id="zipCode" placeholder="Código" formControlName="zipCode" readonly>
       </div>
 
       <div class="col-md-6">

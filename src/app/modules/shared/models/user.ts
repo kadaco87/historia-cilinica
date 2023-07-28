@@ -1,11 +1,14 @@
+import {Role} from "./role";
+
 export interface User {
   fullName: FullName;
   documentType: number;
   identification: string;
-  birthday: Date;
-  gender: number;
+  birthday: number;
+  gender: string;
   contactInfo: ContactInfo;
-  role: number;
+  role: string;
+  roleName: Role;
 }
 
 export interface FullName {

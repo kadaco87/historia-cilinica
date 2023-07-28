@@ -20,7 +20,11 @@ const routes: Routes = [
         component: UsersListComponent
       },
       {
-        path: 'user-form',
+        path: 'user-form/:action',
+        component: UserFormComponent
+      },
+      {
+        path: 'user-form/:action/:id',
         component: UserFormComponent
       }
     ]
