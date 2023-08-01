@@ -32,7 +32,7 @@
         <label for="documentType" class="form-label">Tipo de Documento<span
           class="text-danger fs-6">*</span></label>
         <select class="form-select" id="documentType" formControlName="documentType">
-          <option *ngFor="let option of documentTypes" [ngValue]="option.id">{{option.text}}</option>
+          <option *ngFor="let option of documentTypeList" [ngValue]="option.id">{{option.documentType}}</option>
         </select>
       </div>
 
@@ -56,7 +56,7 @@
                 *ngIf="genderList.length!==0"
         >
           <option *ngFor="let option of genderList"
-                  [ngValue]="option">{{option.gender}}</option>
+                  [ngValue]="option.id">{{option.gender}}</option>
         </select>
       </div>
 

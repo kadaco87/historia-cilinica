@@ -1,5 +1,5 @@
 <div class="container-fluid bg-gray">
-    <div class="row d-flex justify-content-start p-2">
+    <div class="row d-flex justify-content-start p-2"  *ngIf="paciente">
         <!-- foto -->
         <div class="col-1 rounded-pill shadow border-3 border-solid-gray"
             [style.background-image]="'url('+paciente.fotoPerfil+')'" [style.background-size]="'cover'"
@@ -9,13 +9,13 @@
         </div>
         <!-- informacion personal -->
         <div class="col-auto">
-            <p class="mb-0 mt-2">{{paciente.nombre | titlecase}} | <i class="fa-solid fa-circle"
-                    [ngClass]="paciente.activo?'text-success':'text-danger'"></i> Activo</p>
-            <p class="mb-2">Fecha nacimiento: {{paciente.fechaNacimiento | date:'dd/MM/YYY' }} - <span
+            <p class="mb-0 mt-2">{{paciente.fullName.firstName | titlecase}} {{paciente.fullName.secondName | titlecase}} {{paciente.fullName.firstLastName | titlecase}} {{paciente.fullName.secondLastName | titlecase}} | <i class="fa-solid fa-circle"
+                    [ngClass]="!paciente.deleted?'text-success':'text-danger'"></i> Activo</p>
+            <p class="mb-2">Fecha nacimiento: {{paciente.birthday | date:'dd/MM/YYY' }} - <span
                     *ngIf="edad">{{edad.years}} años
                     {{edad.months}} meses {{edad.days}} dias -</span>
-                {{paciente.tipoDocumento}}:
-                {{paciente.numeroDocumento}}
+                {{findDocumentType(paciente.documentType)?.documentType}}:
+                {{paciente.identification}}
             </p>
         </div>
     </div>

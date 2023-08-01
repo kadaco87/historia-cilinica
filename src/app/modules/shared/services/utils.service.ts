@@ -34,6 +34,15 @@ export class UtilsService {
   }
   getDocumentTypes() {
     return this.http.get< DocumentTypeItem[]>(`${this.apiUrl}/document-types`)
+      .pipe(tap(documentTypeList => {
+        return documentTypeList.map(docType => {
+          let docTypeObj = Object.assign(docType);
+          delete docTypeObj['_id'];
+          delete docTypeObj['__v'];
+          delete docTypeObj['deleted'];
+          return docTypeObj;
+        })
+      }))
   }
 
   getRoles() {
@@ -46,7 +55,6 @@ export class UtilsService {
           delete roleObj['deleted'];
           return roleObj;
         })
-
       }))
   }
 }

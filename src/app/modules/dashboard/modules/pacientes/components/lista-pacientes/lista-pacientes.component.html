@@ -26,30 +26,30 @@
             <!-- Position Column -->
             <ng-container matColumnDef="nombre">
                 <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Nombre </th>
-                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.nombre}} </td>
+                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.fullName.firstName}} {{element.fullName.secondName}} {{element.fullName.firstLastName}} {{element.fullName.secondLastName}} </td>
             </ng-container>
 
             <!-- Name Column -->
-            <ng-container matColumnDef="fechaNacimiento">
+            <ng-container matColumnDef="birthday">
                 <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Fecha de Naciemiento </th>
-                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.fechaNacimiento}} </td>
+                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.birthday | date:'dd/MM/YYY'}} </td>
             </ng-container>
 
             <!-- Weight Column -->
-            <ng-container matColumnDef="genero">
+            <ng-container matColumnDef="gender">
                 <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Genero </th>
-                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.genero}} </td>
+                <td class="text-gray" mat-cell *matCellDef="let element"> {{findGender(element.gender)?.gender}} </td>
             </ng-container>
 
             <!-- Symbol Column -->
-            <ng-container matColumnDef="tipoDocumento">
+            <ng-container matColumnDef="documentType">
                 <th class="text-green-dark" mat-header-cell *matHeaderCellDef>Tipo de Documento </th>
-                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.tipoDocumento}} </td>
+                <td class="text-gray" mat-cell *matCellDef="let element"> {{findDocumentType(element.documentType)?.documentType}} </td>
             </ng-container>
 
-            <ng-container matColumnDef="documento">
+            <ng-container matColumnDef="identification">
                 <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Documento </th>
-                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.documento}} </td>
+                <td class="text-gray" mat-cell *matCellDef="let element"> {{element.identification}} </td>
             </ng-container>
 
             <ng-container matColumnDef="id">

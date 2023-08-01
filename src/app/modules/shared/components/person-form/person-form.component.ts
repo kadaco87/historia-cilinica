@@ -6,9 +6,11 @@ import {DocumentTypeItem} from "../../models/document-type-item";
 import {Country} from "../../models/country";
 import {Gender} from "../../models/gender";
 import {Role} from "../../models/role";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {User} from "../../models/user";
-
+import {environment} from "../../../../../environments/environment";
+import {OPTIONS_SWEET_ALERT} from "../../utils/utils";
+import Swal from "sweetalert2";
 
 @Component({
   selector: 'app-person-form',
@@ -17,8 +19,8 @@ import {User} from "../../models/user";
 })
 export class PersonFormComponent implements OnInit {
   personAndUserForm: FormGroup = new FormGroup({});
-
-  documentTypes: DocumentTypeItem[] = [];
+  defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
+  documentTypeList: DocumentTypeItem[] = [];
   countries: Country[] = [];
   genderList: Gender[] = [];
   roles: Role[] = [];
@@ -26,13 +28,15 @@ export class PersonFormComponent implements OnInit {
   actionView = '';
   id = '';
   user!: User;
+  patientRole = environment.patientRole;
 
 
   constructor(
     private readonly fb: FormBuilder,
     private readonly usersService: UsersService,
     private readonly utilsService: UtilsService,
-    private readonly route: ActivatedRoute
+    private readonly route: ActivatedRoute,
+    private readonly router: Router,
   ) {
   }
 
@@ -98,12 +102,16 @@ export class PersonFormComponent implements OnInit {
 
     const date = new Date().setTime(this.user.birthday);
 
-    this.birthday?.setValue(new Date(date).toISOString().substring(0,10))
+    this.birthday?.setValue(new Date(date).toISOString().substring(0, 10))
 
     this.gender?.setValue(this.findGender(this.user.gender));
     this.role?.setValue(this.findRole(this.user.role));
-    this.documentType?.setValue(this.user.documentType);
+    this.documentType?.setValue(this.findDocumentType(this.user.documentType));
     this.identification?.setValue(this.user.identification);
+  }
+
+  findDocumentType(id: string) {
+    return this.documentTypeList.find(docType => docType.id === id);
   }
 
   findRole(id: string) {
@@ -173,7 +181,8 @@ export class PersonFormComponent implements OnInit {
   getDocumentTypes() {
     this.utilsService.getDocumentTypes().subscribe({
       'next': (val) => {
-        this.documentTypes = val
+        this.documentTypeList = val
+        console.log(this.documentTypeList);
       },
       'error': error => console.error(error),
     })
@@ -201,12 +210,68 @@ export class PersonFormComponent implements OnInit {
           birthday: new Date(Number(dateArray[0]), Number(dateArray[1]) - 1, Number(dateArray[2]), 0, 0, 0, 0).valueOf()
         }
         this.usersService.createUserOrPatient(user)
-          .subscribe(response => console.log)
+          .subscribe({
+            'next': response => {
+              if (response) {
+                Swal.fire({
+                  title: 'Advertencia!',
+                  text: 'El usuario fue creado exitosamente',
+                  icon: 'success',
+                  confirmButtonText: 'Aceptar',
+                  ...this.defaultOptionsAlerts.success
+                }).then(() => this.router.navigate(['/', 'dashboard', 'pacientes']).then())
+
+              } else {
+                this.personAndUserForm.markAllAsTouched();
+              }
+            },
+            'error': error => Swal.fire({
+              title: 'Advertencia!',
+              text: error.error.message,
+              icon: 'warning',
+              confirmButtonText: 'Aceptar',
+              ...this.defaultOptionsAlerts.success
+            }).then()
+          })
       } else {
         this.personAndUserForm.markAllAsTouched();
       }
     } else {
-      console.log('llamar al servicio de pacientes para crear paciente')
+      if (this.personAndUserForm.valid) {
+        console.log('llamar al servicio de pacientes para crear paciente')
+        const dateArray = this.birthday?.getRawValue()?.split('-');
+        const user = {
+          ...this.personAndUserForm.getRawValue(),
+          role: this.patientRole,
+          birthday: new Date(Number(dateArray[0]), Number(dateArray[1]) - 1, Number(dateArray[2]), 0, 0, 0, 0).valueOf()
+        }
+        this.usersService.createUserOrPatient(user)
+          .subscribe({
+            'next': response => {
+              if (response) {
+                Swal.fire({
+                  title: 'Advertencia!',
+                  text: 'El paciente fue creado exitosamente',
+                  icon: 'success',
+                  confirmButtonText: 'Aceptar',
+                  ...this.defaultOptionsAlerts.success
+                }).then(() => this.router.navigate(['/', 'dashboard', 'pacientes']).then())
+
+              } else {
+                this.personAndUserForm.markAllAsTouched();
+              }
+            },
+            'error': error => Swal.fire({
+              title: 'Advertencia!',
+              text: error.error.message,
+              icon: 'warning',
+              confirmButtonText: 'Aceptar',
+              ...this.defaultOptionsAlerts.success
+            }).then()
+          })
+      } else {
+        this.personAndUserForm.markAllAsTouched();
+      }
     }
   }
 

@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = this.fb.group({
       identification: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
-      documentType: new FormControl(this.documentTypes[0], [Validators.required]),
+      documentType: new FormControl(null, [Validators.required]),
     })
   }
 
@@ -61,7 +61,6 @@ export class LoginComponent implements OnInit {
     } else {
       this.loginForm.markAllAsTouched();
       console.log('Algo falta en el formulario');
-
     }
   }
 

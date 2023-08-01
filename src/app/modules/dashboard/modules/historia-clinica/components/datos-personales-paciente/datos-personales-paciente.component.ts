@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { Paciente, PacientesService } from 'src/app/modules/shared/services/pacientes.service';
-import { DatePipe, formatDate } from '@angular/common';
-import { getAgePure } from 'pure-age-calculator';
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute} from '@angular/router';
+import {DatePipe} from '@angular/common';
+import {getAgePure} from 'pure-age-calculator';
+import {UsersService} from "../../../../../shared/services/users.service";
+import {User} from "../../../../../shared/models/user";
+import {DocumentTypeItem} from "../../../../../shared/models/document-type-item";
+import {UtilsService} from "../../../../../shared/services/utils.service";
 
 @Component({
   selector: 'app-datos-personales-paciente',
@@ -10,37 +13,58 @@ import { getAgePure } from 'pure-age-calculator';
   styleUrls: ['./datos-personales-paciente.component.scss']
 })
 export class DatosPersonalesPacienteComponent implements OnInit {
-  paciente!: Paciente;
+  paciente!: User;
+  documentTypeList: DocumentTypeItem[] = [];
   edad: any = {
     years: 0,
     months: 0,
     days: 0
   };
   pipe = new DatePipe('en-CO');
+
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly pacienteService: PacientesService
-  ) { }
-  ngOnInit(): void {
-    this.route.params.subscribe(param => {
-      this.getPaciente(Number(param['id']))
-    })
-
+    private readonly usersService: UsersService,
+    private readonly utilsService: UtilsService,
+  ) {
   }
 
-  getPaciente(id: number) {
+  ngOnInit(): void {
+    this.route.params.subscribe(param => {
+      this.getPaciente(param['id']);
+    })
+this.getDocumentTypes();
+  }
 
-    this.pacienteService.getPaciente(id).subscribe(paciente => {
+  getPaciente(id: string) {
+
+    this.usersService.getOneUser(id)
+      .subscribe(paciente => {
       if (paciente) {
+        paciente['fotoPerfil'] = paciente.gender === '4b0d6531-b2f5-43a2-a373-6258125a1e7b' ? 'https://media.istockphoto.com/id/499923566/sv/vektor/woman-interface-icon-vector.jpg?s=170667a&w=0&k=20&c=mZy4Ct02tq1J2y9vmPg0mgwEs6uuFWDShzfMy3cF83k=':(paciente.gender==='18133553-4fd9-4b2b-9a24-d294b3e820ae'?'https://www.shareicon.net/data/256x256/2016/09/15/829459_man_512x512.png':'https://www.nicepng.com/png/detail/128-1280406_view-user-icon-png-user-circle-icon-png.png');
         this.paciente = paciente;
-        this.edad = this.getAge(paciente.fechaNacimiento);
+        this.edad = this.getAge(paciente.birthday);
       }
     })
 
   }
 
-  getAge(fechaNacimiento: Date) {
-    let edad = getAgePure(new Date(fechaNacimiento.valueOf()), new Date('2023-06-12'));
+  getDocumentTypes() {
+    this.utilsService.getDocumentTypes().subscribe({
+      'next': (val) => {
+        this.documentTypeList = val
+        console.log(this.documentTypeList);
+      },
+      'error': error => console.error(error),
+    })
+  }
+
+  findDocumentType(id: string) {
+    return this.documentTypeList.find(docType => docType.id === id);
+  }
+  getAge(birthday: number) {
+    const date = new Date().setTime(birthday);
+    let edad = getAgePure(new Date(date), new Date(Date.now()));
     edad['months'] = edad.months - (edad.years * 12);
     edad['days'] = edad.days - parseInt((edad.years * 365.25).toString());
     return edad;

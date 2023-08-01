@@ -8,7 +8,7 @@
         <div class="form-floating mb-3">
           <select id="documentType" class="form-select rounded-4 text-gray" *ngIf="documentTypes.length>0"
                   formControlName="documentType">
-            <option value="4" *ngFor="let option of documentTypes" [ngValue]="option.id">{{option.text}}</option>
+            <option value="4" *ngFor="let option of documentTypes" [ngValue]="option.id">{{option.documentType}}</option>
           </select>
           <label for="documentType">Seleccione el tipo de Documento de Identidad</label>
           <div
