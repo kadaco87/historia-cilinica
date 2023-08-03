@@ -2,7 +2,7 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {UsersService} from "../../../../../shared/services/users.service";
 import {MatTableDataSource, MatTableDataSourcePaginator} from "@angular/material/table";
 import {MatPaginator} from "@angular/material/paginator";
-import {User} from "../../../../../shared/models/user";
+import {UserInterface} from "../../../../../shared/models/user.interface";
 import {Router} from "@angular/router";
 
 @Component({
@@ -14,7 +14,7 @@ export class UsersListComponent implements OnInit, AfterViewInit {
 
   displayedColumns: string[] = ['nombre', 'roleName', 'documentType', 'identification', 'id'];
 
-  dataSource!: MatTableDataSource<User, MatTableDataSourcePaginator>;
+  dataSource!: MatTableDataSource<UserInterface, MatTableDataSourcePaginator>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
@@ -30,7 +30,7 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   getUsers() {
     this.usersService.getUsers().subscribe(users => {
       if (users) {
-        this.dataSource = new MatTableDataSource<User>(users)
+        this.dataSource = new MatTableDataSource<UserInterface>(users)
       }
     });
   }

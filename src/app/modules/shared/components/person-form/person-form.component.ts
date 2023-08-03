@@ -2,12 +2,12 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {UsersService} from "../../services/users.service";
 import {UtilsService} from "../../services/utils.service";
-import {DocumentTypeItem} from "../../models/document-type-item";
-import {Country} from "../../models/country";
-import {Gender} from "../../models/gender";
-import {Role} from "../../models/role";
+import {DocumentTypeInterface} from "../../models/document-type.interface";
+import {CountryInterface} from "../../models/country.interface";
+import {GenderInterface} from "../../models/gender.interface";
+import {RoleInterface} from "../../models/role.Interface";
 import {ActivatedRoute, Router} from "@angular/router";
-import {User} from "../../models/user";
+import {UserInterface} from "../../models/user.interface";
 import {environment} from "../../../../../environments/environment";
 import {OPTIONS_SWEET_ALERT} from "../../utils/utils";
 import Swal from "sweetalert2";
@@ -20,14 +20,14 @@ import Swal from "sweetalert2";
 export class PersonFormComponent implements OnInit {
   personAndUserForm: FormGroup = new FormGroup({});
   defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
-  documentTypeList: DocumentTypeItem[] = [];
-  countries: Country[] = [];
-  genderList: Gender[] = [];
-  roles: Role[] = [];
+  documentTypeList: DocumentTypeInterface[] = [];
+  countries: CountryInterface[] = [];
+  genderList: GenderInterface[] = [];
+  roles: RoleInterface[] = [];
   view: string = '';
   actionView = '';
   id = '';
-  user!: User;
+  user!: UserInterface;
   patientRole = environment.patientRole;
 
 

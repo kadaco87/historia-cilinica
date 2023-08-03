@@ -3,8 +3,8 @@ import {ActivatedRoute} from '@angular/router';
 import {DatePipe} from '@angular/common';
 import {getAgePure} from 'pure-age-calculator';
 import {UsersService} from "../../../../../shared/services/users.service";
-import {User} from "../../../../../shared/models/user";
-import {DocumentTypeItem} from "../../../../../shared/models/document-type-item";
+import {UserInterface} from "../../../../../shared/models/user.interface";
+import {DocumentTypeInterface} from "../../../../../shared/models/document-type.interface";
 import {UtilsService} from "../../../../../shared/services/utils.service";
 
 @Component({
@@ -13,8 +13,8 @@ import {UtilsService} from "../../../../../shared/services/utils.service";
   styleUrls: ['./datos-personales-paciente.component.scss']
 })
 export class DatosPersonalesPacienteComponent implements OnInit {
-  paciente!: User;
-  documentTypeList: DocumentTypeItem[] = [];
+  paciente!: UserInterface;
+  documentTypeList: DocumentTypeInterface[] = [];
   edad: any = {
     years: 0,
     months: 0,

@@ -1,4 +1,4 @@
-export interface User {
+export interface UserInterface {
   fullName: FullName;
   documentType: string;
   identification: string;

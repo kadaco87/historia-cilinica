@@ -1,6 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {round} from "@popperjs/core/lib/utils/math";
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+import {RhInterface} from "../../../../../shared/models/rh.interface";
+import {UtilsService} from "../../../../../shared/services/utils.service";
+import {HistoriaClinicaService} from "../../../../../shared/services/historia-clinica.service";
+import {ActivatedRoute} from "@angular/router";
+import {OPTIONS_SWEET_ALERT} from "../../../../../shared/utils/utils";
+import Swal from "sweetalert2";
+import {CrearSignosVitales, SignosVitalesInterface} from "../../../../../shared/models/signos-vitales.interface";
+import {MatTableDataSource, MatTableDataSourcePaginator} from "@angular/material/table";
 
 @Component({
   selector: 'app-signos-vitales',
@@ -9,19 +16,32 @@ import {round} from "@popperjs/core/lib/utils/math";
 })
 export class SignosVitalesComponent implements OnInit {
   // las variables se declaran encima del constructor
+  id: string = '';
   formularioSignosVitales!: FormGroup;
-  rhs = [
-    {id: 1, rh: 'A+'},
-    {id: 2, rh: 'O+'},
-    {id: 3, rh: 'B+'},
-    {id: 4, rh: 'AB+'},
-    {id: 5, rh: 'A-'},
-    {id: 6, rh: 'O-'},
-    {id: 7, rh: 'B-'},
-    {id: 8, rh: 'AB-'}
-  ]
-
-  constructor(private readonly fb: FormBuilder) {
+  dataSource!: MatTableDataSource<SignosVitalesInterface, MatTableDataSourcePaginator>;
+  displayedColumns: string[] = [
+    'date',
+    'fc',
+    'fr',
+    'so2',
+    'pa',
+    'pam',
+    'temp',
+    'glasgow',
+    'est',
+    'peso',
+    'imc',
+    'rh'
+  ];
+  defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
+  rhList: RhInterface[] = [];
+listaSignosVitales: SignosVitalesInterface[] = [];
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly fb: FormBuilder,
+    private readonly utilsService: UtilsService,
+    private readonly historiaClinicaService: HistoriaClinicaService
+  ) {
 
   }
 
@@ -29,21 +49,97 @@ export class SignosVitalesComponent implements OnInit {
   para inicializar variables del componente
   */
   ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      this.id = params['id'] ? params['id'] : null;
+      console.log(this.id)
+    })
+    this.getListaRH();
+    this.initForm();
+    this.getSignosVitales();
+  }
+
+  initForm() {
     this.formularioSignosVitales = this.fb.group({
       // setiar valores iniciales o sino se deja en null
-      frecuenciaCardiaca: new FormControl(null, [Validators.required]),
-      frecuenciaRespiratoria: new FormControl(null, [Validators.required]),
-      saturacion: new FormControl(null, [Validators.required]),
-      sistolica: new FormControl(null, [Validators.required]),
-      diastolica: new FormControl(null, [Validators.required]),
-      pam: new FormControl(0),
-      temperatura: new FormControl(null, [Validators.required]),
-      glasgow: new FormControl(null, [Validators.required]),
-      estatura: new FormControl(null, [Validators.required]),
-      peso: new FormControl(null, [Validators.required]),
-      imc: new FormControl(null),
+      frecuenciaCardiaca: new FormControl<number | null>(null, [Validators.required]),
+      frecuenciaRespiratoria: new FormControl<number | null>(null, [Validators.required]),
+      saturacion: new FormControl<number | null>(null, [Validators.required]),
+      sistolica: new FormControl<number | null>(null, [Validators.required]),
+      diastolica: new FormControl<number | null>(null, [Validators.required]),
+      pam: new FormControl<number | null>(0),
+      temperatura: new FormControl<number | null>(null, [Validators.required]),
+      glasgow: new FormControl<number | null>(null, [Validators.required]),
+      estatura: new FormControl<number | null>(null, [Validators.required]),
+      peso: new FormControl<number | null>(null, [Validators.required]),
+      imc: new FormControl<number | null>(null),
       rh: new FormControl([], [Validators.required]),
     });
+  }
+
+  getSignosVitales(){
+    this.historiaClinicaService.obtenerSignosVitales(this.id)
+      .subscribe({
+        'next': result => {
+          this.dataSource = new MatTableDataSource<SignosVitalesInterface>(result.reverse());
+        },
+        'error': error => console.error(error),
+      })
+  }
+
+  getListaRH() {
+    this.utilsService.getRH().subscribe(listaRH => this.rhList = listaRH);
+  }
+
+  getRHPorId(rhId: string){
+    return this.rhList.find(rh => rh.id === rhId);
+  }
+
+  enviarFormulario() {
+    if (!this.formularioSignosVitales.valid) {
+      this.formularioSignosVitales.markAllAsTouched();
+    } else {
+      const dataSignosVitales: CrearSignosVitales = {
+        date: new Date(Date.now()).valueOf(),
+        diastolica: Number(this.diastolica?.value),
+        estatura: Number(this.estatura?.value),
+        frecuenciaCardiaca: Number(this.frecuenciaCardiaca?.value),
+        frecuenciaRespiratoria: Number(this.frecuenciaRespiratoria?.value),
+        glasgow: Number(this.glasgow?.value),
+        imc: Number(this.imc?.value),
+        pam: Number(this.pam?.value),
+        peso: Number(this.peso?.value),
+        rh: this.rh?.value,
+        saturacion: Number(this.saturacion?.value),
+        sistolica: Number(this.sistolica?.value),
+        temperatura: Number(this.temperatura?.value)
+      };
+      console.log('se envio el formulario => ', dataSignosVitales);
+      this.historiaClinicaService.registrarSignosVitales(this.id, dataSignosVitales)
+        .subscribe({
+          'next': result => {
+            if (result) Swal.fire({
+              title: 'Advertencia!',
+              text: 'Signos vitales registrados exitosamente',
+              icon: 'success',
+              confirmButtonText: 'Aceptar',
+              ...this.defaultOptionsAlerts.success
+            }).then(() => {
+              this.formularioSignosVitales.reset();
+              this.formularioSignosVitales.markAsUntouched();
+              this.getSignosVitales();
+            })
+          }, 'error': error => Swal.fire({
+            title: 'Advertencia!',
+            text: error.error.message,
+            icon: 'warning',
+            confirmButtonText: 'Aceptar',
+            ...this.defaultOptionsAlerts.danger
+          }).then(() => {
+            this.formularioSignosVitales.reset();
+            this.formularioSignosVitales.markAsUntouched();
+          })
+        })
+    }
   }
 
   calcularPam() {
@@ -115,13 +211,5 @@ export class SignosVitalesComponent implements OnInit {
     return this.formularioSignosVitales.get('rh')
   }
 
-  enviarFormulario() {
-    if (!this.formularioSignosVitales.valid) {
-      this.formularioSignosVitales.markAllAsTouched();
-    } else {
-      console.log('se envio el formulario => ', this.formularioSignosVitales.value);
 
-    }
-
-  }
 }

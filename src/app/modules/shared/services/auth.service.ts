@@ -52,7 +52,7 @@ export class AuthService {
 
   // new
   // apiUrl = environment.API_URL;
-  // user$ = new BehaviorSubject<User | null>(null);
+  // user$ = new BehaviorSubject<UserInterface | null>(null);
   // constructor(
   //   private http: HttpClient,
   //   private tokenService: TokenService
@@ -93,7 +93,7 @@ export class AuthService {
   //   return this.http.post(`${this.apiUrl}/api/v1/auth/change-password`, { token, newPassword });
   // }
   // getProfile() {
-  //   return this.http.get<User>(`${this.apiUrl}/api/v1/auth/profile`, { context: checkToken() })
+  //   return this.http.get<UserInterface>(`${this.apiUrl}/api/v1/auth/profile`, { context: checkToken() })
   //     .pipe(
   //       tap(user => {
   //         this.user$.next(user);

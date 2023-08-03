@@ -5,7 +5,7 @@ import {OPTIONS_SWEET_ALERT} from "../../../shared/utils/utils";
 import {AuthService} from "../../../shared/services/auth.service";
 import Swal from "sweetalert2";
 import {UtilsService} from "../../../shared/services/utils.service";
-import {DocumentTypeItem} from "../../../shared/models/document-type-item";
+import {DocumentTypeInterface} from "../../../shared/models/document-type.interface";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +15,7 @@ import {DocumentTypeItem} from "../../../shared/models/document-type-item";
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup = new FormGroup({});
-  documentTypes: DocumentTypeItem[] = [];
+  documentTypes: DocumentTypeInterface[] = [];
   defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
 
   constructor(

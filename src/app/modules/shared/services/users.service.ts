@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
 import {checkToken} from "../interceptors/auth.interceptor";
-import {User} from "../models/user";
+import {UserInterface} from "../models/user.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -23,14 +23,14 @@ export class UsersService {
     if (role) {
       const params = new HttpParams()
         .set('role', role);
-      return this.http.get<User[]>(this.url, {context: checkToken(), params})
+      return this.http.get<UserInterface[]>(this.url, {context: checkToken(), params})
     } else {
-      return this.http.get<User[]>(this.url, {context: checkToken()})
+      return this.http.get<UserInterface[]>(this.url, {context: checkToken()})
     }
 
   }
 
   getOneUser(id: string) {
-    return this.http.get<User>(`${this.url}/${id}`, {context: checkToken()});
+    return this.http.get<UserInterface>(`${this.url}/${id}`, {context: checkToken()});
   }
 }

@@ -19,9 +19,10 @@
                   class="form-control"
                   id="frecuenciaCardiaca"
                   formControlName="frecuenciaCardiaca"
+                  aria-describedby="basic-frecuenciaCardiaca"
                   [class.is-invalid]="frecuenciaCardiaca?.touched && frecuenciaCardiaca?.hasError('required')"
                 >
-                <span class="input-group-text text-gray" id="basic-addon2">Lpm</span>
+                <span class="input-group-text text-gray" id="basic-frecuenciaCardiaca">Lpm</span>
               </div>
             </div>
           </div>
@@ -33,9 +34,14 @@
               Respiratoria</label>
             <div class="col-sm-5">
               <div class="input-group mb-3">
-                <input type="text" class="form-control" formControlName="frecuenciaRespiratoria"
-                       [class.is-invalid]="frecuenciaRespiratoria?.touched && frecuenciaRespiratoria?.hasError('required')">
-                <span class="input-group-text text-gray" id="basic-addon2">Rpm</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="frecuenciaRespiratoria"
+                  formControlName="frecuenciaRespiratoria"
+                  aria-describedby="basic-frecuenciaRespiratoria"
+                  [class.is-invalid]="frecuenciaRespiratoria?.touched && frecuenciaRespiratoria?.hasError('required')">
+                <span class="input-group-text text-gray" id="basic-frecuenciaRespiratoria">Rpm</span>
               </div>
             </div>
           </div>
@@ -50,8 +56,8 @@
                 <input type="text" class="form-control" aria-label="Recipient's username"
                        id="saturacion" formControlName="saturacion"
                        [class.is-invalid]="saturacion?.touched && saturacion?.hasError('required')"
-                       aria-describedby="basic-addon2">
-                <span class="input-group-text text-gray" id="basic-addon2">%</span>
+                       aria-describedby="basic-saturacion">
+                <span class="input-group-text text-gray" id="basic-saturacion">%</span>
               </div>
             </div>
           </div>
@@ -63,7 +69,7 @@
                 Arterial</label>
             </div>
             <div class="col-5">
-              <div class="input-group" id="presionArterial" >
+              <div class="input-group" id="presionArterial">
                 <input type="text" class="form-control" placeholder="" aria-label="Username"
                        id="sistolica" formControlName="sistolica"
                        [class.is-invalid]="sistolica?.touched && sistolica?.hasError('required')" (blur)="calcularPam()"
@@ -71,7 +77,8 @@
                 <span class="input-group-text text-gray">/</span>
                 <input type="text" class="form-control" placeholder="" aria-label="Server"
                        id="diastolica" formControlName="diastolica"
-                       [class.is-invalid]="diastolica?.touched && diastolica?.hasError('required')" (blur)="calcularPam()"
+                       [class.is-invalid]="diastolica?.touched && diastolica?.hasError('required')"
+                       (blur)="calcularPam()"
                 >
               </div>
             </div>
@@ -84,8 +91,8 @@
             <div class="col-sm-5">
               <div class="input-group mb-3">
                 <input type="text" class="form-control" aria-label="Recipient's username"
-                       aria-describedby="basic-addon2" readonly id="pam" formControlName="pam">
-                <span class="input-group-text text-gray" id="basic-addon2">Hg/mm</span>
+                       aria-describedby="basic-pam" readonly id="pam" formControlName="pam">
+                <span class="input-group-text text-gray" id="basic-pam">Hg/mm</span>
               </div>
             </div>
           </div>
@@ -96,9 +103,9 @@
             <div class="col-sm-5">
               <div class="input-group mb-3">
                 <input type="text" class="form-control" aria-label="Recipient's username"
-                       aria-describedby="basic-addon2" id="temperatura" formControlName="temperatura"
+                       aria-describedby="basic-temperatura" id="temperatura" formControlName="temperatura"
                        [class.is-invalid]="temperatura?.touched && temperatura?.hasError('required')">
-                <span class="input-group-text text-gray" id="basic-addon2">°C</span>
+                <span class="input-group-text text-gray" id="basic-temperatura">°C</span>
               </div>
             </div>
           </div>
@@ -107,8 +114,14 @@
             <label for="glasgow" class="col-sm-6 col-form-label text-nowrap text-end text-gray"><i
               class="fa-solid fa-brain mx-2 text-green-dark fs-3"></i>Glasgow</label>
             <div class="col-sm-5">
-              <input type="text" class="form-control" id="glasgow" formControlName="glasgow" placeholder="13/15"
-                     [class.is-invalid]="glasgow?.touched && glasgow?.hasError('required')">
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" aria-label="Recipient's username"
+                       aria-describedby="basic-glasgow" id="glasgow" formControlName="glasgow"
+                       [class.is-invalid]="glasgow?.touched && glasgow?.hasError('required')">
+                <span class="input-group-text text-gray" id="basic-glasgow">/ 15</span>
+              </div>
+              <!--              <input type="text" class="form-control" id="glasgow" formControlName="glasgow" placeholder="13/15"-->
+              <!--                     [class.is-invalid]="glasgow?.touched && glasgow?.hasError('required')">-->
             </div>
           </div>
 
@@ -119,10 +132,11 @@
             </label>
             <div class="col-sm-5">
               <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Recipient's username" id="estatura" formControlName="estatura"
+                <input type="text" class="form-control" aria-label="Recipient's username" id="estatura"
+                       formControlName="estatura"
                        [class.is-invalid]="estatura?.touched && estatura?.hasError('required')" (blur)="calcularImc()"
-                       aria-describedby="basic-addon2">
-                <span class="input-group-text text-gray" id="basic-addon2">Cm</span>
+                       aria-describedby="basic-estatura">
+                <span class="input-group-text text-gray" id="basic-estatura">Cm</span>
               </div>
             </div>
           </div>
@@ -132,10 +146,11 @@
               class="fa-solid fa-person-half-dress mx-2 text-green-dark fs-3"></i>Peso</label>
             <div class="col-sm-5">
               <div class="input-group mb-3">
-                <input type="text" class="form-control" aria-label="Recipient's username" id="peso" formControlName="peso" (blur)="calcularImc()"
+                <input type="text" class="form-control" aria-label="Recipient's username" id="peso"
+                       formControlName="peso" (blur)="calcularImc()"
                        [class.is-invalid]="peso?.touched && peso?.hasError('required')"
-                       aria-describedby="basic-addon2">
-                <span class="input-group-text text-gray" id="basic-addon2">Kg</span>
+                       aria-describedby="basic-peso">
+                <span class="input-group-text text-gray" id="basic-peso">Kg</span>
               </div>
             </div>
           </div>
@@ -151,8 +166,9 @@
             <label for="rh" class="col-sm-6 col-form-label text-nowrap text-end text-gray"><i
               class="fa-solid fa-fire-flame-simple mx-2 text-green-dark fs-3"></i>Rh</label>
             <div class="col-sm-5">
-              <select type="text" class="form-select" id="rh" formControlName="rh" [class.is-invalid]="rh?.touched && rh?.hasError('required')">
-                <option *ngFor="let item of rhs" [value]="item.id">{{item.rh}}</option>
+              <select class="form-select" id="rh" formControlName="rh"
+                      [class.is-invalid]="rh?.touched && rh?.hasError('required')">
+                <option *ngFor="let item of rhList" [value]="item.id">{{item.rh}}</option>
               </select>
             </div>
           </div>
@@ -164,5 +180,96 @@
         </form>
       </div>
     </div>
+
+    <div class="my-5 col-11 mx-auto mat-elevation-z8" *ngIf="dataSource">
+      <table mat-table [dataSource]="dataSource">
+
+        <!-- Fecha de toma -->
+        <ng-container matColumnDef="date">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef> Fecha</th>
+          <td class="text-gray text-center" mat-cell
+              *matCellDef="let element"> {{element.date |date:'dd/MM/YYY HH:mm'}} </td>
+        </ng-container>
+
+        <!-- Frecuencia Cardiaca -->
+        <ng-container matColumnDef="fc">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef> FC</th>
+          <td class="text-gray text-center" mat-cell
+              *matCellDef="let element"> {{element.frecuenciaCardiaca}} </td>
+        </ng-container>
+
+        <!-- Frecuencia Respiratoria -->
+        <ng-container matColumnDef="fr">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef> FR</th>
+          <td class="text-gray text-center" mat-cell *matCellDef="let element"> {{element.frecuenciaRespiratoria}} </td>
+        </ng-container>
+
+        <!-- Saturacion -->
+        <ng-container matColumnDef="so2">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef> SO2</th>
+          <td class="text-gray text-center" mat-cell *matCellDef="let element"> {{element.saturacion}}% </td>
+        </ng-container>
+
+        <!-- Presion Arterial -->
+        <ng-container matColumnDef="pa">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef>PA</th>
+          <td class="text-gray text-center" mat-cell *matCellDef="let element"> {{element.sistolica}}/{{element.diastolica}}</td>
+        </ng-container>
+
+        <!-- PAM -->
+        <ng-container matColumnDef="pam">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef>PAM</th>
+          <td class="text-gray text-center" mat-cell *matCellDef="let element"> {{element.pam}} </td>
+        </ng-container>
+
+        <!-- Temperatura -->
+        <ng-container matColumnDef="temp">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef>Temperatura</th>
+          <td class="text-gray text-center" mat-cell *matCellDef="let element"> {{element.temperatura}} </td>
+        </ng-container>
+
+        <!-- Glasgow -->
+        <ng-container matColumnDef="glasgow">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef>Glasgow</th>
+          <td class="text-gray text-center" mat-cell *matCellDef="let element"> {{element.glasgow}} </td>
+        </ng-container>
+
+        <!-- Estatura -->
+        <ng-container matColumnDef="est">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef>Estatura</th>
+          <td class="text-gray text-center" mat-cell *matCellDef="let element"> {{element.estatura}} </td>
+        </ng-container>
+
+        <!-- Peso -->
+        <ng-container matColumnDef="peso">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef>Peso</th>
+          <td class="text-gray text-center" mat-cell *matCellDef="let element"> {{element.peso}} </td>
+        </ng-container>
+
+        <!-- IMC -->
+        <ng-container matColumnDef="imc">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef>IMC</th>
+          <td class="text-gray text-center" mat-cell *matCellDef="let element"> {{element.imc}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="rh">
+          <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef>RH</th>
+          <td class="text-gray text-center" mat-cell *matCellDef="let element"> {{getRHPorId(element.rh)?.rh}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator class="text-gray" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                     aria-label="Select page of periodic elements">
+      </mat-paginator>
+    </div>
+
   </div>
+
+  <div><code>
+    <pre *ngFor="let item of listaSignosVitales">{{item|json}}</pre>
+  </code></div>
 </div>
+

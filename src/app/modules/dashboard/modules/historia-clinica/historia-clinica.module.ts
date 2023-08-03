@@ -20,6 +20,7 @@ import { MedicamentosComponent } from './components/medicamentos/medicamentos.co
 import { OrdenesMedicasComponent } from './components/ordenes-medicas/ordenes-medicas.component';
 import {SharedModule} from "../../../shared/shared.module";
 import {MatTableModule} from "@angular/material/table";
+import {MatPaginatorModule} from "@angular/material/paginator";
 
 
 @NgModule({
@@ -34,17 +35,18 @@ import {MatTableModule} from "@angular/material/table";
     MedicamentosComponent,
     OrdenesMedicasComponent,
       ],
-  imports: [
-    CommonModule,
-    HistoriaClinicaRoutingModule,
-    ReactiveFormsModule,
-    MatTreeModule,
-    MatInputModule,
-    MatCheckboxModule,
-    MatIconModule,
-    MatButtonModule,
-    SharedModule,
-    MatTableModule
-  ]
+    imports: [
+        CommonModule,
+        HistoriaClinicaRoutingModule,
+        ReactiveFormsModule,
+        MatTreeModule,
+        MatInputModule,
+        MatCheckboxModule,
+        MatIconModule,
+        MatButtonModule,
+        SharedModule,
+        MatTableModule,
+        MatPaginatorModule
+    ]
 })
 export class HistoriaClinicaModule { }

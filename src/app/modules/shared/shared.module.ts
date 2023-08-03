@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { PacientesService } from './services/pacientes.service';
+import { HistoriaClinicaService } from './services/historia-clinica.service';
 import { ModalUsarPlantillaNotaComponent } from './components/modal-usar-plantilla-nota/modal-usar-plantilla-nota.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { PersonFormComponent } from './components/person-form/person-form.component';
@@ -32,6 +32,6 @@ import {AutoCompleteModule} from "primeng/autocomplete";
     ModalUsarPlantillaNotaComponent,
     PersonFormComponent,
   ],
-  providers: [PacientesService, AuthService, CookieService, UsersService, TokenService, UtilsService]
+  providers: [HistoriaClinicaService, AuthService, CookieService, UsersService, TokenService, UtilsService]
 })
 export class SharedModule { }

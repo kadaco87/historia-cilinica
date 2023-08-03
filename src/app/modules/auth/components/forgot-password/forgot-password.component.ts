@@ -1,11 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import {OPTIONS_SWEET_ALERT, SUCCESS_ALERT} from "../../../shared/utils/utils";
+import {OPTIONS_SWEET_ALERT} from "../../../shared/utils/utils";
 import {AuthService} from "../../../shared/services/auth.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import Swal from "sweetalert2";
 import {UtilsService} from "../../../shared/services/utils.service";
-import {DocumentTypeItem} from "../../../shared/models/document-type-item";
+import {DocumentTypeInterface} from "../../../shared/models/document-type.interface";
 
 @Component({
   selector: 'app-forgot-password',
@@ -15,7 +15,7 @@ import {DocumentTypeItem} from "../../../shared/models/document-type-item";
 export class ForgotPasswordComponent implements OnInit {
   defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
   forgotPasswordForm: FormGroup = new FormGroup({});
-  documentTypes: DocumentTypeItem[] = [];
+  documentTypes: DocumentTypeInterface[] = [];
 
   constructor(
     private readonly fb: FormBuilder,

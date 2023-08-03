@@ -2,11 +2,11 @@ import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatTableDataSource, MatTableDataSourcePaginator} from '@angular/material/table';
 import {Router} from '@angular/router';
-import {User} from "../../../../../shared/models/user";
+import {UserInterface} from "../../../../../shared/models/user.interface";
 import {UsersService} from "../../../../../shared/services/users.service";
 import {UtilsService} from "../../../../../shared/services/utils.service";
-import {Gender} from "../../../../../shared/models/gender";
-import {DocumentTypeItem} from "../../../../../shared/models/document-type-item";
+import {GenderInterface} from "../../../../../shared/models/gender.interface";
+import {DocumentTypeInterface} from "../../../../../shared/models/document-type.interface";
 
 @Component({
   selector: 'app-lista-pacientes',
@@ -15,9 +15,9 @@ import {DocumentTypeItem} from "../../../../../shared/models/document-type-item"
 })
 export class ListaPacientesComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['nombre', 'birthday', 'gender', 'documentType', 'identification', 'id'];
-  genderList: Gender[] = [];
-  documentTypeList: DocumentTypeItem[] = [];
-  dataSource!: MatTableDataSource<User, MatTableDataSourcePaginator>;
+  genderList: GenderInterface[] = [];
+  documentTypeList: DocumentTypeInterface[] = [];
+  dataSource!: MatTableDataSource<UserInterface, MatTableDataSourcePaginator>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
@@ -37,7 +37,7 @@ export class ListaPacientesComponent implements OnInit, AfterViewInit {
 
   getPaciente() {
     this.usersService.getUsers('87f0a3bb-5f5c-48d0-a5f8-c7eca83098c3').subscribe(pacientes => {
-      this.dataSource = new MatTableDataSource<User>(pacientes)
+      this.dataSource = new MatTableDataSource<UserInterface>(pacientes)
     })
   }
 

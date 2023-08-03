@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {environment} from "../../../../environments/environment";
-import {DocumentTypeItem} from "../models/document-type-item";
-import {Country} from "../models/country";
-import {Gender} from "../models/gender";
-import {Role} from "../models/role";
-import {tap} from "rxjs";
+import {DocumentTypeInterface} from "../models/document-type.interface";
+import {CountryInterface} from "../models/country.interface";
+import {GenderInterface} from "../models/gender.interface";
+import {RoleInterface} from "../models/role.Interface";
+import {RhInterface} from "../models/rh.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -16,45 +16,21 @@ export class UtilsService {
   constructor(private readonly http: HttpClient) { }
 
   getCountries(){
-    return this.http.get< Country[]>(`${this.apiUrl}/countries`)
+    return this.http.get< CountryInterface[]>(`${this.apiUrl}/countries`);
   }
 
   getGenders() {
-    return this.http.get< Gender[]>(`${this.apiUrl}/genders`)
-      .pipe(tap(gender => {
-        return gender.map(g => {
-          let genderObj = Object.assign(g);
-          delete genderObj['_id'];
-          delete genderObj['__v'];
-          delete genderObj['deleted'];
-          return genderObj;
-        })
-
-    }))
+    return this.http.get< GenderInterface[]>(`${this.apiUrl}/genders`);
   }
   getDocumentTypes() {
-    return this.http.get< DocumentTypeItem[]>(`${this.apiUrl}/document-types`)
-      .pipe(tap(documentTypeList => {
-        return documentTypeList.map(docType => {
-          let docTypeObj = Object.assign(docType);
-          delete docTypeObj['_id'];
-          delete docTypeObj['__v'];
-          delete docTypeObj['deleted'];
-          return docTypeObj;
-        })
-      }))
+    return this.http.get< DocumentTypeInterface[]>(`${this.apiUrl}/document-types`);
   }
 
   getRoles() {
-    return this.http.get< Role[]>(`${this.apiUrl}/roles`)
-      .pipe(tap(roles => {
-        return roles.map(r => {
-          let roleObj = Object.assign(r);
-          delete roleObj['_id'];
-          delete roleObj['__v'];
-          delete roleObj['deleted'];
-          return roleObj;
-        })
-      }))
+    return this.http.get< RoleInterface[]>(`${this.apiUrl}/roles`);
+  }
+
+  getRH() {
+    return this.http.get< RhInterface[]>(`${this.apiUrl}/rh`);
   }
 }
