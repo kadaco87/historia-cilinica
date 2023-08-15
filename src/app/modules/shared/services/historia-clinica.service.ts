@@ -5,6 +5,7 @@ import {environment} from "../../../../environments/environment";
 import {checkToken} from "../interceptors/auth.interceptor";
 import {NotaAclaratoriaInterface, NotaEnfermeriaInterface} from "../models/nota-enfermeria.interface";
 import {OrdenMedicaInterface} from "../models/orden-medica.interface";
+import {AtencionMedicaInterface} from "../models/atencion-medica.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -31,11 +32,15 @@ export class HistoriaClinicaService {
     return this.http.get<NotaEnfermeriaInterface[]>(`${this.apiUrl}/notas-enfermeria/${id}`, {context: checkToken()});
   }
 
-  registrarNotasAclaratoria(idNota: string, notaEnfermeria: NotaAclaratoriaInterface){
-    return this.http.post<boolean>(`${this.apiUrl}/notas-enfermeria/${idNota}/notas-aclaratorias`, notaEnfermeria, {context: checkToken()});
+  registrarNotasAclaratoria(path: string, idNota: string, notaEnfermeria: NotaAclaratoriaInterface){
+    return this.http.post<boolean>(`${this.apiUrl}/${path}/${idNota}/notas-aclaratorias`, notaEnfermeria, {context: checkToken()});
   }
 
   crearOrdenMedica(id: string, ordenMedica: OrdenMedicaInterface) {
     return this.http.post(`${this.apiUrl}/ordenes-medicas/${id}`, ordenMedica)
+  }
+
+  crearAtencionMedica(atencionMedica: AtencionMedicaInterface) {
+    return this.http.post<boolean>(`${this.apiUrl}/atenciones-medicas`, atencionMedica);
   }
 }

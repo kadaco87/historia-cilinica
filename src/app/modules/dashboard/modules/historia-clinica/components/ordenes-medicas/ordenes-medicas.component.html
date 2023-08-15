@@ -38,7 +38,9 @@
                               placeholder="Leave a comment here"
                               formControlName="planManejo"
                               id="planManejo"
-                              style="height: 100px">
+                              style="height: 100px"
+                              [class.is-invalid]="ordenesMedicasForm.get('planManejo')?.touched && ordenesMedicasForm.get('planManejo')?.hasError('required')"
+                            >
 
                             </textarea>
                 <label for="planManejo" class="fs-6 pe-auto mx-3 text-gray">Ordenes medicas</label>
@@ -85,6 +87,7 @@
                   <div class="col-8 my-3">
                     <label for="medicamento" class="form-label text-green-dark ">Medicamento a prescribir:</label>
                     <input class="form-control" list="datalistOptions" id="medicamento" formControlName="medicamento"
+                           [class.is-invalid]="medicamento.get('medicamento')?.touched && medicamento?.get('medicamento')?.hasError('required')"
                            placeholder="Buscar medicamento">
                     <datalist id="datalistOptions">
                       <option value="Dipirona">
@@ -97,7 +100,8 @@
                   <!-- Via Administracion -->
                   <div class="col-4 my-3">
                     <label for="viaAdmon" class="form-label text-green-dark">Via de administracion:</label>
-                    <select class="form-select" formControlName="viaAdmon" id="viaAdmon" aria-label="">
+                    <select class="form-select" formControlName="viaAdmon" id="viaAdmon" aria-label=""
+                            [class.is-invalid]="medicamento.get('viaAdmon')?.touched && medicamento?.get('viaAdmon')?.hasError('required')">
                       <option value="1">Oral</option>
                       <option value="2">Sublingual</option>
                       <option value="3">Topica</option>
@@ -111,12 +115,14 @@
                   <div class="col-2 my-3">
                     <label for="dosis" class="text-green-dark">Administrar(dosís):</label>
                     <input class="form-control" formControlName="dosis" id="dosis" type="text" placeholder="Ej:1"
+                           [class.is-invalid]="medicamento.get('dosis')?.touched && medicamento?.get('dosis')?.hasError('required')"
                            aria-label="">
                   </div>
 
                   <div class="col-2 my-3">
                     <label for="presentacion" class="text-green-dark">Presentacion:</label>
                     <select class="form-select" id="presentacion" formControlName="presentacion"
+                            [class.is-invalid]="medicamento.get('presentacion')?.touched && medicamento?.get('presentacion')?.hasError('required')"
                             aria-label="Default select example">
                       <option selected>Tableta</option>
                       <option value="1">Comprimido</option>
@@ -130,12 +136,14 @@
                   <div class="col-2 my-3">
                     <label for="frecuencia" class="text-green-dark">Frecuencia(cada):</label>
                     <input class="form-control" formControlName="frecuencia" id="frecuencia" type="text"
+                           [class.is-invalid]="medicamento.get('frecuencia')?.touched && medicamento?.get('frecuencia')?.hasError('required')"
                            placeholder="Ej:8" aria-label="">
                   </div>
 
                   <div class="col-2 my-3">
                     <label for="horario" class="text-green-dark">Cada cuanto:</label>
                     <select class="form-select" id="horario" formControlName="horario"
+                            [class.is-invalid]="medicamento.get('horario')?.touched && medicamento?.get('horario')?.hasError('required')"
                             aria-label="Default select example">
                       <option selected>Hora(s)</option>
                       <option value="1">Dia(s)</option>
@@ -148,12 +156,14 @@
                   <div class="col-2 my-3">
                     <label for="duracion" class="text-green-dark">Duracion(durante):</label>
                     <input class="form-control" formControlName="duracion" id="duracion" type="text" placeholder="Ej:3"
+                           [class.is-invalid]="medicamento.get('duracion')?.touched && medicamento?.get('duracion')?.hasError('required')"
                            aria-label="default input example">
                   </div>
 
                   <div class="col-2 my-3">
                     <label for="tiempo" class="text-green-dark"></label>
                     <select class="form-select" id="tiempo" formControlName="tiempo"
+                            [class.is-invalid]="medicamento.get('tiempo')?.touched && medicamento?.get('tiempo')?.hasError('required')"
                             aria-label="Floating label select example">
                       <option selected>Dia(s)</option>
                       <option value="1">Mes(es)</option>
@@ -166,8 +176,6 @@
                   </div>
 
                 </div>
-
-
               </div>
             </div>
 

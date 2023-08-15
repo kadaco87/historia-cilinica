@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormArray, FormBuilder, FormControl, FormGroup} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {HistoriaClinicaService} from "../../../../../shared/services/historia-clinica.service";
 import {ActivatedRoute} from "@angular/router";
-import Swal, { SweetAlertOptions } from "sweetalert2";
+import Swal, {SweetAlertOptions} from "sweetalert2";
 import {OrdenMedicaInterface} from "../../../../../shared/models/orden-medica.interface";
 
 @Component({
@@ -32,34 +32,33 @@ export class OrdenesMedicasComponent implements OnInit {
 
   initForm() {
     this.ordenesMedicasForm = this.fb.group({
-      tipoAtencion: new FormControl(null, []),
-      planManejo: new FormControl(null, []),
+      tipoAtencion: new FormControl(null, [Validators.required]),
+      planManejo: new FormControl(null, [Validators.required]),
       medicamentos: this.fb.array([])
     })
   }
 
-  get medicamentos(){
-
-    return this.ordenesMedicasForm.get('medicamentos')  as FormArray;
+  get medicamentos() {
+    return this.ordenesMedicasForm.get('medicamentos') as FormArray;
   }
 
-  agregarOtroMedicamento(){
+  agregarOtroMedicamento() {
     const nuevoMedicamento = new FormGroup({
-      categoriaMedicamento: new FormControl(null, []),
-      medicamento: new FormControl(null, []),
-      viaAdmon: new FormControl(null, []),
-      dosis: new FormControl(null, []),
-      presentacion: new FormControl(null, []),
-      frecuencia: new FormControl(null, []),
-      horario: new FormControl(null, []),
-      duracion: new FormControl(null, []),
-      tiempo: new FormControl(null, []),
+      categoriaMedicamento: new FormControl(null, [Validators.required]),
+      medicamento: new FormControl(null, [Validators.required]),
+      viaAdmon: new FormControl(null, [Validators.required]),
+      dosis: new FormControl(null, [Validators.required]),
+      presentacion: new FormControl(null, [Validators.required]),
+      frecuencia: new FormControl(null, [Validators.required]),
+      horario: new FormControl(null, [Validators.required]),
+      duracion: new FormControl(null, [Validators.required]),
+      tiempo: new FormControl(null, [Validators.required]),
     })
     this.medicamentos.push(nuevoMedicamento);
   }
 
   crearOrdenMedica() {
-    if(this.ordenesMedicasForm.valid){
+    if (this.ordenesMedicasForm.valid) {
       const ordenMedica: OrdenMedicaInterface = {
         ...this.ordenesMedicasForm.getRawValue(),
         date: new Date(Date.now()).valueOf()
@@ -90,6 +89,8 @@ export class OrdenesMedicasComponent implements OnInit {
             this.ordenesMedicasForm.markAsUntouched();
           })
         })
+    } else {
+      this.ordenesMedicasForm.markAllAsTouched();
     }
   }
 

@@ -125,7 +125,7 @@ export class NotaEnfermeriaComponent implements OnInit {
       notaAclaratoria: event.notaAclaratoria,
       date: new Date(Date.now()).valueOf()
     }
-    this.historiaClinicaService.registrarNotasAclaratoria(event.idNota, notaAclaratoria)
+    this.historiaClinicaService.registrarNotasAclaratoria('notas-enfermeria',event.idNota, notaAclaratoria)
       .subscribe({
         'next': result => {
           if (result) Swal.fire({

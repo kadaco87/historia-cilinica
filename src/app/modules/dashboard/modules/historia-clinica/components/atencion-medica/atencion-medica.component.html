@@ -4,45 +4,41 @@
       <div class="card-body fs-5 ">
         <div class="row  justify-contnet-start text-green-dark mb-4">
           <h3>Enfermedad actual</h3>
-
         </div>
-
-
-
-        <form>
+        <form [formGroup]="formularioAtencionMedica" (ngSubmit)="crearAtencionMedica()">
           <div class="row  justify-contnet-start text-green-dark mb-4 ">
-            <h4 >Modalidad de consulta</h4>
+            <h4>Modalidad de consulta</h4>
             <hr class="border border-2 opacity-75">
           </div>
 
           <div>
-
+            <!-- Modalidad -->
             <div class="row">
               <div class=" row col-12 my-auto mx-auto text-gray py-3">
                 <div class="form-check col-3 ">
-                  <input class="form-check-input" type="radio" name="exampleRadios"
-                         id="exampleRadios1" value="option1" checked>
+                  <input class="form-check-input" type="radio" name="modalidad" formControlName="modalidad"
+                         id="exampleRadios1" value="Presencial" checked>
                   <label class="form-check-label fs-5" for="exampleRadios1">
                     Presencial
                   </label>
                 </div>
                 <div class="form-check col-3">
-                  <input class="form-check-input" type="radio" name="exampleRadios"
-                         id="exampleRadios2" value="option2">
+                  <input class="form-check-input" type="radio" name="modalidad" formControlName="modalidad"
+                         id="exampleRadios2" value="Telemedicina">
                   <label class="form-check-label fs-5" for="exampleRadios2">
                     Telemedicina
                   </label>
                 </div>
                 <div class="form-check col-3">
-                  <input class="form-check-input" type="radio" name="exampleRadios"
-                         id="exampleRadios3" value="option3">
+                  <input class="form-check-input" type="radio" name="modalidad" formControlName="modalidad"
+                         id="exampleRadios3" value="Asistida">
                   <label class="form-check-label fs-5" for="exampleRadios3">
                     Asistida
                   </label>
                 </div>
                 <div class="form-check col-3">
-                  <input class="form-check-input" type="radio" name="exampleRadios"
-                         id="exampleRadios4" value="option4">
+                  <input class="form-check-input" type="radio" name="modalidad" formControlName="modalidad"
+                         id="exampleRadios4" value="Otros">
                   <label class="form-check-label fs-5" for="exampleRadios4">
                     Otros
                   </label>
@@ -50,41 +46,47 @@
 
               </div>
             </div>
-
+            <!--Tipo Consulta-->
             <div class="row d-flex col-12 my-auto mx-auto py-3 justify-content-start align-content-between">
               <div class="col-md-2 ">
                 <div class="form-floating">
-                  <select class="form-select text-gray " id="floatingSelectGrid">
-                    <option selected></option>
+                  <select class="form-select text-gray " id="tipoConsulta" formControlName="tipoConsulta"
+                          [class.is-invalid]="formularioAtencionMedica.get('tipoConsulta')?.touched && formularioAtencionMedica.get('tipoConsulta')?.hasError('required')">
                     <option value="3">Primera vez</option>
                     <option value="1">Control</option>
-                    <option value="2">Otro</option>
                   </select>
-                  <label for="floatingSelectGrid" class="text-gray py-1">Tipo Consulta</label>
+                  <label for="tipoConsulta" class="text-gray py-1">Tipo Consulta</label>
+                </div>
+              </div>
+
+              <div class="col-md-2 ">
+                <div class="form-floating">
+                  <select class="form-select text-gray " id="nombreConsulta" formControlName="nombreConsulta"
+                          [class.is-invalid]="formularioAtencionMedica.get('nombreConsulta')?.touched && formularioAtencionMedica.get('nombreConsulta')?.hasError('required')">
+                    <option value="1">Especialista</option>
+                    <option value="2">Medico General</option>
+                  </select>
+                  <label for="nombreConsulta" class="text-gray py-1">Nombre de la Consulta</label>
                 </div>
               </div>
 
               <div class=" col-md-2">
                 <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=""
-                         value="">
-                  <label for="floatingInputGrid" class="py-1">Nombre de la consulta</label>
-                </div>
-              </div>
-
-              <div class=" col-md-2">
-                <div class="form-floating">
-                  <input type="text" class="form-control" id="floatingInputGrid" placeholder=""
-                         value="">
-                  <label for="floatingInputGrid" class="py-1">Consecutivo consulta</label>
+                  <input type="text" class="form-control" id="consecutivoConsulta" placeholder=""
+                         formControlName="consecutivoConsulta"
+                         [class.is-invalid]="formularioAtencionMedica.get('consecutivoConsulta')?.touched && formularioAtencionMedica.get('consecutivoConsulta')?.hasError('required')"
+                         value="" readonly>
+                  <label for="consecutivoConsulta" class="py-1">Consecutivo consulta</label>
                 </div>
               </div>
             </div>
           </div>
-
+          <!--Enfermedad Actual-->
           <div class="row mx-auto">
             <div class="form-floating ">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                            <textarea formControlName="enfermedadActual" class="form-control"
+                                      [class.is-invalid]="formularioAtencionMedica.get('enfermedadActual')?.touched && formularioAtencionMedica.get('enfermedadActual')?.hasError('required')"
+                                      placeholder="Leave a comment here" id="floatingTextarea"
                                       style="height: 100px"></textarea>
               <label for="floatingTextarea" class="fs-6 pe-auto mx-3 text-gray">Enfermedad actual y
                 motivo de
@@ -92,16 +94,9 @@
             </div>
           </div>
 
-          <div class="row d-flex mx-auto my-4 col-12 justify-content-between ">
-            <div class="col-auto p-1 btn-hover ">
-              <button class="btn rounded-2 btn-green shadow"><i
-                class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
-              <span class=" mx-3 fs-6 text-gray">Nota aclaratoria</span>
-            </div>
-          </div>
 
           <div class="row  justify-contnet-start text-green-dark mt-5 mb-4 ">
-            <h4 >Revision por Sistemas</h4>
+            <h4>Revision por Sistemas</h4>
             <hr class="border border-2 opacity-75">
           </div>
 
@@ -122,9 +117,10 @@
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea1" style="height: 100px"></textarea>
-                      <label for="floatingTextarea1" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="articular" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('articular')?.touched && formularioAtencionMedica.get('articular')?.hasError('required')"
+                                id="articular" style="height: 100px"></textarea>
+                      <label for="articular" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Articular</label>
                     </div>
                   </div>
@@ -146,9 +142,10 @@
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea2" style="height: 100px"></textarea>
-                      <label for="floatingTextarea2" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="cardiaco" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('cardiaco')?.touched && formularioAtencionMedica.get('cardiaco')?.hasError('required')"
+                                id="cardiaco" style="height: 100px"></textarea>
+                      <label for="cardiaco" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Cardiovascular</label>
                     </div>
                   </div>
@@ -169,9 +166,10 @@
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea3" style="height: 100px"></textarea>
-                      <label for="floatingTextarea3" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="muscular" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('muscular')?.touched && formularioAtencionMedica.get('muscular')?.hasError('required')"
+                                id="muscular" style="height: 100px"></textarea>
+                      <label for="muscular" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Musculoesqueletico</label>
                     </div>
                   </div>
@@ -192,9 +190,10 @@
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea4" style="height: 100px"></textarea>
-                      <label for="floatingTextarea4" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="linfatico" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('linfatico')?.touched && formularioAtencionMedica.get('linfatico')?.hasError('required')"
+                                id="linfatico" style="height: 100px"></textarea>
+                      <label for="linfatico" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Linfatico</label>
                     </div>
                   </div>
@@ -216,9 +215,10 @@
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea5" style="height: 100px"></textarea>
-                      <label for="floatingTextarea5" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="digestivo" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('digestivo')?.touched && formularioAtencionMedica.get('digestivo')?.hasError('required')"
+                                id="digestivo" style="height: 100px"></textarea>
+                      <label for="digestivo" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Digestivo</label>
                     </div>
                   </div>
@@ -239,9 +239,10 @@
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea6" style="height: 100px"></textarea>
-                      <label for="floatingTextarea6" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="reproductor" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('reproductor')?.touched && formularioAtencionMedica.get('reproductor')?.hasError('required')"
+                                id="reproductor" style="height: 100px"></textarea>
+                      <label for="reproductor" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Reproductor</label>
                     </div>
                   </div>
@@ -262,9 +263,10 @@
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea7" style="height: 100px"></textarea>
-                      <label for="floatingTextarea7" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="endocrino" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('endocrino')?.touched && formularioAtencionMedica.get('endocrino')?.hasError('required')"
+                                id="endocrino" style="height: 100px"></textarea>
+                      <label for="endocrino" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Endocrino</label>
                     </div>
                   </div>
@@ -285,9 +287,11 @@
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea8" style="height: 100px"></textarea>
-                      <label for="floatingTextarea8" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="urinario" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('urinario')?.touched && formularioAtencionMedica.get('urinario')?.hasError('required')"
+
+                                id="urinario" style="height: 100px"></textarea>
+                      <label for="urinario" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Urinario</label>
                     </div>
                   </div>
@@ -308,9 +312,11 @@
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea9" style="height: 100px"></textarea>
-                      <label for="floatingTextarea9" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="respiratorio" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('respiratorio')?.touched && formularioAtencionMedica.get('respiratorio')?.hasError('required')"
+
+                                id="respiratorio" style="height: 100px"></textarea>
+                      <label for="respiratorio" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Respiratorio</label>
                     </div>
                   </div>
@@ -331,9 +337,11 @@
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea10" style="height: 100px"></textarea>
-                      <label for="floatingTextarea10" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="nervioso" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('nervioso')?.touched && formularioAtencionMedica.get('nervioso')?.hasError('required')"
+
+                                id="nervioso" style="height: 100px"></textarea>
+                      <label for="nervioso" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Nervioso</label>
                     </div>
                   </div>
@@ -355,9 +363,11 @@
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea11" style="height: 100px"></textarea>
-                      <label for="floatingTextarea11" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="inmunitario" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('inmunitario')?.touched && formularioAtencionMedica.get('inmunitario')?.hasError('required')"
+
+                                id="inmunitario" style="height: 100px"></textarea>
+                      <label for="inmunitario" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Inmunitario</label>
                     </div>
                   </div>
@@ -368,19 +378,21 @@
             <div class="accordion-item">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed fs-4 text-green-dark" type="button"
-                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTen"
-                        aria-expanded="false" aria-controls="panelsStayOpen-collapseTen"><i
+                        data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwelve"
+                        aria-expanded="false" aria-controls="panelsStayOpen-collapseTwelve"><i
                   class="fa-solid fa-hand-dots mx-3"></i>
                   Tegumentario
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseTen" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseTwelve" class="accordion-collapse collapse">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea10" style="height: 100px"></textarea>
-                      <label for="floatingTextarea10" class="fs-6 pe-auto mx-3 text-gray">Sistema
+                      <textarea formControlName="tegumentario" class="form-control" placeholder="Leave a comment here"
+                                [class.is-invalid]="formularioAtencionMedica.get('tegumentario')?.touched && formularioAtencionMedica.get('tegumentario')?.hasError('required')"
+
+                                id="tegumentario" style="height: 100px"></textarea>
+                      <label for="tegumentario" class="fs-6 pe-auto mx-3 text-gray">Sistema
                         Tegumentario</label>
                     </div>
                   </div>
@@ -398,57 +410,57 @@
 
             <div class="row">
               <div class="form-floating ">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea-1"
-                                      style="height: 100px"></textarea>
+                <textarea formControlName="examenFisico" class="form-control" placeholder="Leave a comment here"
+                          [class.is-invalid]="formularioAtencionMedica.get('examenFisico')?.touched && formularioAtencionMedica.get('examenFisico')?.hasError('required')"
+
+                          id="floatingTextarea-1"
+                          style="height: 100px"></textarea>
                 <label for="floatingTextarea-1" class="fs-6 pe-auto mx-3 text-gray"></label>
               </div>
             </div>
-
-            <div class="row d-flex mx-auto my-3 col-12 justify-content-between ">
-              <div class="col-auto p-1 btn-hover">
-                <button class="btn rounded-2 btn-green shadow"><i
-                  class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
-                <span class=" mx-3 fs-6 text-gray">Plantilla de texto</span>
-              </div>
-            </div>
-
           </div>
 
           <!-- Diagnostico-->
 
           <div class="row  justify-contnet-start text-green-dark mt-5 mb-4 ">
-            <h4 >Diagnostico</h4>
+            <h4>Diagnostico</h4>
             <hr class="border border-2 opacity-75">
           </div>
 
           <div class="row col-12 mx-auto">
             <div class="col-md-4 ">
               <div class="form-floating">
-                <select class="form-select text-gray" id="floatingSelectGrid1">
-                  <option selected></option>
+                <select class="form-select text-gray" id="causaExterna" formControlName="causaExterna"
+                        [class.is-invalid]="formularioAtencionMedica.get('causaExterna')?.touched && formularioAtencionMedica.get('causaExterna')?.hasError('required')"
+                >
                   <option value="3">Enfermedad General</option>
                   <option value="1">Enfermedad Laboral</option>
                   <option value="2">Otro</option>
                 </select>
-                <label for="floatingSelectGrid" class="text-gray py-1">Causa externa</label>
+                <label for="causaExterna" class="text-gray py-1">Causa externa</label>
               </div>
             </div>
           </div>
-
+          <!--CIE11-->
           <div class="row d-flex col-12 my-auto mx-auto py-3 justify-content-between align-content-between">
             <div class=" col-6 ">
               <div class="form-floating">
-                <input type="text" class="form-control" id="floatingInputGrid2" placeholder=""
+                <input type="text" class="form-control" id="cie11" placeholder="" formControlName="cie11"
+                       [class.is-invalid]="formularioAtencionMedica.get('cie11')?.touched && formularioAtencionMedica.get('cie11')?.hasError('required')"
+
                        value="">
-                <label for="floatingInputGrid" class="py-1">CIE-11</label>
+                <label for="cie11" class="py-1">CIE-11</label>
               </div>
             </div>
 
             <div class=" col-6">
               <div class="form-floating">
-                <input type="date" class="form-control" id="floatingInputGrid3" placeholder=""
+                <input type="date" class="form-control" id="fechaRegistro" formControlName="fechaRegistro"
+                       [class.is-invalid]="formularioAtencionMedica.get('fechaRegistro')?.touched && formularioAtencionMedica.get('fechaRegistro')?.hasError('required')"
+
+                       placeholder=""
                        value="">
-                <label for="floatingInputGrid" class="py-1">Fecha de registro</label>
+                <label for="fechaRegistro" class="py-1">Fecha de registro</label>
               </div>
             </div>
           </div>
@@ -457,7 +469,10 @@
           <div class="row col-12 justify-content-between align-content-between mx-auto">
             <div class=" col-4">
               <div class="form-floating">
-                <select class="form-select text-gray" id="floatingSelectGrid1">
+                <select class="form-select text-gray" id="clasificacionDiagnostico"
+                        [class.is-invalid]="formularioAtencionMedica.get('clasificacionDiagnostico')?.touched && formularioAtencionMedica.get('clasificacionDiagnostico')?.hasError('required')"
+
+                        formControlName="clasificacionDiagnostico">
                   <option selected></option>
                   <option value="3">Quirurgico</option>
                   <option value="1">Toxico</option>
@@ -470,19 +485,20 @@
                   <option value="2">No aplica</option>
                   <option value="2">Patologico</option>
                 </select>
-                <label for="floatingSelectGrid" class="text-gray py-1">Clasificacion Diagnostico</label>
+                <label for="clasificacionDiagnostico" class="text-gray py-1">Clasificacion Diagnostico</label>
               </div>
             </div>
 
             <div class=" col-8">
               <div class="form-floating">
-                <select class="form-select text-gray" id="floatingSelectGrid1">
-                  <option selected></option>
+                <select class="form-select text-gray" id="tipoDiagnostico" formControlName="tipoDiagnostico"
+                        [class.is-invalid]="formularioAtencionMedica.get('tipoDiagnostico')?.touched && formularioAtencionMedica.get('tipoDiagnostico')?.hasError('required')"
+                >
                   <option value="3">Impresion diagnostica</option>
                   <option value="1">Confirmado nuevo</option>
                   <option value="2">Confirmado repetido</option>
                 </select>
-                <label for="floatingSelectGrid" class="text-gray py-1">Tipo Diagnostico</label>
+                <label for="tipoDiagnostico" class="text-gray py-1">Tipo Diagnostico</label>
               </div>
             </div>
           </div>
@@ -500,7 +516,54 @@
 
         </form>
 
+      </div>
+      <div class="card border-0 shadow col-11 my-5 mx-auto" *ngIf="listaAtencionesMedicas.length>0">
+        <div class="card-body fs-5 ">
+          <div class="col-12 my-5">
+            <div class="list-group">
 
+              <div class="list-group-item list-group-item-action" aria-current="true"
+                   *ngFor="let itemAtencionMedica of listaAtencionesMedicas.reverse()">
+                <div class="row d-flex justify-content-between">
+                  <div class="row col-10 d-flex align-content-center">
+                    <div class="col-12"><p class="my-auto text-justify fs-5">{{itemAtencionMedica.nota}}</p></div>
+                    <div class="col-12">
+                      <p class="fs-6">{{nombreTipoConsulta(itemAtencionMedica.tipoConsulta)}} -
+                        Fecha: {{itemAtencionMedica.date|date:'dd-MM-YYY hh:mm'}} - id: {{itemAtencionMedica.id}} -
+                        Notas
+                        aclaratorias: {{itemAtencionMedica.nota.length > 0 ? itemAtencionMedica.notasAclaratorias.length : 0}}</p>
+
+                      <hr class="col-12 my-2">
+                      <ng-container *ngIf="itemAtencionMedica.notasAclaratorias.length>0">
+                        <div class="px-4"
+                             *ngFor="let notaAclaratoria of itemAtencionMedica.notasAclaratorias.reverse()">
+                          <p class="fs-6">{{notaAclaratoria.notaAclaratoria}}</p>
+                          <p class="fs-6">{{notaAclaratoria.date|date:'dd-MM-YYY HH:mm'}}</p>
+                          <hr>
+                        </div>
+                      </ng-container>
+
+
+                    </div>
+                    <app-modal-usar-plantilla-nota *ngIf="itemAtencionMedica.id"
+                                                   [idNota]="itemAtencionMedica.id"
+                                                   (dataFormularioModal)="recibirDataFormularioModal($event)"></app-modal-usar-plantilla-nota>
+                  </div>
+                  <div class=" row col-2 p-1 d-flex align-content-center justify-content-center">
+                    <button type="button" class="btn rounded-2 btn-green shadow btn-hover col-auto mb-2"
+                            data-bs-toggle="modal"
+                            data-bs-target="#plantillaTextoModal" data-bs-whatever="@fat">
+                      <i class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
+                    <span class="col-12 mx-3 fs-6 text-gray text-center">Nota aclaratoria</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
       </div>
     </div>
   </div>
