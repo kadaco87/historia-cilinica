@@ -7,7 +7,7 @@ import {FormBuilder, FormControl, FormGroup} from "@angular/forms";
   styleUrls: ['./modal-usar-plantilla-nota.component.scss']
 })
 export class ModalUsarPlantillaNotaComponent implements OnInit{
-  @Input() idNota = 0;
+  @Input() idNota :string = '';
   @Output() dataFormularioModal: EventEmitter<any> = new EventEmitter<any>();
 
   formularioModal!: FormGroup;
@@ -15,13 +15,12 @@ export class ModalUsarPlantillaNotaComponent implements OnInit{
   }
   ngOnInit(): void {
     this.formularioModal = this.fb.group({
-      prop: new FormControl('', [])
+      notaAclaratoria: new FormControl('', [])
     })
   }
   enviaFormularioModal() {
     console.log(this.formularioModal.value)
-    const id = new Date(Date.now()).valueOf();
-    this.dataFormularioModal.emit({...this.formularioModal.value, id, idNota: this.idNota  })
+    this.dataFormularioModal.emit({...this.formularioModal.value, idNota: this.idNota  })
   }
 
 }

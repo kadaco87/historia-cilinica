@@ -8,6 +8,7 @@ import { MatTableModule } from '@angular/material/table';
 import { FormularioPacienteComponent } from './components/formulario-paciente/formulario-paciente.component';
 import { HistoriaClinicaModule } from '../historia-clinica/historia-clinica.module';
 import { SharedModule } from 'src/app/modules/shared/shared.module';
+import {MatTooltipModule} from "@angular/material/tooltip";
 
 
 @NgModule({
@@ -15,14 +16,15 @@ import { SharedModule } from 'src/app/modules/shared/shared.module';
     ListaPacientesComponent,
     FormularioPacienteComponent
   ],
-  imports: [
-    CommonModule,
+    imports: [
+        CommonModule,
 
-    PacientesRoutingModule,
-    MatPaginatorModule,
-    MatTableModule,
-    HistoriaClinicaModule,
-    SharedModule
-  ]
+        PacientesRoutingModule,
+        MatPaginatorModule,
+        MatTableModule,
+        HistoriaClinicaModule,
+        SharedModule,
+        MatTooltipModule
+    ]
 })
 export class PacientesModule { }

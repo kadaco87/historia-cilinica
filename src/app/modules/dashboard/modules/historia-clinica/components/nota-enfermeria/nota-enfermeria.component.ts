@@ -1,5 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {HistoriaClinicaService} from "../../../../../shared/services/historia-clinica.service";
+import {ActivatedRoute} from "@angular/router";
+import Swal from "sweetalert2";
+import {NotaEnfermeriaInterface} from "../../../../../shared/models/nota-enfermeria.interface";
+import {OPTIONS_SWEET_ALERT} from "../../../../../shared/utils/utils";
+import {AuthService} from "../../../../../shared/services/auth.service";
 
 
 @Component({
@@ -9,25 +15,48 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class NotaEnfermeriaComponent implements OnInit {
   formularioNotaEnfermeria!: FormGroup;
-  listaNotas: any[] = [];
+  listaNotas: NotaEnfermeriaInterface[] = [];
+  defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
+  id: string = '';
 
-
-  constructor(private readonly fb: FormBuilder) {
+  constructor(
+    private readonly fb: FormBuilder,
+    private readonly historiaClinicaService: HistoriaClinicaService,
+    private readonly authService: AuthService,
+    private readonly route: ActivatedRoute
+  ) {
 
   }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.id = params['id'] || null;
+      console.log('NotaEnfermeriaComponent => this.id', this.id)
+    })
     this.initForm();
-
     const modal = document.querySelector('#plantillaTextoModal');
     console.log(modal);
   }
 
   initForm() {
+    this.getNotasEnfermeria();
     this.formularioNotaEnfermeria = this.fb.group({
       temporalidad: new FormControl('1', [Validators.required]),
       nota: new FormControl('', [Validators.required]),
     })
+  }
+
+  getNotasEnfermeria() {
+    this.historiaClinicaService.obtenerNotasEnfermeria(this.id)
+      .subscribe({
+        'next': notas => {
+          if(notas) {
+            this.listaNotas = notas
+            console.log(this.listaNotas)
+          }
+        },
+        'error': error => console.error(error)
+      })
   }
 
   get temporalidad() {
@@ -40,20 +69,46 @@ export class NotaEnfermeriaComponent implements OnInit {
 
   enviarFormulario() {
     if (this.formularioNotaEnfermeria.valid) {
-      console.log(this.formularioNotaEnfermeria.value);
-      const fecha = new Date(Date.now());
-      this.listaNotas.push({...this.formularioNotaEnfermeria.value, id: fecha.valueOf(), notasAclaratorias: []});
-      this.formularioNotaEnfermeria.reset();
-      this.initForm();
+      const notaEnfermeria = {
+        nota: this.nota?.value,
+        patientId: this.id,
+        temporalidad: Number(this.temporalidad?.value),
+        date: new Date(Date.now()).valueOf(),
+        notasAclaratorias: []
+      }
+      this.historiaClinicaService.registrarNotasEnfermeria(this.id, notaEnfermeria)
+        .subscribe({
+          'next': result => {
+            if (result) Swal.fire({
+              title: 'Advertencia!',
+              text: 'Nota enfermeria registrada exitosamente',
+              icon: 'success',
+              confirmButtonText: 'Aceptar',
+              ...this.defaultOptionsAlerts.success
+            }).then(() => {
+              this.formularioNotaEnfermeria.reset();
+              this.formularioNotaEnfermeria.markAsUntouched();
+              this.getNotasEnfermeria();
+            })
+          }, 'error': error => Swal.fire({
+            title: 'Advertencia!',
+            text: error.error.message,
+            icon: 'warning',
+            confirmButtonText: 'Aceptar',
+            ...this.defaultOptionsAlerts.danger
+          }).then(() => {
+            this.formularioNotaEnfermeria.reset();
+            this.formularioNotaEnfermeria.markAsUntouched();
+          })
+        })
     } else {
-      alert('pilas')
       this.formularioNotaEnfermeria.markAllAsTouched();
     }
   }
 
-  nombreTemporalidadPorCodigo(codigo: string) {
-    let nombreTemporalidad = 'Primera vez';
-    switch(Number(codigo)) {
+  nombreTemporalidadPorCodigo(codigo: number) {
+    let nombreTemporalidad = '';
+    switch (codigo) {
       case 1:
         nombreTemporalidad = 'Primera vez';
         break;
@@ -66,8 +121,34 @@ export class NotaEnfermeriaComponent implements OnInit {
 
   recibirDataFormularioModal(event: any) {
     console.log('event: ', event);
-    const index = this.listaNotas.findIndex(nota => nota.id === event.idNota)
-    delete event.idNota;
-    this.listaNotas[index].notasAclaratorias.push(event)
+    const notaAclaratoria = {
+      notaAclaratoria: event.notaAclaratoria,
+      date: new Date(Date.now()).valueOf()
+    }
+    this.historiaClinicaService.registrarNotasAclaratoria(event.idNota, notaAclaratoria)
+      .subscribe({
+        'next': result => {
+          if (result) Swal.fire({
+            title: 'Advertencia!',
+            text: 'Nota Aclaratoria registrada exitosamente',
+            icon: 'success',
+            confirmButtonText: 'Aceptar',
+            ...this.defaultOptionsAlerts.success
+          }).then(() => {
+            this.formularioNotaEnfermeria.reset();
+            this.formularioNotaEnfermeria.markAsUntouched();
+            this.getNotasEnfermeria();
+          })
+        }, 'error': error => Swal.fire({
+          title: 'Advertencia!',
+          text: error.error.message,
+          icon: 'warning',
+          confirmButtonText: 'Aceptar',
+          ...this.defaultOptionsAlerts.danger
+        }).then(() => {
+          this.formularioNotaEnfermeria.reset();
+          this.formularioNotaEnfermeria.markAsUntouched();
+        })
+      })
   }
 }

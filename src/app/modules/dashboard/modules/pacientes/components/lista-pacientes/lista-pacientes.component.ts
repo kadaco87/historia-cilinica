@@ -46,7 +46,7 @@ export class ListaPacientesComponent implements OnInit, AfterViewInit {
   }
 
   getDocumentTypeList() {
-    this.utilsService.getDocumentTypes().subscribe(documentTypeList => this.documentTypeList = documentTypeList);
+    this.utilsService.getDocumentTypeList().subscribe(documentTypeList => this.documentTypeList = documentTypeList);
   }
 
   findGender(id: string) {

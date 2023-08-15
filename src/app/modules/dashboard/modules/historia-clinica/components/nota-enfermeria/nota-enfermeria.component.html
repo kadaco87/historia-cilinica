@@ -11,14 +11,14 @@
             <div class="row text-gray my-auto mx-auto  py-3">
               <div class="form-check col-3 ">
                 <input class="form-check-input" type="radio" name="temporalidad"
-                       id="primeraVez" value="1" checked formControlName="temporalidad" >
+                       id="primeraVez" value="1" checked formControlName="temporalidad">
                 <label class="form-check-label fs-5" for="primeraVez">
                   Primera vez
                 </label>
               </div>
               <div class="form-check col-3">
                 <input class="form-check-input" type="radio" name="temporalidad"
-                       id="control" value="2" formControlName="temporalidad" >
+                       id="control" value="2" formControlName="temporalidad">
                 <label class="form-check-label fs-5" for="control">
                   Control
                 </label>
@@ -46,22 +46,30 @@
         <div class="col-12 my-5">
           <div class="list-group">
 
-            <div class="list-group-item list-group-item-action" aria-current="true" *ngFor="let item of listaNotas.reverse()">
+            <div class="list-group-item list-group-item-action" aria-current="true"
+                 *ngFor="let notaItem of listaNotas.reverse()">
               <div class="row d-flex justify-content-between">
                 <div class="row col-10 d-flex align-content-center">
-                  <div class="col-12"><p class="my-auto text-justify fs-5">{{item.nota}}</p></div>
+                  <div class="col-12"><p class="my-auto text-justify fs-5">{{notaItem.nota}}</p></div>
                   <div class="col-12">
-                    <p class="fs-6">{{nombreTemporalidadPorCodigo(item.temporalidad)}} - Fecha: {{item.id|date:'dd-MM-YYY HH:mm'}} - id: {{item.id}} - Notas aclaratorias: {{item?.notasAclaratorias ? item?.notasAclaratorias?.length: 0}}</p>
-                  <hr class="col-12 my-2">
-                    <ng-container *ngIf="item?.notasAclaratorias.length>0">
-                    <div class="px-4" *ngFor="let notaAclaratoria of item?.notasAclaratorias.reverse()">
-                      <p class="fs-6">{{notaAclaratoria.prop}}</p>
-                      <p class="fs-6">{{notaAclaratoria.id|date:'dd-MM-YYY HH:mm'}}</p>
-                      <hr>
-                    </div>
+                    <p class="fs-6">{{nombreTemporalidadPorCodigo(notaItem.temporalidad)}} -
+                      Fecha: {{notaItem.date|date:'dd-MM-YYY hh:mm'}} - id: {{notaItem.id}} - Notas
+                      aclaratorias: {{notaItem.nota.length > 0 ? notaItem.notasAclaratorias.length : 0}}</p>
+
+                    <hr class="col-12 my-2">
+                    <ng-container *ngIf="notaItem.notasAclaratorias.length>0">
+                      <div class="px-4" *ngFor="let notaAclaratoria of notaItem.notasAclaratorias.reverse()">
+                        <p class="fs-6">{{notaAclaratoria.notaAclaratoria}}</p>
+                        <p class="fs-6">{{notaAclaratoria.date|date:'dd-MM-YYY HH:mm'}}</p>
+                        <hr>
+                      </div>
                     </ng-container>
+
+
                   </div>
-                  <app-modal-usar-plantilla-nota [idNota]="item.id" (dataFormularioModal)="recibirDataFormularioModal($event)"></app-modal-usar-plantilla-nota>
+                  <app-modal-usar-plantilla-nota *ngIf="notaItem.id"
+                                                 [idNota]="notaItem.id"
+                                                 (dataFormularioModal)="recibirDataFormularioModal($event)"></app-modal-usar-plantilla-nota>
                 </div>
                 <div class=" row col-2 p-1 d-flex align-content-center justify-content-center">
                   <button type="button" class="btn rounded-2 btn-green shadow btn-hover col-auto mb-2"

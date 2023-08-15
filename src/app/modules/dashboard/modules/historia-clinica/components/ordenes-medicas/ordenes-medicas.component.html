@@ -1,166 +1,189 @@
 <div class="container-fluid">
   <div class="row py-5">
     <div class="card border-0 shadow col-11 mx-auto">
-      <div class="card-body fs-5 ">
+      <div class="card-body fs-5">
 
-        <div class="row  justify-contnet-start text-green-dark mb-4">
+        <div class="row justify-contnet-start text-green-dark mb-4">
           <h3>Plan de manejo</h3>
         </div>
 
-        <form>
-          <div class="row text-gray">
-            <div class=" row col-12 my-auto mx-auto  py-3">
-              <div class="form-check col-3 ">
-                <input class="form-check-input" type="radio" name="exampleRadios"
-                       id="exampleRadios1" value="option1" checked>
-                <label class="form-check-label fs-5" for="exampleRadios1">
-                  Convencional
-                </label>
-              </div>
-              <div class="form-check col-3">
-                <input class="form-check-input" type="radio" name="exampleRadios"
-                       id="exampleRadios2" value="option2">
-                <label class="form-check-label fs-5" for="exampleRadios2">
-                  Prioritario
-                </label>
-              </div>
+        <form [formGroup]="ordenesMedicasForm" (ngSubmit)="crearOrdenMedica()">
+          <div class="row">
+            <div class="row col-12 mb-4 text-gray">
 
-            </div>
-          </div>
-
-          <div class="row my-4">
-            <div class="form-floating ">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea-om"
-                                      style="height: 100px"></textarea>
-              <label for="floatingTextarea-om" class="fs-6 pe-auto mx-3 text-gray">Ordenes medicas</label>
-            </div>
-
-            <div class="row d-flex col-12 justify-content-start">
-              <div class="row  my-3 col-auto  ">
-                <div class="col-auto p-1 btn-hover col-12">
-                  <button class="btn rounded-2 btn-green shadow"><i
-                    class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
-                  <span class=" mx-3 fs-6 text-gray">Plantilla de texto</span>
+              <!-- Tipo Atención -->
+              <div class=" row col-12 my-auto mx-auto  py-3">
+                <div class="form-check col-3 ">
+                  <input class="form-check-input" type="radio" name="tipoAtencion"
+                         id="tipoAtencion1" value="Convencional" checked formControlName="tipoAtencion">
+                  <label class="form-check-label fs-5" for="tipoAtencion1">
+                    Convencional
+                  </label>
+                </div>
+                <div class="form-check col-3">
+                  <input class="form-check-input" type="radio" name="tipoAtencion"
+                         id="tipoAtencion2" value="Prioritario" formControlName="tipoAtencion">
+                  <label class="form-check-label fs-5" for="tipoAtencion2">
+                    Prioritario
+                  </label>
                 </div>
               </div>
-
-            </div>
-          </div>
-
-
-          <div class="row  justify-contnet-start text-green-dark mt-3 my-5 border-bottom">
-            <h4>Formula medicamentos</h4>
-          </div>
-
-          <div class="row col-12 d-flex justify-content-between align-content-between mx-auto">
-            <div class="form-check col-4 ">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-              <label class="form-check-label" for="flexRadioDefault1">
-                Comercial
-              </label>
-            </div>
-            <div class="form-check col-4">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-              <label class="form-check-label" for="flexRadioDefault2">
-                Generico
-              </label>
-            </div>
-            <div class="form-check col-4">
-              <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault3" checked>
-              <label class="form-check-label" for="flexRadioDefault2">
-                Magistral o formula libre
-              </label>
             </div>
 
-            <div class="row fs-bold col-12 d-flex mx-auto my-4 justify-content-between align-content-between fs-6">
+            <!-- Plan Manejo -->
+            <div class="row col-12 mb-4">
+              <div class="form-floating ">
+                            <textarea
+                              class="form-control"
+                              placeholder="Leave a comment here"
+                              formControlName="planManejo"
+                              id="planManejo"
+                              style="height: 100px">
 
-              <div class="col-8 my-3">
-                <label for="exampleDataList" class="form-label text-green-dark ">Medicamento a prescribir:</label>
-                <input class="form-control" list="datalistOptions" id="exampleDataList"
-                       placeholder="Buscar medicamento">
-                <datalist id="datalistOptions">
-                  <option value="Dipirona">
-                  <option value="Voltaren 75mg">
-                  <option value="Ketorolaco">
-                  <option value="Omeprazol">
-                </datalist>
+                            </textarea>
+                <label for="planManejo" class="fs-6 pe-auto mx-3 text-gray">Ordenes medicas</label>
               </div>
 
-              <div class="col-4 my-3">
-                <label for="floatingSelect" class="form-label text-green-dark">Via de administracion:</label>
-                <select class="form-select" id="" aria-label="">
-                  <option value="1">Oral</option>
-                  <option value="2">Sublingual</option>
-                  <option value="3">Topica</option>
-                  <option value="3">Oftalmica</option>
-                  <option value="3">Intravenosa</option>
-                  <option value="3">Intranasal</option>
-                </select>
+            </div>
+
+
+            <div class="row col-12 justify-content-start text-green-dark py-3 my-5 border-bottom mx-0 px-0">
+              <h4>Formula medicamentos</h4>
+            </div>
+            <div formArrayName="medicamentos">
+              <div *ngFor="let medicamento of medicamentos.controls; let i = index" [formGroupName]="i">
+                <!-- Categoria Medicamento-->
+                <div class="row col-12 px-0 mx-0">
+                  <div class="form-check col-3 mx-2">
+                    <input class="form-check-input" type="radio" name="categoriaMedicamento" id="categoriaMedicamento1"
+                           formControlName="categoriaMedicamento" value="Comercial">
+                    <label class="form-check-label" for="categoriaMedicamento1">
+                      Comercial
+                    </label>
+                  </div>
+                  <div class="form-check col-3 mx-2">
+                    <input class="form-check-input" type="radio" name="categoriaMedicamento" id="categoriaMedicamento2"
+                           formControlName="categoriaMedicamento" value="Generico"
+                           checked>
+                    <label class="form-check-label" for="categoriaMedicamento2">
+                      Generico
+                    </label>
+                  </div>
+                  <div class="form-check col-3 mx-2">
+                    <input class="form-check-input" type="radio" name="categoriaMedicamento" id="categoriaMedicamento3"
+                           formControlName="categoriaMedicamento" value="Magistral"
+                           checked>
+                    <label class="form-check-label" for="categoriaMedicamento3">
+                      Magistral o formula libre
+                    </label>
+                  </div>
+                </div>
+
+                <div
+                  class="row fs-bold col-12 d-flex px-0 mx-0 my-4 justify-content-between align-content-between fs-6">
+                  <!-- medicamento -->
+                  <div class="col-8 my-3">
+                    <label for="medicamento" class="form-label text-green-dark ">Medicamento a prescribir:</label>
+                    <input class="form-control" list="datalistOptions" id="medicamento" formControlName="medicamento"
+                           placeholder="Buscar medicamento">
+                    <datalist id="datalistOptions">
+                      <option value="Dipirona">
+                      <option value="Voltaren 75mg">
+                      <option value="Ketorolaco">
+                      <option value="Omeprazol">
+                    </datalist>
+                  </div>
+
+                  <!-- Via Administracion -->
+                  <div class="col-4 my-3">
+                    <label for="viaAdmon" class="form-label text-green-dark">Via de administracion:</label>
+                    <select class="form-select" formControlName="viaAdmon" id="viaAdmon" aria-label="">
+                      <option value="1">Oral</option>
+                      <option value="2">Sublingual</option>
+                      <option value="3">Topica</option>
+                      <option value="3">Oftalmica</option>
+                      <option value="3">Intravenosa</option>
+                      <option value="3">Intranasal</option>
+                    </select>
+                  </div>
+
+                  <!-- Dosis -->
+                  <div class="col-2 my-3">
+                    <label for="dosis" class="text-green-dark">Administrar(dosís):</label>
+                    <input class="form-control" formControlName="dosis" id="dosis" type="text" placeholder="Ej:1"
+                           aria-label="">
+                  </div>
+
+                  <div class="col-2 my-3">
+                    <label for="presentacion" class="text-green-dark">Presentacion:</label>
+                    <select class="form-select" id="presentacion" formControlName="presentacion"
+                            aria-label="Default select example">
+                      <option selected>Tableta</option>
+                      <option value="1">Comprimido</option>
+                      <option value="2">Ampolla</option>
+                      <option value="3">Suspencion</option>
+                      <option value="3">Supositorio</option>
+                    </select>
+
+                  </div>
+
+                  <div class="col-2 my-3">
+                    <label for="frecuencia" class="text-green-dark">Frecuencia(cada):</label>
+                    <input class="form-control" formControlName="frecuencia" id="frecuencia" type="text"
+                           placeholder="Ej:8" aria-label="">
+                  </div>
+
+                  <div class="col-2 my-3">
+                    <label for="horario" class="text-green-dark">Cada cuanto:</label>
+                    <select class="form-select" id="horario" formControlName="horario"
+                            aria-label="Default select example">
+                      <option selected>Hora(s)</option>
+                      <option value="1">Dia(s)</option>
+                      <option value="2">Semana(s)</option>
+                      <option value="3">Dosis única</option>
+                    </select>
+
+                  </div>
+
+                  <div class="col-2 my-3">
+                    <label for="duracion" class="text-green-dark">Duracion(durante):</label>
+                    <input class="form-control" formControlName="duracion" id="duracion" type="text" placeholder="Ej:3"
+                           aria-label="default input example">
+                  </div>
+
+                  <div class="col-2 my-3">
+                    <label for="tiempo" class="text-green-dark"></label>
+                    <select class="form-select" id="tiempo" formControlName="tiempo"
+                            aria-label="Floating label select example">
+                      <option selected>Dia(s)</option>
+                      <option value="1">Mes(es)</option>
+                      <option value="2">Dosis única</option>
+                      <option value="3">Tiempo indefinido</option>
+                      <option value="3">Hasta terminar</option>
+                      <option value="3">Hasta proximo control</option>
+                    </select>
+
+                  </div>
+
+                </div>
+
+
               </div>
-
-              <div class="col-2 my-3">
-                <label for="floatingSelect" class="text-green-dark">Administrar(dosís):</label>
-                <input class="form-control" type="text" placeholder="Ej:1" aria-label="">
-              </div>
-
-              <div class="col-2 my-3">
-                <label for="floatingSelect2" class="text-green-dark">Presentacion:</label>
-                <select class="form-select" id="floatingSelect2" aria-label="Default select example">
-                  <option selected>Tableta</option>
-                  <option value="1">Comprimido</option>
-                  <option value="2">Ampolla</option>
-                  <option value="3">Suspencion</option>
-                  <option value="3">Supositorio</option>
-                </select>
-
-              </div>
-
-              <div class="col-2 my-3">
-                <label for="floatingSelect" class="text-green-dark">Frecuencia(cada):</label>
-                <input class="form-control" type="text" placeholder="Ej:8" aria-label="">
-              </div>
-
-              <div class="col-2 my-3">
-                <label for="floatingSelect2" class="text-green-dark">Cada cuanto:</label>
-                <select class="form-select" id="floatingSelect2" aria-label="Default select example">
-                  <option selected>Hora(s)</option>
-                  <option value="1">Dia(s)</option>
-                  <option value="2">Semana(s)</option>
-                  <option value="3">Dosis única</option>
-                </select>
-
-              </div>
-
-              <div class="col-2 my-3">
-                <label for="floatingSelect" class="text-green-dark">Duracion(durante):</label>
-                <input class="form-control" type="text" placeholder="Ej:3" aria-label="default input example">
-              </div>
-
-              <div class="col-2 my-3">
-                <label for="floatingSelect" class="text-green-dark"></label>
-                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
-                  <option selected>Dia(s)</option>
-                  <option value="1">Mes(es)</option>
-                  <option value="2">Dosis única</option>
-                  <option value="3">Tiempo indefinido</option>
-                  <option value="3">Hasta terminar</option>
-                  <option value="3">Hasta proximo control</option>
-                </select>
-
-              </div>
-
             </div>
 
             <div class=" row d-flex col-12 justify-content-end my-4 fs-5 gx-4 btn-hover ">
-                <button class="btn btn-green text-white mx-1 col-auto shadow ">Agragar otro medicamento
-                </button>
+              <button class="btn btn-green text-white mx-1 col-auto shadow " type="button"
+                      (click)="agregarOtroMedicamento()">Agragar otro medicamento
+              </button>
             </div>
 
+
+            <!-- BTN GUARDAR -->
+            <div class="row col-12 d-flex justify-content-center btn-hover mx-auto my-4">
+              <button class="btn btn-green text-white col-auto fs-4 shadow ">Guardar</button>
+            </div>
           </div>
 
-          <div class="row d-flex justify-content-center btn-hover mx-auto my-4">
-            <button class="btn btn-green text-white col-auto fs-4 shadow ">Guardar</button>
-          </div>
         </form>
 
       </div>

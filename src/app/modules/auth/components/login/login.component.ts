@@ -26,7 +26,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.utilsService.getDocumentTypes().subscribe({
+    this.utilsService.getDocumentTypeList().subscribe({
       'next': documentTypes  => {
         this.documentTypes = documentTypes
       },

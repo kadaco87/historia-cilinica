@@ -19,7 +19,6 @@
 
     </div>
   </div>
-
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="dataSource">
 
@@ -32,13 +31,13 @@
       <!-- Name Column -->
       <ng-container matColumnDef="roleName">
         <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Cargo </th>
-        <td class="text-gray" mat-cell *matCellDef="let element"> {{element.roleName}} </td>
+        <td class="text-gray" mat-cell *matCellDef="let element"> {{getRoleName(element.role)}} </td>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="documentType">
         <th class="text-green-dark" mat-header-cell *matHeaderCellDef>Tipo de Documento </th>
-        <td class="text-gray" mat-cell *matCellDef="let element"> {{element.documentType}} </td>
+        <td class="text-gray" mat-cell *matCellDef="let element"> {{getDocumentTypeName(element.documentType)}} </td>
       </ng-container>
 
       <ng-container matColumnDef="identification">
@@ -61,6 +60,7 @@
 
     <mat-paginator
       class="text-gray"
+      [length]="dataSource.data.length"
       [pageSizeOptions]="[5, 10, 20]"
       showFirstLastButtons
       aria-label="Select page of periodic elements">

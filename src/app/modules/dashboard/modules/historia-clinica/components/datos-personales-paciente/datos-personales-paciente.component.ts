@@ -50,7 +50,7 @@ this.getDocumentTypes();
   }
 
   getDocumentTypes() {
-    this.utilsService.getDocumentTypes().subscribe({
+    this.utilsService.getDocumentTypeList().subscribe({
       'next': (val) => {
         this.documentTypeList = val
         console.log(this.documentTypeList);

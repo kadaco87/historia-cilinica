@@ -5,14 +5,15 @@
     <form [formGroup]="formularioModal" (ngSubmit)="enviaFormularioModal()">
       <div class="modal-content border-0 shadow" [attr.data-bs-config]="{backdrop:false}">
         <div class="modal-header btn-hover">
-          <h1 class="modal-title fs-6 text-green-dark" id="plantillaTextoTitulo">Crear nota aclaratoria - {{idNota}}</h1>
+          <h1 class="modal-title fs-6 text-green-dark" id="plantillaTextoTitulo">Crear nota aclaratoria
+            - {{idNota}}</h1>
           <button type="button" class="btn-close fs-4" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="mb-3">
-              <label for="message-text" class="col-form-label">Nota aclaratoria*</label>
-              <textarea rows="10" class="form-control " id="message-text" formControlName="prop"></textarea>
-            </div>
+          <div class="mb-3">
+            <label for="notaAclaratoria" class="col-form-label">Nota aclaratoria*</label>
+            <textarea id="notaAclaratoria" rows="10" class="form-control" formControlName="notaAclaratoria"></textarea>
+          </div>
         </div>
         <div class="modal-footer btn-hover">
           <button type="button" class="btn btn-secondary text-white" data-bs-dismiss="modal">Cerrar</button>

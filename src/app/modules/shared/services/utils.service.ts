@@ -22,7 +22,7 @@ export class UtilsService {
   getGenders() {
     return this.http.get< GenderInterface[]>(`${this.apiUrl}/genders`);
   }
-  getDocumentTypes() {
+  getDocumentTypeList() {
     return this.http.get< DocumentTypeInterface[]>(`${this.apiUrl}/document-types`);
   }
 

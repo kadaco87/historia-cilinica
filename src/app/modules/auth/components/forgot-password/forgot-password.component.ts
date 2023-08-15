@@ -24,7 +24,7 @@ export class ForgotPasswordComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.utilsService.getDocumentTypes().subscribe({
+    this.utilsService.getDocumentTypeList().subscribe({
       'next': documentType => this.documentTypes  = documentType,
       'error': error => console.error(error)
     })

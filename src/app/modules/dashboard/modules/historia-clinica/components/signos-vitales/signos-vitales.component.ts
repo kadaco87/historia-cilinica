@@ -147,7 +147,6 @@ listaSignosVitales: SignosVitalesInterface[] = [];
       const diastolica = Number(this.diastolica?.value || 1);
       const sistolica = Number(this.sistolica?.value || 1);
       const pam = parseInt(String((sistolica + (2 * diastolica)) / 3));
-      console.log('me estoy evaluando', pam)
       this.pam?.setValue(pam);
     }
   }
