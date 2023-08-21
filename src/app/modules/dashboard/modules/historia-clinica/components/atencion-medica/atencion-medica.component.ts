@@ -3,6 +3,7 @@ import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import Swal from "sweetalert2";
 import {HistoriaClinicaService} from "../../../../../shared/services/historia-clinica.service";
 import {OPTIONS_SWEET_ALERT} from "../../../../../shared/utils/utils";
+import {UtilsService} from "../../../../../shared/services/utils.service";
 
 @Component({
   selector: 'app-atencion-medica',
@@ -15,20 +16,36 @@ export class AtencionMedicaComponent implements OnInit {
   defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
   listaAtencionesMedicas: any[] = [];
   listaTiposConsulta: any[] = [];
+  listaDiagnosticos: { nombre: string, codigo: string }[] = [];
 
   constructor(private readonly fb: FormBuilder,
               private readonly historiaClinicaService: HistoriaClinicaService,
+              private readonly utilsService: UtilsService
   ) {
   }
 
   ngOnInit(): void {
+    this.obtenerListaDiagnosticos();
     this.formInit();
+    this.cie10?.valueChanges.subscribe(value => console.log(value))
   }
 
+  obtenerListaDiagnosticos() {
+    if (this.listaDiagnosticos.length < 1) {
+      this.utilsService.getDiagnosticos().subscribe({
+        'next': listaDiagnosticos => {
+          this.listaDiagnosticos = listaDiagnosticos
+          console.log(this.listaDiagnosticos)
+        },
+        'error': error => console.log(error)
+        }
+      )
+    }
+  }
 
   crearAtencionMedica() {
-    console.log(this.formularioAtencionMedica.getRawValue());
-    if(this.formularioAtencionMedica.valid){
+
+    if (this.formularioAtencionMedica.valid) {
       this.historiaClinicaService.crearAtencionMedica(this.formularioAtencionMedica.getRawValue())
         .subscribe({
           'next': result => {
@@ -54,7 +71,7 @@ export class AtencionMedicaComponent implements OnInit {
             this.formularioAtencionMedica.markAsUntouched();
           })
         })
-    }else{
+    } else {
       this.formularioAtencionMedica.markAllAsTouched()
     }
 
@@ -118,10 +135,20 @@ export class AtencionMedicaComponent implements OnInit {
       tegumentario: new FormControl('', [Validators.required]),
       examenFisico: new FormControl('', [Validators.required]),
       causaExterna: new FormControl('', [Validators.required]), // Causa Externa ?
-      cie11: new FormControl('', [Validators.required]),
+      cie10: new FormControl('', [Validators.required]),
       fechaRegistro: new FormControl('', [Validators.required]),
       clasificacionDiagnostico: new FormControl('', [Validators.required]),
       tipoDiagnostico: new FormControl('', [Validators.required]),
     })
   }
+
+  get cie10(){
+    return this.formularioAtencionMedica.get('cie11');
+  }
+  get opcionesFiltradas(): any[] {
+    return this.listaDiagnosticos.filter(opcion =>
+      opcion.nombre.toLowerCase().includes(this.cie10?.value.toLowerCase())
+    );
+  }
+
 }

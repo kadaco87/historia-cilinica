@@ -21,6 +21,8 @@ import { OrdenesMedicasComponent } from './components/ordenes-medicas/ordenes-me
 import {SharedModule} from "../../../shared/shared.module";
 import {MatTableModule} from "@angular/material/table";
 import {MatPaginatorModule} from "@angular/material/paginator";
+import {KeyFilterModule} from "primeng/keyfilter";
+import {MultiSelectModule} from "primeng/multiselect";
 
 
 @NgModule({
@@ -35,18 +37,20 @@ import {MatPaginatorModule} from "@angular/material/paginator";
     MedicamentosComponent,
     OrdenesMedicasComponent,
       ],
-    imports: [
-        CommonModule,
-        HistoriaClinicaRoutingModule,
-        ReactiveFormsModule,
-        MatTreeModule,
-        MatInputModule,
-        MatCheckboxModule,
-        MatIconModule,
-        MatButtonModule,
-        SharedModule,
-        MatTableModule,
-        MatPaginatorModule
-    ]
+  imports: [
+    CommonModule,
+    HistoriaClinicaRoutingModule,
+    ReactiveFormsModule,
+    MatTreeModule,
+    MatInputModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatButtonModule,
+    SharedModule,
+    MatTableModule,
+    MatPaginatorModule,
+    KeyFilterModule,
+    MultiSelectModule
+  ]
 })
 export class HistoriaClinicaModule { }

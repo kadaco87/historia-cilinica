@@ -8,7 +8,7 @@ import {Component} from '@angular/core';
 export class MedicamentosComponent {
   displayedColumns: string[] = ['medicamento', 'presentacion', 'dosis', 'frecuencia', 'duracion','id'];
   dataSource = [{
-    medicamento: 'aaa',
+    medicamentos: 'aaa',
     presentacion: 'aaa',
     dosis: 'aaa',
     frecuencia: 'aaa',

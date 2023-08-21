@@ -37,10 +37,15 @@ export class HistoriaClinicaService {
   }
 
   crearOrdenMedica(id: string, ordenMedica: OrdenMedicaInterface) {
-    return this.http.post(`${this.apiUrl}/ordenes-medicas/${id}`, ordenMedica)
+    return this.http.post(`${this.apiUrl}/ordenes-medicas/${id}`, ordenMedica);
+  }
+
+  getOrdenesMedicasPorPaciente(id: string) {
+    return this.http.get<any[]>(`${this.apiUrl}/ordenes-medicas/${id}`);
   }
 
   crearAtencionMedica(atencionMedica: AtencionMedicaInterface) {
     return this.http.post<boolean>(`${this.apiUrl}/atenciones-medicas`, atencionMedica);
   }
+
 }

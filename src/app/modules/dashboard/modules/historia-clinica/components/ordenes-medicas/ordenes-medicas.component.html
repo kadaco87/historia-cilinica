@@ -84,16 +84,16 @@
                 <div
                   class="row fs-bold col-12 d-flex px-0 mx-0 my-4 justify-content-between align-content-between fs-6">
                   <!-- medicamento -->
-                  <div class="col-8 my-3">
-                    <label for="medicamento" class="form-label text-green-dark ">Medicamento a prescribir:</label>
-                    <input class="form-control" list="datalistOptions" id="medicamento" formControlName="medicamento"
-                           [class.is-invalid]="medicamento.get('medicamento')?.touched && medicamento?.get('medicamento')?.hasError('required')"
-                           placeholder="Buscar medicamento">
-                    <datalist id="datalistOptions">
-                      <option value="Dipirona">
-                      <option value="Voltaren 75mg">
-                      <option value="Ketorolaco">
-                      <option value="Omeprazol">
+
+                  <div class=" col-8 my-3">
+                    <label for="medicamento" class="form-label text-green-dark ">Medicamento</label>
+                    <input type="text" id="medicamento" list="listaMedicamentos" formControlName="medicamento"
+                           (change)="opcionesFiltradas(i)" class="form-control">
+                    <datalist id="listaMedicamentos">
+                      <ng-container *ngIf="listaMedicamentos.length>0">
+                        <option *ngFor="let opcion of listaMedicamentos"
+                                [value]="opcion.principioactivo+' | '+opcion.concentracion "></option>
+                      </ng-container>
                     </datalist>
                   </div>
 
@@ -195,6 +195,18 @@
         </form>
 
       </div>
+    </div>
+    <div class="col-11 mx-auto my-5 px-0" *ngIf="ordenesMedicasList.length !== 0">
+      <ul class="list-group shadow">
+        <li class="list-group-item border-0" *ngFor="let ordenMedica of ordenesMedicasList, let i = index">
+          <div class="d-flex justify-content-between bg-green-dark my-3 border-1 rounded-3 p-2 text-white shadow">
+            <span>Fecha: {{ordenMedica.date | date:'dd-MM-YYY'}}</span><span>Orden medica No.: {{ordenMedica.id}}</span>
+          </div>
+          <h5>Plan de manejo</h5>
+          <p>{{ordenMedica.planManejo}}</p>
+        <hr *ngIf="i+1 !== ordenesMedicasList.length">
+        </li>
+      </ul>
     </div>
   </div>
 </div>

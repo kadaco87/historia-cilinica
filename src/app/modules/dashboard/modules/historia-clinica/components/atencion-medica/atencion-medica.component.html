@@ -443,21 +443,18 @@
           </div>
           <!--CIE11-->
           <div class="row d-flex col-12 my-auto mx-auto py-3 justify-content-between align-content-between">
-            <div class=" col-6 ">
-              <div class="form-floating">
-                <input type="text" class="form-control" id="cie11" placeholder="" formControlName="cie11"
-                       [class.is-invalid]="formularioAtencionMedica.get('cie11')?.touched && formularioAtencionMedica.get('cie11')?.hasError('required')"
-
-                       value="">
-                <label for="cie11" class="py-1">CIE-11</label>
-              </div>
+            <div class=" col-6 form-floating">
+              <input type="text" id="cie10" list="opciones" formControlName="cie10" (change)="opcionesFiltradas" class="form-control">
+              <datalist id="opciones">
+                <option *ngFor="let opcion of listaDiagnosticos" [value]="opcion.nombre"></option>
+              </datalist>
+              <label for="cie10" class="py-1">CIE-10</label>
             </div>
 
             <div class=" col-6">
               <div class="form-floating">
                 <input type="date" class="form-control" id="fechaRegistro" formControlName="fechaRegistro"
                        [class.is-invalid]="formularioAtencionMedica.get('fechaRegistro')?.touched && formularioAtencionMedica.get('fechaRegistro')?.hasError('required')"
-
                        placeholder=""
                        value="">
                 <label for="fechaRegistro" class="py-1">Fecha de registro</label>

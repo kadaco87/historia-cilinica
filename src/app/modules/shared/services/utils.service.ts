@@ -33,4 +33,12 @@ export class UtilsService {
   getRH() {
     return this.http.get< RhInterface[]>(`${this.apiUrl}/rh`);
   }
+
+  getDiagnosticos() {
+    return this.http.get<{nombre:string, codigo:string}[]>(`${this.apiUrl}/diagnosticos`);
+  }
+
+  getMedicamentos() {
+    return this.http.get<{id: string; principioactivo: string; concentracion: string; formafarmaceutica: string; }[]>(`${this.apiUrl}/medicamentos`);
+  }
 }
