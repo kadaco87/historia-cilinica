@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormArray, FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import Swal from "sweetalert2";
 import {HistoriaClinicaService} from "../../../../../shared/services/historia-clinica.service";
 import {OPTIONS_SWEET_ALERT} from "../../../../../shared/utils/utils";
 import {UtilsService} from "../../../../../shared/services/utils.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-atencion-medica',
@@ -12,32 +13,39 @@ import {UtilsService} from "../../../../../shared/services/utils.service";
 })
 export class AtencionMedicaComponent implements OnInit {
 
+  patientId: string = '';
   formularioAtencionMedica: FormGroup = new FormGroup({});
   defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
   listaAtencionesMedicas: any[] = [];
   listaTiposConsulta: any[] = [];
   listaDiagnosticos: { nombre: string, codigo: string }[] = [];
+  historyId: string='';
 
-  constructor(private readonly fb: FormBuilder,
-              private readonly historiaClinicaService: HistoriaClinicaService,
-              private readonly utilsService: UtilsService
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly fb: FormBuilder,
+    private readonly historiaClinicaService: HistoriaClinicaService,
+    private readonly utilsService: UtilsService
   ) {
   }
 
   ngOnInit(): void {
-    this.obtenerListaDiagnosticos();
-    this.formInit();
-    this.cie10?.valueChanges.subscribe(value => console.log(value))
+    this.route.params.subscribe(params => {
+      this.patientId = params['id'] || null;
+      this.historyId = params['historyId'] || null;
+      this.obtenerListaDiagnosticos();
+      this.formInit();
+    });
+
   }
 
   obtenerListaDiagnosticos() {
     if (this.listaDiagnosticos.length < 1) {
       this.utilsService.getDiagnosticos().subscribe({
-        'next': listaDiagnosticos => {
-          this.listaDiagnosticos = listaDiagnosticos
-          console.log(this.listaDiagnosticos)
-        },
-        'error': error => console.log(error)
+          'next': listaDiagnosticos => {
+            this.listaDiagnosticos = listaDiagnosticos;
+          },
+          'error': error => console.log(error)
         }
       )
     }
@@ -46,7 +54,11 @@ export class AtencionMedicaComponent implements OnInit {
   crearAtencionMedica() {
 
     if (this.formularioAtencionMedica.valid) {
-      this.historiaClinicaService.crearAtencionMedica(this.formularioAtencionMedica.getRawValue())
+      const atencionMedica = {
+        ...this.formularioAtencionMedica.getRawValue(),
+        date: new Date(Date.now()).valueOf()
+      }
+      this.historiaClinicaService.crearAtencionMedica(this.historyId, this.patientId, atencionMedica)
         .subscribe({
           'next': result => {
             if (result) Swal.fire({
@@ -78,7 +90,6 @@ export class AtencionMedicaComponent implements OnInit {
   }
 
   recibirDataFormularioModal(event: any) {
-    console.log('event: ', event);
     const notaAclaratoria = {
       notaAclaratoria: event.notaAclaratoria,
       date: new Date(Date.now()).valueOf()
@@ -119,7 +130,6 @@ export class AtencionMedicaComponent implements OnInit {
       modalidad: new FormControl('', [Validators.required]),
       tipoConsulta: new FormControl('', [Validators.required]),
       nombreConsulta: new FormControl('', [Validators.required]),
-      consecutivoConsulta: new FormControl(new Date(Date.now()).valueOf(), [Validators.required]),
       enfermedadActual: new FormControl('', [Validators.required]),
       articular: new FormControl('', [Validators.required]),
       cardiaco: new FormControl('', [Validators.required]),
@@ -134,17 +144,30 @@ export class AtencionMedicaComponent implements OnInit {
       inmunitario: new FormControl('', [Validators.required]),
       tegumentario: new FormControl('', [Validators.required]),
       examenFisico: new FormControl('', [Validators.required]),
-      causaExterna: new FormControl('', [Validators.required]), // Causa Externa ?
+      diagnosticos: new FormArray([])
+    })
+    this.agregarDiagnostico();
+  }
+
+  get diagnosticos() {
+    return this.formularioAtencionMedica.get('diagnosticos') as FormArray;
+  }
+
+  agregarDiagnostico() {
+    const nuevodiagnostico = new FormGroup({
+      causaExterna: new FormControl('', [Validators.required]),
       cie10: new FormControl('', [Validators.required]),
       fechaRegistro: new FormControl('', [Validators.required]),
       clasificacionDiagnostico: new FormControl('', [Validators.required]),
       tipoDiagnostico: new FormControl('', [Validators.required]),
     })
+    this.diagnosticos.push(nuevodiagnostico)
   }
 
-  get cie10(){
+  get cie10() {
     return this.formularioAtencionMedica.get('cie11');
   }
+
   get opcionesFiltradas(): any[] {
     return this.listaDiagnosticos.filter(opcion =>
       opcion.nombre.toLowerCase().includes(this.cie10?.value.toLowerCase())

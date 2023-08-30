@@ -1,14 +1,22 @@
-:host{
-    min-height: 100vh;
-    display: block;
-    background-color: #FCFCFC;
+:host {
+  min-height: 100vh;
+  display: block;
+  background-color: #FCFCFC;
 }
 
 .fullHeight {
-    height: calc(100vh - 10vh) !important;
+  height: calc(100vh - 10vh) !important;
 }
 
 
 .header {
-    border-radius: 0 0 30px 30px
+  border-radius: 0 0 30px 30px
+}
+
+.silueta {
+  background-image: linear-gradient(#ffffff33, #ffffffff), url("/assets/images/siluetamujerlogin.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: 0 0;
+
 }

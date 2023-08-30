@@ -2,30 +2,32 @@
   <div class="row py-5">
     <div class="card border-0 shadow col-11 mx-auto">
       <div class="card-body fs-5 ">
-        <form action=""><div class="row  justify-contnet-start text-green-dark mb-4">
-          <h3>Dispositivos Medicos</h3>
-        </div>
+        <form action="">
+          <div class="row  justify-contnet-start text-green-dark mb-4">
+            <h3>Dispositivos Medicos</h3>
+          </div>
 
           <div class="row col-12">
             <div class="row  fs-4 justify-contnet-start text-green-dark mb-4">
-              <h3 ><i class=" mx-3 fa-solid fa-prescription-bottle"></i>Drenes</h3>
+              <h3><i class=" mx-3 fa-solid fa-prescription-bottle"></i>Drenes</h3>
               <hr class="border border-2 opacity-75">
             </div>
             <!--          drenes tipos -->
             <div class="row col-12">
 
-              <div class="accordion" id="accordionPanelsStayOpenExample">
+              <div class="accordion" id="accordionPanelsDrenes">
 
                 <!--abdominal-->
                 <div class="accordion-item ">
                   <h2 class="accordion-header ">
-                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#abdominal-collapse" aria-expanded="true"
                             aria-controls="abdominal-collapse">
                       <span class="text-green-dark">Abdominal</span>
                     </button>
                   </h2>
-                  <div id="abdominal-collapse" class="accordion-collapse collapse ">
+                  <div id="abdominal-collapse" class="accordion-collapse collapse show" [attr.data-bs-parent]="'#accordionPanelsDrenes'">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 
@@ -104,13 +106,14 @@
                 <!--mamario-->
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button  bg-white fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button  bg-white fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#mamarioCollapse" aria-expanded="false"
                             aria-controls="mamarioCollapse">
                       <span class="text-green-dark">Mamario</span>
                     </button>
                   </h2>
-                  <div id="mamarioCollapse" class="accordion-collapse collapse">
+                  <div id="mamarioCollapse" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsDrenes'">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 
@@ -189,13 +192,14 @@
                 <!--gluteo-->
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#gluteoCollapse" aria-expanded="false"
                             aria-controls="gluteoCollapse">
                       <span class="text-green-dark">Gluteos</span>
                     </button>
                   </h2>
-                  <div id="gluteoCollapse" class="accordion-collapse collapse">
+                  <div id="gluteoCollapse" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsDrenes'">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 
@@ -274,13 +278,14 @@
                 <!-- cara y cuello-->
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#caraCuelloCollapse" aria-expanded="false"
                             aria-controls="caraCuelloCollapse">
                       <span class="text-green-dark">Cara y cuello</span>
                     </button>
                   </h2>
-                  <div id="caraCuelloCollapse" class="accordion-collapse collapse">
+                  <div id="caraCuelloCollapse" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsDrenes'">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 
@@ -359,13 +364,14 @@
                 <!-- otros-->
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#otrosCollapse" aria-expanded="false"
                             aria-controls="otrosCollapse">
                       <span class="text-green-dark">Otros</span>
                     </button>
                   </h2>
-                  <div id="otrosCollapse" class="accordion-collapse collapse">
+                  <div id="otrosCollapse" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsDrenes'">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 
@@ -447,18 +453,19 @@
                 <h3 class="mt-5 "><i class=" mx-3 fa-solid fa-fire-flame-simple"></i>Sondas</h3>
                 <hr class="border border-2 opacity-75">
               </div>
-              <div class="accordion mb-3" id="accordionPanelsStayOpenExample3">
+              <div class="accordion mb-3" id="accordionPanelsSondas">
 
                 <!--Nasogastrica-->
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#nasogastrica-collapse" aria-expanded="true"
                             aria-controls="nasogastrica-collapse">
                       <span class="text-green-dark">Nasogastrica</span>
                     </button>
                   </h2>
-                  <div id="nasogastrica-collapse" class="accordion-collapse collapse ">
+                  <div id="nasogastrica-collapse" class="accordion-collapse collapse show">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 
@@ -526,13 +533,14 @@
                 <!--vesical-->
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#vesicalCollapse" aria-expanded="false"
                             aria-controls="vesicalCollapse">
                       <span class="text-green-dark">Vesical</span>
                     </button>
                   </h2>
-                  <div id="vesicalCollapse" class="accordion-collapse collapse">
+                  <div id="vesicalCollapse" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsSondas'">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 
@@ -601,13 +609,14 @@
                 <!--cistostomia-->
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#cistostomiaCollapse" aria-expanded="false"
                             aria-controls="cistostomiaCollapse">
                       <span class="text-green-dark">Cistostomia</span>
                     </button>
                   </h2>
-                  <div id="cistostomiaCollapse" class="accordion-collapse collapse">
+                  <div id="cistostomiaCollapse" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsSondas'">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 
@@ -686,13 +695,14 @@
                 <!-- nefrostomia-->
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#nefroCollapse" aria-expanded="false"
                             aria-controls="nefroCollapse">
                       <span class="text-green-dark">Nefrostomia</span>
                     </button>
                   </h2>
-                  <div id="nefroCollapse" class="accordion-collapse collapse">
+                  <div id="nefroCollapse" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsSondas'">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 
@@ -743,13 +753,14 @@
                 <!-- otros-->
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#otroCollapse" aria-expanded="false"
                             aria-controls="otroCollapse">
                       <span class="text-green-dark">Otros</span>
                     </button>
                   </h2>
-                  <div id="otroCollapse" class="accordion-collapse collapse">
+                  <div id="otroCollapse" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsSondas'">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 
@@ -825,25 +836,26 @@
                 </div>
               </div>
 
-                <!--OXIGENO-->
+              <!--OXIGENO-->
 
               <div class="row  fs-4 justify-contnet-start text-green-dark mb-4">
                 <h3 class="mt-5 "><i class=" mx-3 fa-solid fa-mask-ventilator"></i>Oxigeno</h3>
                 <hr class="border border-2 opacity-75">
               </div>
 
-              <div class="accordion mb-3" id="accordionPanelsStayOpenExamples">
+              <div class="accordion mb-3" id="accordionPanelsOxigeno">
 
                 <!-- tipos dispositivos-->
                 <div class="accordion-item ">
                   <h2 class="accordion-header ">
-                    <button class="accordion-button bg-white  fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button bg-white  fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#oxigeno-collapse" aria-expanded="true"
                             aria-controls="oxigeno-collapse">
                       <span class="text-green-dark">Oxigeno Suplementario</span>
                     </button>
                   </h2>
-                  <div id="oxigeno-collapse" class="accordion-collapse collapse">
+                  <div id="oxigeno-collapse" class="accordion-collapse collapse show" [attr.data-bs-parent]="'#accordionPanelsOxigeno'">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 
@@ -927,13 +939,14 @@
                 <!-- otros-->
                 <div class="accordion-item">
                   <h2 class="accordion-header">
-                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button" data-bs-toggle="collapse"
+                    <button class="accordion-button bg-white fs-4 text-green-dark" type="button"
+                            data-bs-toggle="collapse"
                             data-bs-target="#otherCollapse" aria-expanded="false"
                             aria-controls="otherCollapse">
                       <span class="text-green-dark">Otros</span>
                     </button>
                   </h2>
-                  <div id="otherCollapse" class="accordion-collapse collapse">
+                  <div id="otherCollapse" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsOxigeno'">
                     <div class="accordion-body">
                       <div class="row col-12 d-flex justify-content-around ">
 

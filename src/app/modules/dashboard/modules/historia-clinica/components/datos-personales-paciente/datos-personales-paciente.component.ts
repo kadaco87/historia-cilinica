@@ -53,7 +53,6 @@ this.getDocumentTypes();
     this.utilsService.getDocumentTypeList().subscribe({
       'next': (val) => {
         this.documentTypeList = val
-        console.log(this.documentTypeList);
       },
       'error': error => console.error(error),
     })

@@ -1,6 +1,7 @@
 export interface SignosVitalesInterface {
   id?: string;
   patientId?: string;
+  historyId?: number;
   date: number;
   frecuenciaCardiaca: number;
   frecuenciaRespiratoria: number;

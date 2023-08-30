@@ -1,6 +1,6 @@
 export interface NotaEnfermeriaInterface {
   id?: string;
-  patientId: string;
+  patientId?: string;
   date:number;
   nota: string;
   temporalidad: number;

@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { distanceAndSkiddingToXY } from '@popperjs/core/lib/modifiers/offset';
 
 @Component({
   selector: 'app-formulario-paciente',
@@ -18,8 +17,6 @@ export class FormularioPacienteComponent implements OnInit {
   ngOnInit(): void { //  ejecutar al iniciar la vista
     this.route.params.subscribe(params => {
       this.id = params['id'] || null;
-      console.log(this.id);
-
     })
   }
 

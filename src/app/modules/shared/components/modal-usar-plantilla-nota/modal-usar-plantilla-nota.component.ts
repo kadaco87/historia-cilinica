@@ -19,7 +19,6 @@ export class ModalUsarPlantillaNotaComponent implements OnInit{
     })
   }
   enviaFormularioModal() {
-    console.log(this.formularioModal.value)
     this.dataFormularioModal.emit({...this.formularioModal.value, idNota: this.idNota  })
   }
 

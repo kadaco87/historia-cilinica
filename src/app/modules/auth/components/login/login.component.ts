@@ -44,9 +44,7 @@ export class LoginComponent implements OnInit {
       // Realizo la peticion
       this.authService.login(this.loginForm.getRawValue()).subscribe({
         'next': (response) => {
-          console.log(response)
           if(response) {
-            console.log('voy a navegar')
             this.router.navigate(['/dashboard']).then();
           }
         }
@@ -60,7 +58,6 @@ export class LoginComponent implements OnInit {
       })
     } else {
       this.loginForm.markAllAsTouched();
-      console.log('Algo falta en el formulario');
     }
   }
 

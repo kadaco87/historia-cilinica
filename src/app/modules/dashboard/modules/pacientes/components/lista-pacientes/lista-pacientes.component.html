@@ -56,9 +56,13 @@
                 <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Actions </th>
                 <td class="text-gray" mat-cell *matCellDef="let element">
                     <!-- generar atencion inicial - lleva a la historia clinica -->
-                    <i class="fa-solid fa-file-waveform" (click)="iniciarAtencion(element.id)" matTooltipPosition="above" [matTooltip]="'Iniciar Atención'"></i>
-                    <!-- editar perfil del paciente -->
-                    <i class="fa-solid fa-file-pen mx-3" (click)="editarPerfilPaciente(element.id)"></i>
+                    <button type="button" class="btn btn-outline-info border-0" [disabled]="element.historyState">
+                      <i class="fa-solid fa-file-waveform" (click)="iniciarAtencion(element.id)" matTooltipPosition="above" [matTooltip]="'Iniciar Atención'"></i>
+                    </button>
+                  <!-- Seguir editando historia activa -->
+                  <button type="button" class="btn btn-outline-info border-0" [disabled]="!element.historyState">
+                    <i class="fa-solid fa-file-pen mx-3" (click)="editarHistoriaActiva(element.id, element.historyId)"></i>
+                  </button>
                     <!-- historial clinico completo de atenciones -->
                     <i class="fa-regular fa-folder-open" (click)="verHistorailClinico(element.id)"></i>
                 </td>

@@ -45,13 +45,13 @@
                             </textarea>
                 <label for="planManejo" class="fs-6 pe-auto mx-3 text-gray">Ordenes medicas</label>
               </div>
-
             </div>
 
 
             <div class="row col-12 justify-content-start text-green-dark py-3 my-5 border-bottom mx-0 px-0">
               <h4>Formula medicamentos</h4>
             </div>
+
             <div formArrayName="medicamentos">
               <div *ngFor="let medicamento of medicamentos.controls; let i = index" [formGroupName]="i">
                 <!-- Categoria Medicamento-->

@@ -15,7 +15,7 @@
           <!-- Position Column -->
           <ng-container matColumnDef="medicamento">
             <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Medicamento </th>
-            <td class="text-gray" mat-cell *matCellDef="let element"> {{element.medicamento}} </td>
+            <td class="text-gray" mat-cell *matCellDef="let element"> {{getNombreMedicamentoPorId(element.medicamento)}} </td>
           </ng-container>
 
           <!-- Name Column -->
@@ -33,12 +33,12 @@
           <!-- Symbol Column -->
           <ng-container matColumnDef="frecuencia">
             <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Frecuencia </th>
-            <td class="text-gray" mat-cell *matCellDef="let element"> {{element.frecuencia}} </td>
+            <td class="text-gray" mat-cell *matCellDef="let element"> {{element.frecuencia}} {{element.horario}} </td>
           </ng-container>
 
           <ng-container matColumnDef="duracion">
             <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Duracion </th>
-            <td class="text-gray" mat-cell *matCellDef="let element"> {{element.duracion}} </td>
+            <td class="text-gray" mat-cell *matCellDef="let element"> {{element.duracion}} {{element.tiempo}}  </td>
           </ng-container>
 
           <ng-container matColumnDef="id">

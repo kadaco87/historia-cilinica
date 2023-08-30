@@ -8,6 +8,8 @@ export interface UserInterface {
   role: string;
   deleted?: boolean;
   fotoPerfil?: string;
+  historyState?: boolean;
+  historyId?: string;
 }
 
 export interface FullName {

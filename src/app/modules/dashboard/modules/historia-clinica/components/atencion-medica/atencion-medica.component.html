@@ -69,16 +69,6 @@
                   <label for="nombreConsulta" class="text-gray py-1">Nombre de la Consulta</label>
                 </div>
               </div>
-
-              <div class=" col-md-2">
-                <div class="form-floating">
-                  <input type="text" class="form-control" id="consecutivoConsulta" placeholder=""
-                         formControlName="consecutivoConsulta"
-                         [class.is-invalid]="formularioAtencionMedica.get('consecutivoConsulta')?.touched && formularioAtencionMedica.get('consecutivoConsulta')?.hasError('required')"
-                         value="" readonly>
-                  <label for="consecutivoConsulta" class="py-1">Consecutivo consulta</label>
-                </div>
-              </div>
             </div>
           </div>
           <!--Enfermedad Actual-->
@@ -101,7 +91,7 @@
           </div>
 
           <!-- revision sistemas -->
-          <div class="accordion" id="accordionPanelsStayOpenExample">
+          <div class="accordion" id="accordionPanelsAtencionMedica">
 
             <!-- articular -->
             <div class="accordion-item">
@@ -113,7 +103,7 @@
                   Articular
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+              <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -138,7 +128,7 @@
                   Cardiovascular
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -162,7 +152,7 @@
                   Musculoesqueletico
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -186,7 +176,7 @@
                   Linfatico
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -211,7 +201,7 @@
                   Digestivo
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -235,7 +225,7 @@
                   Reproductor
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseSix" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -259,7 +249,7 @@
                   Endocrino
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseSeven" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -283,7 +273,7 @@
                   Urinario
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseEight" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseEight" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -308,7 +298,7 @@
                   Respiratorio
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseNine" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseNine" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -333,7 +323,7 @@
                   Nervioso
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseTen" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseTen" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -359,7 +349,7 @@
                   Inmunitario
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseEleven" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseEleven" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -384,7 +374,7 @@
                   Tegumentario
                 </button>
               </h2>
-              <div id="panelsStayOpen-collapseTwelve" class="accordion-collapse collapse">
+              <div id="panelsStayOpen-collapseTwelve" class="accordion-collapse collapse" [attr.data-bs-parent]="'#accordionPanelsAtencionMedica'">
                 <div class="accordion-body">
                   <div class="row">
                     <div class="form-floating ">
@@ -420,91 +410,108 @@
             </div>
           </div>
 
-          <!-- Diagnostico-->
 
-          <div class="row  justify-contnet-start text-green-dark mt-5 mb-4 ">
-            <h4>Diagnostico</h4>
-            <hr class="border border-2 opacity-75">
+          <!-- Diagnosticos-->
+          <div formArrayName="diagnosticos" class="my-3">
+
+            <div class="row  justify-contnet-start text-green-dark mt-5 mb-4 ">
+              <h4>Diagnostico</h4>
+              <hr class="border border-2 opacity-75">
+            </div>
+
+            <div class="row" *ngFor="let medicamento of diagnosticos.controls; let i = index" [formGroupName]="i">
+              <div class="row col-12 mx-auto my-3">
+                <!--Causa Externa -->
+                <div class="col-md-4 ">
+                  <div class="form-floating">
+                    <select class="form-select text-gray" id="causaExterna" formControlName="causaExterna"
+                            [class.is-invalid]="formularioAtencionMedica.get('causaExterna')?.touched && formularioAtencionMedica.get('causaExterna')?.hasError('required')"
+                    >
+                      <option value="3">Enfermedad General</option>
+                      <option value="1">Enfermedad Laboral</option>
+                      <option value="2">Otro</option>
+                    </select>
+                    <label for="causaExterna" class="text-gray py-1">Causa externa</label>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="row d-flex col-12 my-auto mx-auto py-3 justify-content-between align-content-between">
+
+                <!--CIE10-->
+                <div class=" col-6 form-floating">
+                  <input type="text" id="cie10" list="opciones" formControlName="cie10" (change)="opcionesFiltradas"
+                         class="form-control">
+                  <datalist id="opciones">
+                    <option *ngFor="let opcion of listaDiagnosticos" [value]="opcion.nombre"></option>
+                  </datalist>
+                  <label for="cie10" class="py-1">CIE-10</label>
+                </div>
+
+                <!-- fecha de registro -->
+                <div class=" col-6">
+                  <div class="form-floating">
+                    <input type="date" class="form-control" id="fechaRegistro" formControlName="fechaRegistro"
+                           [class.is-invalid]="formularioAtencionMedica.get('fechaRegistro')?.touched && formularioAtencionMedica.get('fechaRegistro')?.hasError('required')"
+                           placeholder=""
+                           value="">
+                    <label for="fechaRegistro" class="py-1">Fecha de registro</label>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row col-12 justify-content-between align-content-between mx-auto">
+                <!-- Clasificacion Diagnostico -->
+                <div class=" col-4">
+                  <div class="form-floating">
+                    <select class="form-select text-gray" id="clasificacionDiagnostico"
+                            [class.is-invalid]="formularioAtencionMedica.get('clasificacionDiagnostico')?.touched && formularioAtencionMedica.get('clasificacionDiagnostico')?.hasError('required')"
+
+                            formControlName="clasificacionDiagnostico">
+                      <option selected></option>
+                      <option value="3">Quirurgico</option>
+                      <option value="1">Toxico</option>
+                      <option value="2">Alergico</option>
+                      <option value="2">Clinico</option>
+                      <option value="2">Otro</option>
+                      <option value="2">Farmacologico</option>
+                      <option value="2">Hospitalario</option>
+                      <option value="2">Traumatico</option>
+                      <option value="2">No aplica</option>
+                      <option value="2">Patologico</option>
+                    </select>
+                    <label for="clasificacionDiagnostico" class="text-gray py-1">Clasificacion Diagnostico</label>
+                  </div>
+                </div>
+
+                <!-- Tipo Diagnostico -->
+                <div class=" col-8">
+                  <div class="form-floating">
+                    <select class="form-select text-gray" id="tipoDiagnostico" formControlName="tipoDiagnostico"
+                            [class.is-invalid]="formularioAtencionMedica.get('tipoDiagnostico')?.touched && formularioAtencionMedica.get('tipoDiagnostico')?.hasError('required')"
+                    >
+                      <option value="3">Impresion diagnostica</option>
+                      <option value="1">Confirmado nuevo</option>
+                      <option value="2">Confirmado repetido</option>
+                    </select>
+                    <label for="tipoDiagnostico" class="text-gray py-1">Tipo Diagnostico</label>
+                  </div>
+                </div>
+              </div>
+              <hr *ngIf="i+1 !== diagnosticos.controls.length" class="my-5">
+            </div>
           </div>
 
-          <div class="row col-12 mx-auto">
-            <div class="col-md-4 ">
-              <div class="form-floating">
-                <select class="form-select text-gray" id="causaExterna" formControlName="causaExterna"
-                        [class.is-invalid]="formularioAtencionMedica.get('causaExterna')?.touched && formularioAtencionMedica.get('causaExterna')?.hasError('required')"
-                >
-                  <option value="3">Enfermedad General</option>
-                  <option value="1">Enfermedad Laboral</option>
-                  <option value="2">Otro</option>
-                </select>
-                <label for="causaExterna" class="text-gray py-1">Causa externa</label>
-              </div>
-            </div>
-          </div>
-          <!--CIE11-->
-          <div class="row d-flex col-12 my-auto mx-auto py-3 justify-content-between align-content-between">
-            <div class=" col-6 form-floating">
-              <input type="text" id="cie10" list="opciones" formControlName="cie10" (change)="opcionesFiltradas" class="form-control">
-              <datalist id="opciones">
-                <option *ngFor="let opcion of listaDiagnosticos" [value]="opcion.nombre"></option>
-              </datalist>
-              <label for="cie10" class="py-1">CIE-10</label>
-            </div>
 
-            <div class=" col-6">
-              <div class="form-floating">
-                <input type="date" class="form-control" id="fechaRegistro" formControlName="fechaRegistro"
-                       [class.is-invalid]="formularioAtencionMedica.get('fechaRegistro')?.touched && formularioAtencionMedica.get('fechaRegistro')?.hasError('required')"
-                       placeholder=""
-                       value="">
-                <label for="fechaRegistro" class="py-1">Fecha de registro</label>
-              </div>
-            </div>
-          </div>
-
-
-          <div class="row col-12 justify-content-between align-content-between mx-auto">
-            <div class=" col-4">
-              <div class="form-floating">
-                <select class="form-select text-gray" id="clasificacionDiagnostico"
-                        [class.is-invalid]="formularioAtencionMedica.get('clasificacionDiagnostico')?.touched && formularioAtencionMedica.get('clasificacionDiagnostico')?.hasError('required')"
-
-                        formControlName="clasificacionDiagnostico">
-                  <option selected></option>
-                  <option value="3">Quirurgico</option>
-                  <option value="1">Toxico</option>
-                  <option value="2">Alergico</option>
-                  <option value="2">Clinico</option>
-                  <option value="2">Otro</option>
-                  <option value="2">Farmacologico</option>
-                  <option value="2">Hospitalario</option>
-                  <option value="2">Traumatico</option>
-                  <option value="2">No aplica</option>
-                  <option value="2">Patologico</option>
-                </select>
-                <label for="clasificacionDiagnostico" class="text-gray py-1">Clasificacion Diagnostico</label>
-              </div>
-            </div>
-
-            <div class=" col-8">
-              <div class="form-floating">
-                <select class="form-select text-gray" id="tipoDiagnostico" formControlName="tipoDiagnostico"
-                        [class.is-invalid]="formularioAtencionMedica.get('tipoDiagnostico')?.touched && formularioAtencionMedica.get('tipoDiagnostico')?.hasError('required')"
-                >
-                  <option value="3">Impresion diagnostica</option>
-                  <option value="1">Confirmado nuevo</option>
-                  <option value="2">Confirmado repetido</option>
-                </select>
-                <label for="tipoDiagnostico" class="text-gray py-1">Tipo Diagnostico</label>
-              </div>
-            </div>
-          </div>
-
+          <!-- Botton agregar diagnostico-->
           <div class="row  col-4 d-flex justify-content-start align-content-start mx-auto my-5 btn-hover">
-            <button class="btn btn-green text-white col-auto fs-4 shadow"><i
+            <button class="btn btn-green text-white col-auto fs-4 shadow" type="button" (click)="agregarDiagnostico()"><i
               class="fa-solid fa-plus mx-3"></i>Agregar nuevo diagnostico
             </button>
           </div>
+
+
           <!-- Botton guardar-->
           <div class="row d-flex justify-content-end btn-hover mx-auto my-4">
             <button class="btn btn-green text-white col-auto fs-4 shadow ">Guardar</button>

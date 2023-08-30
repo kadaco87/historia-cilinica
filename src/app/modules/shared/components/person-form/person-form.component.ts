@@ -182,7 +182,6 @@ export class PersonFormComponent implements OnInit {
     this.utilsService.getDocumentTypeList().subscribe({
       'next': (val) => {
         this.documentTypeList = val
-        console.log(this.documentTypeList);
       },
       'error': error => console.error(error),
     })
@@ -238,7 +237,6 @@ export class PersonFormComponent implements OnInit {
       }
     } else {
       if (this.personAndUserForm.valid) {
-        console.log('llamar al servicio de pacientes para crear paciente')
         const dateArray = this.birthday?.getRawValue()?.split('-');
         const user = {
           ...this.personAndUserForm.getRawValue(),

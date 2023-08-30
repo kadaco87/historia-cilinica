@@ -15,20 +15,19 @@ export class HistoriaClinicaService {
   apiUrl = environment.apiUrl+'/clinic-history';
   constructor(private readonly http: HttpClient) { }
 
-  registrarSignosVitales(id: string, signosVitales: SignosVitalesInterface){
-    return this.http.post<boolean>(`${this.apiUrl}/vital-signs/${id}`, signosVitales, {context: checkToken()});
+  registrarSignosVitales( historyId: string, patientId: string, signosVitales: SignosVitalesInterface){
+    return this.http.post<boolean>(`${this.apiUrl}/vital-signs/${historyId}/${patientId}/`, signosVitales, {context: checkToken()});
   }
 
-  obtenerSignosVitales(id: string){
-    return this.http.get<SignosVitalesInterface[]>(`${this.apiUrl}/vital-signs/${id}`, {context: checkToken()});
+  obtenerSignosVitales(historyId: string){
+    return this.http.get<SignosVitalesInterface[]>(`${this.apiUrl}/vital-signs/${historyId}`, {context: checkToken()});
   }
-  registrarNotasEnfermeria(id: string, notaEnfermeria: NotaEnfermeriaInterface){
-    return this.http.post<boolean>(`${this.apiUrl}/notas-enfermeria/${id}`, notaEnfermeria, {context: checkToken()});
+  registrarNotasEnfermeria(historyId: string,patientId: string, notaEnfermeria: NotaEnfermeriaInterface){
+    return this.http.post<boolean>(`${this.apiUrl}/notas-enfermeria/${historyId}/${patientId}`, notaEnfermeria, {context: checkToken()});
   }
 
 
   obtenerNotasEnfermeria(id: string){
-    console.log('service => id => ', id)
     return this.http.get<NotaEnfermeriaInterface[]>(`${this.apiUrl}/notas-enfermeria/${id}`, {context: checkToken()});
   }
 
@@ -36,16 +35,23 @@ export class HistoriaClinicaService {
     return this.http.post<boolean>(`${this.apiUrl}/${path}/${idNota}/notas-aclaratorias`, notaEnfermeria, {context: checkToken()});
   }
 
-  crearOrdenMedica(id: string, ordenMedica: OrdenMedicaInterface) {
-    return this.http.post(`${this.apiUrl}/ordenes-medicas/${id}`, ordenMedica);
+  crearOrdenMedica(historyId: string, patientId: string, ordenMedica: OrdenMedicaInterface) {
+    return this.http.post(`${this.apiUrl}/ordenes-medicas/${historyId}/${patientId}`, ordenMedica, {context: checkToken()});
   }
 
-  getOrdenesMedicasPorPaciente(id: string) {
-    return this.http.get<any[]>(`${this.apiUrl}/ordenes-medicas/${id}`);
+  getOrdenesMedicasPorHistoryId(historyId: string) {
+    return this.http.get<OrdenMedicaInterface[]>(`${this.apiUrl}/ordenes-medicas/${historyId}`, {context: checkToken()});
   }
 
-  crearAtencionMedica(atencionMedica: AtencionMedicaInterface) {
-    return this.http.post<boolean>(`${this.apiUrl}/atenciones-medicas`, atencionMedica);
+  crearAtencionMedica(historyId: string,patientId:string, atencionMedica: AtencionMedicaInterface) {
+    return this.http.post<boolean>(`${this.apiUrl}/atenciones-medicas/${historyId}/${patientId}`, atencionMedica, {context: checkToken()});
   }
 
+  crearHistoriaClinica(historyId: string, id: string) {
+    return this.http.post<boolean>(`${this.apiUrl}/historia-clinica/${historyId}/${id}`,{}, {context: checkToken()});
+  }
+
+  obtenerMedicamentos(historyId: string) {
+    return this.http.get<boolean>(`${this.apiUrl}/medicamentos/${historyId}`,{context: checkToken()});
+  }
 }

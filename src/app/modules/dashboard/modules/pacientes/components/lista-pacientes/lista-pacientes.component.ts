@@ -7,6 +7,7 @@ import {UsersService} from "../../../../../shared/services/users.service";
 import {UtilsService} from "../../../../../shared/services/utils.service";
 import {GenderInterface} from "../../../../../shared/models/gender.interface";
 import {DocumentTypeInterface} from "../../../../../shared/models/document-type.interface";
+import {HistoriaClinicaService} from "../../../../../shared/services/historia-clinica.service";
 
 @Component({
   selector: 'app-lista-pacientes',
@@ -24,6 +25,7 @@ export class ListaPacientesComponent implements OnInit, AfterViewInit {
   constructor(
     private readonly router: Router,
     private readonly usersService: UsersService,
+    private readonly historyClinicaService: HistoriaClinicaService,
     private readonly utilsService: UtilsService
   ) {
 
@@ -61,17 +63,20 @@ export class ListaPacientesComponent implements OnInit, AfterViewInit {
   }
 
   iniciarAtencion(id: string) {
-    console.log('id: ', id);
-    this.router.navigate(['/dashboard/pacientes/historia-clinica/' + id + '/resumen'])
+    const historyId = new Date(Date.now()).valueOf().toString()
+    this.historyClinicaService.crearHistoriaClinica(historyId, id).subscribe({
+      'next': result => {
+        if(result) this.router.navigate(['/dashboard/pacientes/historia-clinica/' + id +'/'+ historyId + '/resumen'])
+      }
+    })
+
   }
 
-  editarPerfilPaciente(i: string) {
-    console.log('id: ', i);
-
+  editarHistoriaActiva(patientId: string, historyId: string) {
+    this.router.navigate(['/dashboard/pacientes/historia-clinica/' + patientId +'/'+ historyId + '/resumen'])
   }
 
   verHistorailClinico(i: string) {
-    console.log('id: ', i);
 
   }
 }

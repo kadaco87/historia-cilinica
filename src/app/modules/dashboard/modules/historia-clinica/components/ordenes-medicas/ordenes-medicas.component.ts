@@ -13,7 +13,7 @@ import {UtilsService} from "../../../../../shared/services/utils.service";
 })
 export class OrdenesMedicasComponent implements OnInit {
   ordenesMedicasForm: FormGroup = new FormGroup<any>({});
-  id: string = '';
+  patientId: string = '';
   ordenesMedicasList: any[] = [];
   listaMedicamentos: {
     id: string;
@@ -22,6 +22,7 @@ export class OrdenesMedicasComponent implements OnInit {
     formafarmaceutica: string;
   }[] = [];
   defaultOptionsAlerts!: { success: SweetAlertOptions<any, any>; danger: SweetAlertOptions<any, any>; };
+  historyId: string = '';
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -33,11 +34,13 @@ export class OrdenesMedicasComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.id = params['id'] || null;
+      this.patientId = params['id'] || null;
+      this.historyId = params['historyId'] || null;
+      this.listarMedicamentos()
+      this.initForm();
+      this.obtenerOrdenesMedicas();
     });
-    this.listarMedicamentos()
-    this.initForm();
-    this.obtenerOrdenesMedicas();
+
   }
 
   initForm() {
@@ -89,7 +92,7 @@ export class OrdenesMedicasComponent implements OnInit {
         date: new Date(Date.now()).valueOf(),
         medicamentos
       }
-      this.historiaClinicaService.crearOrdenMedica(this.id, ordenMedica)
+      this.historiaClinicaService.crearOrdenMedica(this.historyId, this.patientId, ordenMedica)
         .subscribe({
           'next': result => {
             if (result) Swal.fire({
@@ -121,19 +124,17 @@ export class OrdenesMedicasComponent implements OnInit {
 
   obtenerOrdenesMedicas() {
     this.ordenesMedicasList = []
-    this.historiaClinicaService.getOrdenesMedicasPorPaciente(this.id)
+    this.historiaClinicaService.getOrdenesMedicasPorHistoryId(this.historyId)
       .subscribe(lista => {
         if(lista.length===0) {
           this.ordenesMedicasList = [];
         }else{
           this.ordenesMedicasList = lista;
-          console.log(this.ordenesMedicasList)
         }
       })
   }
 
   opcionesFiltradas(position: number): any[] {
-    console.log('this.medicamentos.controls[position].get(\'medicamento\')?.value.toLowerCase() => ', this.medicamentos.controls[position].get('medicamento')?.value.toLowerCase())
     return this.listaMedicamentos.filter(opcion =>
       opcion.principioactivo.toLowerCase().includes(this.medicamentos.controls[position].get('medicamento')?.value.toLowerCase())
     );

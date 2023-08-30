@@ -25,7 +25,7 @@ const routes: Routes = [
         component: FormularioPacienteComponent
       },
       {
-        path: 'historia-clinica/:id',
+        path: 'historia-clinica/:id/:historyId',
         loadChildren: () => import('./../historia-clinica/historia-clinica.module').then(module => module.HistoriaClinicaModule)
       }
     ]

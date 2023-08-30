@@ -15,8 +15,6 @@ export class UserFormComponent implements OnInit  {
   ngOnInit(): void { //  ejecutar al iniciar la vista
     this.route.params.subscribe(params => {
       this.id = params['id'] || null;
-      console.log(this.id);
-
     })
   }
 

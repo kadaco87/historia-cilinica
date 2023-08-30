@@ -7,65 +7,65 @@
         </div>
 
         <div class="row  justify-contnet-start text-green-dark mb-4 ">
-          <h4 >PERSONALES</h4>
+          <h4>PERSONALES</h4>
           <hr class="border border-2 opacity-75">
         </div>
-        <form>
+        <form [formGroup]="antecedentesForm" (ngSubmit)="crearAntecedentes()">
           <div>
-            <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion" id="accordionPanelAntecedentes">
               <!-- primer acordeon -->
               <div class="accordion-item">
                 <h2 class="accordion-header">
                   <button class="accordion-button fs-4 text-green-dark" type="button"
-                          data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne"
-                          aria-expanded="true" aria-controls="panelsStayOpen-collapseOne"><i
+                          data-bs-toggle="collapse" [attr.data-bs-target]="'#panelsStayOpen-collapseOne'"
+                          aria-expanded="true" [attr.aria-controls]="'panelsStayOpen-collapseOne'"><i
                     class="fa-solid fa-biohazard mx-3"></i>
                     Toxicologicos
                   </button>
                 </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
-                  <div class="accordion-body">
-                    <div class="row col-12 my-auto mx-auto py-3">
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show"
+                     [attr.data-bs-parent]="'#accordionPanelAntecedentes'">
+                  <div class="accordion-body" formGroupName="toxicologico">
+                    <div class="row col-12 my-auto mx-auto py-3" role="group" formGroupName="tipo">
                       <div class="form-check col-4 text-gray">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios1" value="option1" checked>
-                        <label class="form-check-label fs-5" for="exampleRadios1">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="toxicologicoRadios"
+                               formControlName="tabaquismo"
+                               id="toxicologicos-tabaquismo">
+                        <label class="form-check-label fs-5" for="toxicologicos-tabaquismo">
                           Tabaquismo
                         </label>
                       </div>
                       <div class="form-check col-4">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input class="form-check-input"
+                               type="checkbox"
+
+                               name="toxicologicoRadios"
+                               formControlName="alcoholismo"
+                               id="toxicologicos-alcohol">
+                        <label class="form-check-label fs-5" for="toxicologicos-alcohol">
                           Alcohol
                         </label>
                       </div>
                       <div class="form-check col-4">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
-                          otros
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="toxicologicoRadios"
+                               formControlName="otros"
+                               id="exampleRadios3">
+                        <label class="form-check-label fs-5" for="exampleRadios3">
+                          Otros
                         </label>
                       </div>
 
                     </div>
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea2" style="height: 100px"></textarea>
-                      <label for="floatingTextarea2" class="fs-6  text-gray">Observaciones</label>
-                    </div>
-
-                    <div class="row d-flex mx-auto my-3 col-12 justify-content-between ">
-                      <div class="col-auto p-1 btn-hover">
-                        <button class="btn rounded-2 btn-green shadow"><i
-                          class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
-                        <span class=" mx-3 fs-6 text-gray">Plantilla de texto</span>
-                      </div>
-                      <div class="col-auto p-1 btn-hover">
-                        <button type="button"
-                                class="btn btn-green text-white fs-5 shadow ">Siguiente
-                        </button>
-                      </div>
+                      <textarea class="form-control" placeholder="Leave a comment here"
+                                formControlName="observaciones"
+                                id="observacionesToxicologicas"
+                                style="height: 100px"></textarea>
+                      <label for="observacionesToxicologicas" class="fs-6  text-gray">Observaciones</label>
                     </div>
 
                   </div>
@@ -82,98 +82,129 @@
                     Patologicos
                   </button>
                 </h2>
-                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
-                  <div class="accordion-body">
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse"
+                     [attr.data-bs-parent]="'#accordionPanelAntecedentes'">
+                  <div class="accordion-body" formGroupName="patologico">
                     <!-- colocar los check -->
-                    <div class="row col-12 my-auto mx-auto py-3 text-gray">
+                    <div class="row col-12 my-auto mx-auto py-3 text-gray" formGroupName="tipo">
                       <div class="form-check col-4  my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios1" value="option1" checked>
-                        <label class="form-check-label fs-5" for="exampleRadios1">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="patologicoRadios"
+                          id="patologicoHiperTencionArterial"
+                          formControlName="hipertensionArterial"
+                        >
+                        <label class="form-check-label fs-5" for="patologicoHiperTencionArterial">
                           Hipertension Arterial
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="patologicoRadios"
+                          id="diabetesMellitus"
+                          formControlName="diabetesMellitus">
+                        <label class="form-check-label fs-5" for="diabetesMellitus">
                           Diabetes Mellitus
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input class="form-check-input"
+                               type="checkbox"
+                               name="patologicoRadios"
+                               id="hepatitisB"
+                               formControlName="hepatitisB">
+                        <label class="form-check-label fs-5" for="hepatitisB">
                           Hepatitis B
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="patologicoRadios"
+                          id="hepatitisC"
+                          formControlName="hepatitisC">
+                        <label class="form-check-label fs-5" for="hepatitisC">
                           Hepatitis C
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="patologicoRadios"
+                          id="vih"
+                          formControlName="vih">
+                        <label class="form-check-label fs-5" for="vih">
                           VIH
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="patologicoRadios"
+                          id="serologia"
+                          formControlName="serologia">
+                        <label class="form-check-label fs-5" for="serologia">
                           Serologia
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="patologicoRadios"
+                          id="epoc"
+                          formControlName="epoc">
+                        <label class="form-check-label fs-5" for="epoc">
                           EPOC
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="patologicoRadios"
+                          id="enfermedadCoronaria"
+                          formControlName="enfermedadCoronaria">
+                        <label class="form-check-label fs-5" for="enfermedadCoronaria">
                           Enfermedad Coronaria
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="patologicoRadios"
+                          id="dislipidemia"
+                          formControlName="dislipidemia">
+                        <label class="form-check-label fs-5" for="dislipidemia">
                           Dislipidemia
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="patologicoRadios"
+                          id="cancer"
+                          formControlName="cancer">
+                        <label class="form-check-label fs-5" for="cancer">
                           Cancer
                         </label>
                       </div>
                     </div>
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea2" style="height: 100px"></textarea>
-                      <label for="floatingTextarea2" class="fs-6  text-gray">Otros</label>
-                    </div>
-
-                    <div class="row d-flex mx-auto my-3 col-12 justify-content-between ">
-                      <div class="col-auto p-1 btn-hover">
-                        <button class="btn rounded-2 btn-green shadow"><i
-                          class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
-                        <span class=" mx-3 fs-6 text-gray">Plantilla de texto</span>
-                      </div>
-                      <div class="col-auto p-1 btn-hover">
-                        <button type="button"
-                                class="btn btn-green text-white fs-5 shadow ">Siguiente
-                        </button>
-                      </div>
+                      <textarea class="form-control"
+                                placeholder="Leave a comment here"
+                                id="observacionesPatologicos"
+                                style="height: 100px"
+                                formControlName="observaciones"></textarea>
+                      <label for="observacionesPatologicos" class="fs-6  text-gray">Otros</label>
                     </div>
 
                   </div>
@@ -190,77 +221,99 @@
                     Quirurgicos
                   </button>
                 </h2>
-                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
-                  <div class="accordion-body">
-                    <div class="row col-12 my-auto mx-auto py-3 text-gray">
-                      <div class="form-check col-4  my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios1" value="option1" checked>
-                        <label class="form-check-label fs-5" for="exampleRadios1">
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse"
+                     [attr.data-bs-parent]="'#accordionPanelAntecedentes'">
+                  <div class="accordion-body" formGroupName="quirurgicos">
+                    <div class="row col-12 my-auto mx-auto py-3 text-gray" formGroupName="tipo">
+
+                      <div class="form-check col-4 my-2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="guirurgicoRadios"
+                          id="nefrectomia"
+                          formControlName="nefrectomia">
+                        <label class="form-check-label fs-5" for="nefrectomia">
                           Nefrectomía
                         </label>
                       </div>
+
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="guirurgicoRadios"
+                          id="cirugiaAbdominal"
+                          formControlName="cirugiaAbdominal">
+                        <label class="form-check-label fs-5" for="cirugiaAbdominal">
                           Cirugia Abdominal
                         </label>
                       </div>
+
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
-                          Apendicetomía
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="guirurgicoRadios"
+                          id="apendicectomia"
+                          formControlName="apendicectomia">
+                        <label class="form-check-label fs-5" for="apendicectomia">
+                          Apendicectomía
                         </label>
                       </div>
+
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
-                          Herniorrefía
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="guirurgicoRadios"
+                          id="herniorrafia"
+                          formControlName="herniorrafia">
+                        <label class="form-check-label fs-5" for="herniorrafia">
+                          Herniorrafía
                         </label>
                       </div>
+
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="guirurgicoRadios"
+                          id="laparotomia"
+                          formControlName="laparotomia">
+                        <label class="form-check-label fs-5" for="laparotomia">
                           Laparotomía
                         </label>
                       </div>
+
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="guirurgicoRadios"
+                          id="histeroctomia"
+                          formControlName="histeroctomia">
+                        <label class="form-check-label fs-5" for="histeroctomia">
                           Histerectomía
                         </label>
                       </div>
+
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input class="form-check-input" type="checkbox" name="guirurgicoRadios"
+                               id="osteosintesis" formControlName="osteosintesis">
+                        <label class="form-check-label fs-5" for="osteosintesis">
                           Osteosíntesis
                         </label>
                       </div>
 
                     </div>
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea2" style="height: 100px"></textarea>
-                      <label for="floatingTextarea2" class="fs-6  text-gray">Otros</label>
-                    </div>
-
-                    <div class="row d-flex mx-auto my-3 col-12 justify-content-between ">
-                      <div class="col-auto p-1 btn-hover">
-                        <button class="btn rounded-2 btn-green shadow"><i
-                          class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
-                        <span class=" mx-3 fs-6 text-gray">Plantilla de texto</span>
-                      </div>
-                      <div class="col-auto p-1 btn-hover">
-                        <button type="button"
-                                class="btn btn-green text-white fs-5 shadow ">Siguiente
-                        </button>
-                      </div>
+                      <textarea class="form-control"
+                                placeholder="Leave a comment here"
+                                id="observacionesQuirurgicos"
+                                style="height: 100px"
+                                formControlName="observaciones"></textarea>
+                      <label for="observacionesQuirurgicos" class="fs-6  text-gray">Otros</label>
                     </div>
                   </div>
                 </div>
@@ -276,34 +329,51 @@
                     Alergicos
                   </button>
                 </h2>
-                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
-                  <div class="accordion-body">
-                    <div class="row col-12 my-auto mx-auto py-3 text-gray">
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse"
+                     [attr.data-bs-parent]="'#accordionPanelAntecedentes'">
+                  <div class="accordion-body" formGroupName="alergicos">
+                    <div class="row col-12 my-auto mx-auto py-3 text-gray" formGroupName="tipo">
                       <div class="form-check col-4  my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios1" value="option1" checked>
-                        <label class="form-check-label fs-5" for="exampleRadios1">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="alergicoRadios"
+                          id="penicilinas"
+                          formControlName="penicilinas">
+                        <label class="form-check-label fs-5" for="penicilinas">
                           Penicilinas
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="alergicoRadios"
+                          id="sulfas"
+                          formControlName="sulfas">
+                        <label class="form-check-label fs-5" for="sulfas">
                           Sulfas
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="alergicoRadios"
+                          id="dipirona"
+                          formControlName="dipirona">
+                        <label class="form-check-label fs-5" for="dipirona">
                           Dipirona
                         </label>
                       </div>
                       <div class="form-check col-4 my-2">
-                        <input class="form-check-input" type="checkbox" name="exampleRadios"
-                               id="exampleRadios2" value="option2">
-                        <label class="form-check-label fs-5" for="exampleRadios2">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          name="alergicoRadios"
+                          id="iecas"
+                          formControlName="iecas">
+                        <label class="form-check-label fs-5" for="iecas">
                           IECAS
                         </label>
                       </div>
@@ -311,23 +381,14 @@
 
                     </div>
                     <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea2" style="height: 100px"></textarea>
-                      <label for="floatingTextarea2" class="fs-6  text-gray">Otros</label>
+                      <textarea class="form-control"
+                                placeholder="Leave a comment here"
+                                id="observacionesAlergico"
+                                style="height: 100px"
+                                formControlName="observaciones"></textarea>
+                      <label for="observacionesAlergico" class="fs-6  text-gray">Otros</label>
                     </div>
 
-                    <div class="row d-flex mx-auto my-3 col-12 justify-content-between ">
-                      <div class="col-auto p-1 btn-hover">
-                        <button class="btn rounded-2 btn-green shadow"><i
-                          class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
-                        <span class=" mx-3 fs-6 text-gray">Plantilla de texto</span>
-                      </div>
-                      <div class="col-auto p-1 btn-hover">
-                        <button type="button"
-                                class="btn btn-green text-white fs-5 shadow ">Siguiente
-                        </button>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -335,17 +396,15 @@
 
           </div>
 
-        </form>
 
-        <!-- segunda parte de antececdentes -->
-        <div class="row  justify-contnet-start text-green-dark mt-5 mb-4 ">
-          <h4 >FAMILIARES</h4>
-          <hr class="border border-2 opacity-75">
-        </div>
+          <!-- segunda parte de antececdentes -->
+          <div class="row  justify-contnet-start text-green-dark mt-5 mb-4 ">
+            <h4>FAMILIARES</h4>
+            <hr class="border border-2 opacity-75">
+          </div>
 
-        <form>
           <div>
-            <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion" id="accordionPanelsAntecedenteFamiliar">
               <!-- primer acordeon -->
               <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -356,62 +415,67 @@
                     Antecedente familiar
                   </button>
                 </h2>
-                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show">
+                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse show"
+                     [attr.data-bs-parent]="'#accordionPanelsAntecedenteFamiliar'">
                   <div class="accordion-body">
-                    <div
-                      class="row d-flex col-12 my-auto mx-auto py-3 justify-content-start align-content-between">
-                      <div class="col-md-2 ">
-                        <div class="form-floating">
-                          <select class="form-select text-gray" id="floatingSelectGrid">
-                            <option selected></option>
-                            <option value="3">Hijo</option>
-                            <option value="1">Madre</option>
-                            <option value="2">Padre</option>
-                            <option value="3">Hermano</option>
-                            <option value="3">Sobrinos</option>
-                            <option value="3">Tios</option>
-                            <option value="3">Nieto</option>
-                            <option value="3">Abuelos</option>
-                            <option value="3">No aplica</option>
 
-                          </select>
-                          <label for="floatingSelectGrid"
-                                 class="text-gray py-1">Parentesco</label>
+                    <div formArrayName="familiares">
+                      <div
+                        *ngFor="let antecedenteFamiliar of familiares.controls; let i = index"
+                        [formGroupName]="i"
+                        class="row d-flex col-12 my-auto mx-auto py-3 justify-content-start align-content-between">
+                        <div class="col-md-2">
+                          <div class="form-floating">
+                            <select class="form-select text-gray" id="parentesco">
+                              <option *ngFor="let option of parentescoOptions"
+                                      [ngValue]="option">{{option.parentesco}}</option>
+                            </select>
+                            <label for="parentesco"
+                                   class="text-gray py-1">Parentesco</label>
+                          </div>
                         </div>
-                      </div>
 
-                      <div class=" col-md-2">
-                        <div class="form-floating">
-                          <input type="date" class="form-control" id="floatingInputGrid"
-                                 placeholder="name@example.com" value="mdo@example.com">
-                          <label for="floatingInputGrid" class="py-1">Fecha
-                            Diagnostico</label>
+                        <div class=" col-md-2">
+                          <div class="form-floating">
+                            <input
+                              type="date"
+                              class="form-control"
+                              id="fechaDiagnostico"
+                              formControlName="fechaDiagnostico">
+                            <label for="fechaDiagnostico" class="py-1">Fecha
+                              Diagnostico</label>
+                          </div>
+                        </div>
+
+
+                        <div class="form-floating my-3">
+                          <textarea class="form-control"
+                                    placeholder="Leave a comment here"
+                                    [id]="'observacionesAntecedentesFamiliares-'+i"
+                                    style="height: 100px"
+                                    formControlName="diagnostico"></textarea>
+                          <label [for]="'observacionesAntecedentesFamiliares-'+i"
+                                 class="fs-6 text-gray ps-4">Diagnostico</label>
+                        </div>
+                        <div class="col-12 my-3">
+                          <hr>
                         </div>
                       </div>
                     </div>
-
-                    <div class="form-floating ">
-                                            <textarea class="form-control" placeholder="Leave a comment here"
-                                                      id="floatingTextarea2" style="height: 100px"></textarea>
-                      <label for="floatingTextarea2" class="fs-6  text-gray">Diagnostico</label>
-                    </div>
-
-                    <div class="row d-flex mx-auto my-3 col-12 justify-content-between ">
+                    <div class="row d-flex mx-auto my-3 col-12 justify-content-end ">
                       <div class="col-auto p-1 btn-hover">
-                        <button class="btn rounded-2 btn-green shadow"><i
-                          class="fa-solid fa-file-arrow-up text-white fs-5 "></i></button>
-                        <span class=" mx-3 fs-6 text-gray">Plantilla de texto</span>
-                      </div>
-                      <div class="col-auto p-1 btn-hover">
-                        <button type="button"
-                                class="btn btn-green text-white fs-5 shadow ">Siguiente
+                        <button
+                          (click)="nuevoAntecedenteFamiliar()"
+                          type="button"
+                          class="btn btn-green text-white fs-5 shadow ">Añadir otro
                         </button>
                       </div>
                     </div>
-
                   </div>
                 </div>
               </div>
+
+
             </div>
           </div>
         </form>

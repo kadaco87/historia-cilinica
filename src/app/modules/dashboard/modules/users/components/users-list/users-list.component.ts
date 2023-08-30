@@ -69,7 +69,6 @@ export class UsersListComponent implements OnInit, AfterViewInit {
   }
 
   editUserProfile(id: string) {
-    console.log('id: ', id);
     this.router.navigate(['/dashboard/users/user-form/update/' + id]).then()
 
   }

@@ -25,7 +25,6 @@ export class TokenService {
   }
   getRefreshToken() {
     const token = getCookie('refresh-token');
-    console.log(token)
     return token;
   }
   isValidToken() {
@@ -48,7 +47,6 @@ export class TokenService {
       return false;
     }
     const decodeToken = jwt_decode<JwtPayload>(token);
-    console.log('decodeToken', decodeToken?.exp)
     if (decodeToken && decodeToken?.exp) {
       const tokenDate = new Date(0);
       tokenDate.setUTCSeconds(decodeToken.exp);

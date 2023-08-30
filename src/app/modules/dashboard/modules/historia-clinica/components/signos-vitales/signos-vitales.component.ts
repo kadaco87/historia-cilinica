@@ -16,7 +16,7 @@ import {MatTableDataSource, MatTableDataSourcePaginator} from "@angular/material
 })
 export class SignosVitalesComponent implements OnInit {
   // las variables se declaran encima del constructor
-  id: string = '';
+  patientId: string = '';
   formularioSignosVitales!: FormGroup;
   dataSource!: MatTableDataSource<SignosVitalesInterface, MatTableDataSourcePaginator>;
   displayedColumns: string[] = [
@@ -35,7 +35,9 @@ export class SignosVitalesComponent implements OnInit {
   ];
   defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
   rhList: RhInterface[] = [];
-listaSignosVitales: SignosVitalesInterface[] = [];
+  listaSignosVitales: SignosVitalesInterface[] = [];
+  historyId = '';
+
   constructor(
     private readonly route: ActivatedRoute,
     private readonly fb: FormBuilder,
@@ -50,12 +52,13 @@ listaSignosVitales: SignosVitalesInterface[] = [];
   */
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
-      this.id = params['id'] ? params['id'] : null;
-      console.log(this.id)
+      this.patientId = params['id'] ? params['id'] : null;
+      this.historyId = params['historyId'] ? params['historyId'] : null;
+      this.getListaRH();
+      this.initForm();
+      this.getSignosVitales();
     })
-    this.getListaRH();
-    this.initForm();
-    this.getSignosVitales();
+
   }
 
   initForm() {
@@ -76,8 +79,8 @@ listaSignosVitales: SignosVitalesInterface[] = [];
     });
   }
 
-  getSignosVitales(){
-    this.historiaClinicaService.obtenerSignosVitales(this.id)
+  getSignosVitales() {
+    this.historiaClinicaService.obtenerSignosVitales(this.historyId)
       .subscribe({
         'next': result => {
           this.dataSource = new MatTableDataSource<SignosVitalesInterface>(result.reverse());
@@ -90,10 +93,9 @@ listaSignosVitales: SignosVitalesInterface[] = [];
     this.utilsService.getRH().subscribe(listaRH => this.rhList = listaRH);
   }
 
-  getRHPorId(rhId: string){
+  getRHPorId(rhId: string) {
     return this.rhList.find(rh => rh.id === rhId);
   }
-
   enviarFormulario() {
     if (!this.formularioSignosVitales.valid) {
       this.formularioSignosVitales.markAllAsTouched();
@@ -113,8 +115,7 @@ listaSignosVitales: SignosVitalesInterface[] = [];
         sistolica: Number(this.sistolica?.value),
         temperatura: Number(this.temperatura?.value)
       };
-      console.log('se envio el formulario => ', dataSignosVitales);
-      this.historiaClinicaService.registrarSignosVitales(this.id, dataSignosVitales)
+      this.historiaClinicaService.registrarSignosVitales( this.historyId,this.patientId, dataSignosVitales)
         .subscribe({
           'next': result => {
             if (result) Swal.fire({
@@ -156,7 +157,6 @@ listaSignosVitales: SignosVitalesInterface[] = [];
       const peso = Number(this.peso?.value || 1);
       const estatura = Number(this.estatura?.value || 1) / 100;
       const imc = parseInt(String((peso / (2 * estatura))))
-      console.log('me estoy evaluando', `${peso} / (2 * ${estatura}) = ${imc}`)
       this.imc?.setValue(imc);
     }
 

@@ -17,7 +17,8 @@ export class NotaEnfermeriaComponent implements OnInit {
   formularioNotaEnfermeria!: FormGroup;
   listaNotas: NotaEnfermeriaInterface[] = [];
   defaultOptionsAlerts = OPTIONS_SWEET_ALERT;
-  id: string = '';
+  patientId: string = '';
+  historyId: string = '';
 
   constructor(
     private readonly fb: FormBuilder,
@@ -30,12 +31,10 @@ export class NotaEnfermeriaComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
-      this.id = params['id'] || null;
-      console.log('NotaEnfermeriaComponent => this.id', this.id)
+      this.patientId = params['id'] || null;
+      this.historyId = params['historyId'] || null;
     })
     this.initForm();
-    const modal = document.querySelector('#plantillaTextoModal');
-    console.log(modal);
   }
 
   initForm() {
@@ -47,12 +46,11 @@ export class NotaEnfermeriaComponent implements OnInit {
   }
 
   getNotasEnfermeria() {
-    this.historiaClinicaService.obtenerNotasEnfermeria(this.id)
+    this.historiaClinicaService.obtenerNotasEnfermeria(this.patientId)
       .subscribe({
         'next': notas => {
           if(notas) {
             this.listaNotas = notas
-            console.log(this.listaNotas)
           }
         },
         'error': error => console.error(error)
@@ -71,16 +69,15 @@ export class NotaEnfermeriaComponent implements OnInit {
     if (this.formularioNotaEnfermeria.valid) {
       const notaEnfermeria = {
         nota: this.nota?.value,
-        patientId: this.id,
         temporalidad: Number(this.temporalidad?.value),
         date: new Date(Date.now()).valueOf(),
         notasAclaratorias: []
       }
-      this.historiaClinicaService.registrarNotasEnfermeria(this.id, notaEnfermeria)
+      this.historiaClinicaService.registrarNotasEnfermeria(this.historyId, this.patientId, notaEnfermeria)
         .subscribe({
           'next': result => {
             if (result) Swal.fire({
-              title: 'Advertencia!',
+              title: 'Exito!',
               text: 'Nota enfermeria registrada exitosamente',
               icon: 'success',
               confirmButtonText: 'Aceptar',
@@ -91,7 +88,7 @@ export class NotaEnfermeriaComponent implements OnInit {
               this.getNotasEnfermeria();
             })
           }, 'error': error => Swal.fire({
-            title: 'Advertencia!',
+            title: 'Error!',
             text: error.error.message,
             icon: 'warning',
             confirmButtonText: 'Aceptar',
@@ -120,7 +117,6 @@ export class NotaEnfermeriaComponent implements OnInit {
   }
 
   recibirDataFormularioModal(event: any) {
-    console.log('event: ', event);
     const notaAclaratoria = {
       notaAclaratoria: event.notaAclaratoria,
       date: new Date(Date.now()).valueOf()
@@ -129,7 +125,7 @@ export class NotaEnfermeriaComponent implements OnInit {
       .subscribe({
         'next': result => {
           if (result) Swal.fire({
-            title: 'Advertencia!',
+            title: 'Exito!',
             text: 'Nota Aclaratoria registrada exitosamente',
             icon: 'success',
             confirmButtonText: 'Aceptar',
@@ -140,7 +136,7 @@ export class NotaEnfermeriaComponent implements OnInit {
             this.getNotasEnfermeria();
           })
         }, 'error': error => Swal.fire({
-          title: 'Advertencia!',
+          title: 'Error!',
           text: error.error.message,
           icon: 'warning',
           confirmButtonText: 'Aceptar',

@@ -37,7 +37,6 @@ export class ForgotPasswordComponent implements OnInit {
   sendEmail() {
     if (this.forgotPasswordForm.valid) {
       // Realizo la peticion
-      console.log();
       this.authService.forgotPassword(this.forgotPasswordForm.getRawValue())
         .subscribe({
           'next': response => {
@@ -62,10 +61,6 @@ export class ForgotPasswordComponent implements OnInit {
             }).then(console.log)
           }
         });
-    } else {
-      console.log('Algo falta');
-
     }
-    console.log(this.forgotPasswordForm.value);
   }
 }
