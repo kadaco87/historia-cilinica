@@ -35,7 +35,7 @@ import {MultiSelectModule} from "primeng/multiselect";
     DispositivosMedicosComponent,
     NotaEnfermeriaComponent,
     MedicamentosComponent,
-    OrdenesMedicasComponent,
+    OrdenesMedicasComponent
       ],
   imports: [
     CommonModule,
@@ -51,6 +51,6 @@ import {MultiSelectModule} from "primeng/multiselect";
     MatPaginatorModule,
     KeyFilterModule,
     MultiSelectModule
-  ]
+  ], exports: [DatosPersonalesPacienteComponent],
 })
 export class HistoriaClinicaModule { }

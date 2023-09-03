@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormularioPacienteComponent } from './components/formulario-paciente/formulario-paciente.component';
 import { ListaPacientesComponent } from './components/lista-pacientes/lista-pacientes.component';
+import {HistorialComponent} from "./components/historial/historial.component";
 
 const routes: Routes = [
   {
@@ -23,6 +24,10 @@ const routes: Routes = [
       {
         path: 'forumlario-paciente/:id', //una con parametros, carga el mismo formulario
         component: FormularioPacienteComponent
+      },
+      {
+        path: 'historial/:id',
+        component: HistorialComponent
       },
       {
         path: 'historia-clinica/:id/:historyId',

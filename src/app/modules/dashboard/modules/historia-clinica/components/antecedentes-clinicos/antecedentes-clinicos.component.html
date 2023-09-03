@@ -426,9 +426,9 @@
                         class="row d-flex col-12 my-auto mx-auto py-3 justify-content-start align-content-between">
                         <div class="col-md-2">
                           <div class="form-floating">
-                            <select class="form-select text-gray" id="parentesco">
+                            <select class="form-select text-gray" id="parentesco" formControlName="parentesco">
                               <option *ngFor="let option of parentescoOptions"
-                                      [ngValue]="option">{{option.parentesco}}</option>
+                                      [ngValue]="option.id">{{option.parentesco}}</option>
                             </select>
                             <label for="parentesco"
                                    class="text-gray py-1">Parentesco</label>
@@ -478,11 +478,11 @@
 
             </div>
           </div>
+          <div class="row d-flex justify-content-end  mx-auto my-4">
+            <button class="btn btn-green text-white col-auto fs-4 shadow">Guardar</button>
+          </div>
         </form>
 
-        <div class="row d-flex justify-content-end  mx-auto my-4">
-          <button class="btn btn-green text-white col-auto fs-4 shadow">Guardar</button>
-        </div>
 
       </div>
     </div>

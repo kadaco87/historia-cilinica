@@ -39,7 +39,7 @@ export class ListaPacientesComponent implements OnInit, AfterViewInit {
 
   getPaciente() {
     this.usersService.getUsers('87f0a3bb-5f5c-48d0-a5f8-c7eca83098c3').subscribe(pacientes => {
-      this.dataSource = new MatTableDataSource<UserInterface>(pacientes)
+      if(pacientes && pacientes.length>0) this.dataSource = new MatTableDataSource<UserInterface>(pacientes)
     })
   }
 
@@ -59,7 +59,7 @@ export class ListaPacientesComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
+    // this.dataSource.paginator. =  1
   }
 
   iniciarAtencion(id: string) {
@@ -76,8 +76,12 @@ export class ListaPacientesComponent implements OnInit, AfterViewInit {
     this.router.navigate(['/dashboard/pacientes/historia-clinica/' + patientId +'/'+ historyId + '/resumen'])
   }
 
-  verHistorailClinico(i: string) {
+  verHistorailClinico(patientId: string) {
+    this.router.navigate(['/dashboard/pacientes/historial/'+patientId]).then(console.log)
+  }
 
+  editarPaciente(patientId: string) {
+    console.log(patientId)
   }
 }
 

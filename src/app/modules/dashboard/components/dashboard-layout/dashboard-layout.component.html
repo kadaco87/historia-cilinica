@@ -10,15 +10,15 @@
     </mat-toolbar>
     <mat-nav-list>
       <div class="fs-4 mt-3">
-        <a mat-list-item [routerLink]="['/','dashboard','pacientes']" [routerLinkActive]="'active'" class="row rounded-start">
-          <i class="fa-solid fa-id-card mx-2 text-white col-2"></i>
-          <span class=" col-auto text-white">Pacientes</span></a>
+        <a mat-list-item [routerLink]="['/','dashboard','pacientes']" [routerLinkActive]="'active'" class="row rounded-start rounded-pill btn-hover-blue">
+          <i class="fa-solid fa-id-card mx-2 text-white col-2 "></i>
+          <span class="col-auto text-white">Pacientes</span></a>
 
-        <a mat-list-item  [routerLink]="['/']" [routerLinkActive]="'active'" class="row rounded-start">
+        <a mat-list-item  [routerLink]="['/']" [routerLinkActive]="'active'" class="row rounded-start rounded-pill btn-hover-blue">
           <i class="fa-regular fa-calendar-days mx-2 text-white col-2"></i>
           <span class=" col-auto text-white">Agenda</span></a>
 
-        <a mat-list-item  [routerLink]="['/', 'dashboard', 'users' ]" [routerLinkActive]="'active'" class="row rounded-start">
+        <a mat-list-item  [routerLink]="['/', 'dashboard', 'users' ]" [routerLinkActive]="'active'" class="row rounded-start rounded-pill btn-hover-blue">
           <i class="fa-solid fa-user mx-2 text-white col-2"></i>
           <span class=" col-auto text-white">Usuarios</span></a>
       </div>
@@ -37,7 +37,7 @@
 
       <div class="row d-flex col-12 justify-content-between px-2 ">
 
-        <div class="col-10"><h1 *ngIf="!(isHandset$ | async)" class="text-white fw-semibold display-3">TechClinic</h1></div>
+        <div class="col-10"><h1 *ngIf="!(isHandset$ | async)" class="text-white fw-semibold fs-2 display-3">TechClinic</h1></div>
         <div class="col-2 d-flex">
           <div class=" d-flex justify-content-center align-content-center align-items-center " >
 

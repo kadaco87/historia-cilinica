@@ -21,7 +21,7 @@ export class OrdenesMedicasComponent implements OnInit {
     concentracion: string;
     formafarmaceutica: string;
   }[] = [];
-  defaultOptionsAlerts!: { success: SweetAlertOptions<any, any>; danger: SweetAlertOptions<any, any>; };
+  defaultOptionsAlerts!: { success: SweetAlertOptions; danger: SweetAlertOptions; };
   historyId: string = '';
 
   constructor(

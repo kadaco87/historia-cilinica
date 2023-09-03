@@ -1,0 +1,74 @@
+<app-datos-personales-paciente></app-datos-personales-paciente>
+
+<div class="container-fluid px-5  bg-light text-gray">
+    <div class="row p-4">
+        <div class="col-12 my-5">
+            <h2 class="text-green-dark">Historial</h2>
+        </div>
+
+    </div>
+    <div class="mat-elevation-z8">
+        <table mat-table [dataSource]="dataSource">
+
+            <!-- Position Column -->
+            <ng-container matColumnDef="fechaCreacion">
+                <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef> Fecha Creacion</th>
+                <td class="text-gray text-center" mat-cell
+                    *matCellDef="let element"> {{stringToNumber(element.historyId) | date:'dd-MM-YYY'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="historyId">
+                <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef> ID Historia</th>
+                <td class="text-gray text-center" mat-cell *matCellDef="let element"> {{element.historyId}} </td>
+            </ng-container>
+
+            <!-- Weight Column -->
+            <ng-container matColumnDef="tipoConsulta">
+                <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef> Tipo consulta</th>
+                <td class="text-gray text-center" mat-cell
+                    *matCellDef="let element"> {{tipoAtencionToString(element.atencionmedica.tipoConsulta)}}  </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="state">
+                <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef> Estado</th>
+                <td class="text-gray text-center" mat-cell
+                    *matCellDef="let element"> {{element.state ? 'Abierta' : 'Cerrada'}}</td>
+            </ng-container>
+
+
+            <ng-container matColumnDef="actions">
+                <th class="text-green-dark text-center" mat-header-cell *matHeaderCellDef> Actions</th>
+                <td class="text-gray text-center" mat-cell *matCellDef="let element">
+                    <!-- generar atencion inicial - lleva a la historia clinica -->
+                    <button type="button" class="btn border-0" [disabled]="element.historyState">
+                        <i class="fa-solid fa-lock text-green-dark" (click)="cerrarHistoria(element.historyId)"
+                           matTooltipPosition="above" [matTooltip]="'Cerrar Historia'"></i>
+                    </button>
+                    <!-- Seguir editando historia activa -->
+                    <button type="button" class="btn border-0" [disabled]="!element.state">
+                        <i class="fa-solid fa-laptop-medical text-green-dark"
+                           (click)="editarHistoriaActiva(element.patientId, element.historyId)"
+                           matTooltipPosition="above" [matTooltip]="'Continuar Atencion'"></i>
+                    </button>
+                    <!--          &lt;!&ndash; historial clinico completo de atenciones &ndash;&gt;-->
+                    <!--          <button type="button" class="btn  border-0 mx-2" >-->
+                    <!--            <i class="fa-regular fa-folder-open text-green-dark " (click)="verHistorailClinico(element.id)" matTooltipPosition="above" [matTooltip]="'Carpeta historial'"></i>-->
+                    <!--          </button>-->
+                    <!--          <button type="button" class="btn  border-0" >-->
+                    <!--            <i class="fa-solid fa-file-pen text-green-dark " (click)="editarPaciente(element.id)" matTooltipPosition="above" [matTooltip]="'Editar perfil paciente'"></i>-->
+                    <!--          </button>-->
+
+                </td>
+            </ng-container>
+
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+            <mat-paginator class="text-gray" [length]="dataSource ? dataSource.data.length : 0"  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+                           aria-label="Select page of periodic elements">
+            </mat-paginator>
+    </div>
+</div>

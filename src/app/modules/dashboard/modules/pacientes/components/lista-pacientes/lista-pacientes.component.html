@@ -11,10 +11,10 @@
 
 
             </div>
-            <div class="col-4">
-                <a class="btn bg-green-light text-white fw-bold shadow" [routerLink]="['/','dashboard','pacientes','forumlario-paciente']"><i
+            <div class="col-4 ">
+                <button class="btn bg-green-blue btn-hover text-white  fw-bold shadow" [routerLink]="['/','dashboard','pacientes','forumlario-paciente']"><i
                         class="fa-solid fa-user-plus"></i>
-                    Nuevo paciente</a>
+                    Nuevo paciente</button>
             </div>
 
         </div>
@@ -56,15 +56,21 @@
                 <th class="text-green-dark" mat-header-cell *matHeaderCellDef> Actions </th>
                 <td class="text-gray" mat-cell *matCellDef="let element">
                     <!-- generar atencion inicial - lleva a la historia clinica -->
-                    <button type="button" class="btn btn-outline-info border-0" [disabled]="element.historyState">
-                      <i class="fa-solid fa-file-waveform" (click)="iniciarAtencion(element.id)" matTooltipPosition="above" [matTooltip]="'Iniciar Atención'"></i>
+                    <button type="button" class="btn border-0" [disabled]="element.historyState">
+                      <i class="fa-solid fa-file-waveform text-green-dark" (click)="iniciarAtencion(element.id)" matTooltipPosition="above" [matTooltip]="'Iniciar Atención'"></i>
                     </button>
                   <!-- Seguir editando historia activa -->
-                  <button type="button" class="btn btn-outline-info border-0" [disabled]="!element.historyState">
-                    <i class="fa-solid fa-file-pen mx-3" (click)="editarHistoriaActiva(element.id, element.historyId)"></i>
+                  <button type="button" class="btn border-0 mx-3" [disabled]="!element.historyState">
+                    <i class="fa-solid fa-laptop-medical text-green-dark" (click)="editarHistoriaActiva(element.id, element.historyId)" matTooltipPosition="above" [matTooltip]="'Continuar Atencion'"></i>
                   </button>
-                    <!-- historial clinico completo de atenciones -->
-                    <i class="fa-regular fa-folder-open" (click)="verHistorailClinico(element.id)"></i>
+                  <!-- historial clinico completo de atenciones -->
+                  <button type="button" class="btn  border-0 mx-2" >
+                    <i class="fa-regular fa-folder-open text-green-dark " (click)="verHistorailClinico(element.id)" matTooltipPosition="above" [matTooltip]="'Carpeta historial'"></i>
+                  </button>
+                  <button type="button" class="btn  border-0" >
+                    <i class="fa-solid fa-file-pen text-green-dark " (click)="editarPaciente(element.id)" matTooltipPosition="above" [matTooltip]="'Editar perfil paciente'"></i>
+                  </button>
+
                 </td>
             </ng-container>
 
@@ -74,7 +80,7 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
-        <mat-paginator class="text-gray" [length]="dataSource.data.length"  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
+        <mat-paginator class="text-gray" [length]="dataSource ? dataSource.data.length : 0"  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons
             aria-label="Select page of periodic elements">
         </mat-paginator>
     </div>

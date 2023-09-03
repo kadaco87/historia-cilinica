@@ -96,8 +96,8 @@ html, body {
 .text-blue{
   color: #4b4e6d;
 }
-.text-green-middle{
-  color: #c33c54;
+.text-pink-intense{
+ color: #ff66b3;
 }
 .text-pink{
   color: #d8a7ca
@@ -105,12 +105,24 @@ html, body {
 .text-green-blue{
   color: #007ea7
 }
+
+.text-green-blue{
+  color: #5390d9;}
+
 .btn-green{
     background-color: #03b2ce76;
 }
-.btn-hover button:hover{
-  background-color: #43daf165;
-}
+//.btn-hover button:hover{
+//  background-color: #43daf165;
+//}
+//
+//.btn-hover:hover{
+//  background-color: #d8a7ca;
+//}
+//
+//.btn-hover-blue:hover{
+//  background-color:  #5390d9;
+//}
 
 .border-green{
   background-color: #43daf165;
@@ -122,9 +134,8 @@ html, body {
   -ms-flex-direction: column;
   flex-direction: column;
   -ms-flex-pack: center;
-  justify-content: start;
+  justify-content: left;
   min-height: 100vh;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
-
 }

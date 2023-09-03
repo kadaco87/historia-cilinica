@@ -6,6 +6,7 @@ import {checkToken} from "../interceptors/auth.interceptor";
 import {NotaAclaratoriaInterface, NotaEnfermeriaInterface} from "../models/nota-enfermeria.interface";
 import {OrdenMedicaInterface} from "../models/orden-medica.interface";
 import {AtencionMedicaInterface} from "../models/atencion-medica.interface";
+import {AntecedentesClinicosInterface} from "../models/antecedentes-clinicos.interface";
 
 @Injectable({
   providedIn: 'root'
@@ -54,4 +55,17 @@ export class HistoriaClinicaService {
   obtenerMedicamentos(historyId: string) {
     return this.http.get<boolean>(`${this.apiUrl}/medicamentos/${historyId}`,{context: checkToken()});
   }
+
+  crearAntecedentes(antecedentes: AntecedentesClinicosInterface) {
+    return this.http.post<boolean>(`${this.apiUrl}/antecedentes-clinicos/${antecedentes.historyId}/${antecedentes.patientId}`,antecedentes, {context: checkToken()});
+  }
+
+    getHistoriasPorPatientId(patientId: string) {
+      return this.http.get<any>(`${this.apiUrl}/${patientId}`,{context: checkToken()});
+    }
+
+  cerrarHistoriaClinica(historyId: string) {
+    return this.http.patch<boolean>(`${ this.apiUrl }`, historyId);
+  }
 }
+
